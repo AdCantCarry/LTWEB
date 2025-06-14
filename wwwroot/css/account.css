@@ -1,0 +1,77 @@
+﻿body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f6f8fa, #e6ecf0);
+    margin: 0;
+}
+
+.account-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.form-box {
+    background-color: white;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 420px;
+    transition: box-shadow 0.3s ease;
+}
+
+    .form-box:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+    .form-input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+.form-button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .form-button:hover {
+        background-color: #0056b3;
+    }
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}

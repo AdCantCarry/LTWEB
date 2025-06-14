@@ -1,0 +1,31 @@
+﻿@model TechNova.Models.User
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<div class="account-page">
+    <div class="form-box">
+        <h2 class="form-title">Tạo tài khoản</h2>
+
+        <form method="post" class="form-body">
+            <input asp-for="Username" placeholder="Họ tên" class="form-input" />
+            <span asp-validation-for="Username" class="error-message"></span>
+
+            <input asp-for="Email" placeholder="Email" class="form-input" />
+            <span asp-validation-for="Email" class="error-message"></span>
+
+            <input asp-for="Password" type="password" placeholder="Mật khẩu" class="form-input" />
+            <span asp-validation-for="Password" class="error-message"></span>
+
+            <button type="submit" class="form-button">Đăng ký</button>
+        </form>
+
+        <div class="form-footer">
+            <a href="/Account/Login">Đã có tài khoản? Đăng nhập</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - E-Shop</title>
+    <link rel="stylesheet" href="@Url.Content("~/css/admin.css")" />
+</head>
+<body class="admin-wrapper">
+    <nav class="admin-sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a asp-controller="AdminUsers" asp-action="Index">Users</a></li>
+            <li><a asp-controller="AdminProducts" asp-action="Index">Products</a></li>
+        </ul>
+    </nav>
+    <main class="admin-content">
+        @RenderBody()
+    </main>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

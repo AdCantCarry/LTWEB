@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TechNova.Models.Product>
+@{
+    ViewData["Title"] = "Store";
+}
+
+<section class="store-section">
+    <h2 class="section-title">Tất cả sản phẩm</h2>
+
+    <div class="product-grid">
+        @foreach (var product in Model)
+        {
+            <div class="product-card">
+                <img src="@Url.Content(product.ImageUrl)" alt="@product.Name" />
+                <h3>@product.Name</h3>
+                <p class="price">@product.Price.ToString("N0") ₫</p>
+                <a class="btn-detail" href="/Product/Details/@product.ProductId">Xem chi tiết</a>
+            </div>
+        }
+    </div>
+</section>

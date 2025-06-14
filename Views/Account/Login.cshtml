@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="account-page">
+    <div class="form-box">
+        <h2 class="form-title">Đăng nhập</h2>
+
+        <form method="post" class="form-body">
+            <input name="email" type="email" placeholder="Email" required class="form-input" />
+            <input name="password" type="password" placeholder="Mật khẩu" required class="form-input" />
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="error-message">@ViewBag.Error</div>
+            }
+
+            <button type="submit" class="form-button">Đăng nhập</button>
+        </form>
+
+        <div class="form-footer">
+            <a href="/Account/Register">Chưa có tài khoản? Đăng ký</a>
+        </div>
+    </div>
+</div>

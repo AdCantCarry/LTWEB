@@ -1,0 +1,45 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Quản lý Sản phẩm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý Sản phẩm</h2>
+<a class="btn btn-success" href="/AdminProducts/Create">Thêm mới</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ảnh</th>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Tạo lúc</th>
+            <th>Cập nhật</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>
+                    <img src="@item.ImageUrl" alt="@item.Name" style="height: 50px;" />
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("N0") ₫</td>
+                <td>@item.DiscountedPrice.ToString("N0") ₫</td>
+                <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @(item.UpdatedAt.HasValue? item.UpdatedAt.Value.ToString("dd/MM/yyyy") : "-")
+                </td>
+                <td>
+                    <a href="/Admin/AdminProducts/Edit/@item.ProductId" class="btn btn-primary btn-sm">Sửa</a>
+                    <a href="/Admin/AdminProducts/Delete/@item.ProductId" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
