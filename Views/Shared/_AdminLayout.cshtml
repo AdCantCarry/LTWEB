@@ -11,8 +11,15 @@
         <ul>
             <li><a asp-controller="AdminUsers" asp-action="Index">Users</a></li>
             <li><a asp-controller="AdminProducts" asp-action="Index">Products</a></li>
+            <li><a asp-controller="AdminCategories" asp-action="Index">Categories</a></li>
         </ul>
+
+        <hr />
+
+        <!-- Nút quay về trang chủ -->
+        <a href="/" class="btn-home-link">← Trang chủ</a>
     </nav>
+
     <main class="admin-content">
         @RenderBody()
     </main>

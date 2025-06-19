@@ -1,0 +1,51 @@
+﻿@model List<Category>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Quản lý danh mục";
+}
+
+<h2>Quản lý danh mục</h2>
+<a href="/AdminCategories/Create" class="btn btn-success mb-3">Thêm danh mục</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Ảnh</th>
+            <th>Kích hoạt</th>
+            <th>Ngày tạo</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.Name</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.MainImageUrl))
+                    {
+                        <img src="@item.MainImageUrl" alt="@item.Name" style="width: 60px; height: auto;" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không có ảnh</span>
+                    }
+                </td>
+                <td>@(item.IsActive ? "✔" : "❌")</td>
+                <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a href="/AdminCategories/Edit/@item.CategoryId" class="btn btn-sm btn-primary">Sửa</a>
+                    <a href="/AdminCategories/Delete/@item.CategoryId"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

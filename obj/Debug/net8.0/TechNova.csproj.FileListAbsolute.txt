@@ -151,6 +151,7 @@ D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.csproj.CoreCompileInputs.
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.RazorAssemblyInfo.cache
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.RazorAssemblyInfo.cs
+D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.sourcelink.json
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\scopedcss\bundle\TechNova.styles.css
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\scopedcss\projectbundle\TechNova.bundle.scp.css
@@ -163,10 +164,10 @@ D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets\msbuild.build.Tech
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.TechNova.props
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.TechNova.props
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.csproj.Up2Date
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.dll
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\refint\TechNova.dll
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.pdb
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\TechNova.genruntimeconfig.cache
 D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\ref\TechNova.dll
-D:\Project\LTWNC\LT\TechNova\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

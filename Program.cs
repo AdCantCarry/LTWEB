@@ -31,7 +31,6 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     Seeddata.Initialize(services);
-    Seeddata.Initialize(app.Services.CreateScope().ServiceProvider);
 }
 
 app.MapDefaultControllerRoute();

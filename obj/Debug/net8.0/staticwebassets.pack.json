@@ -5,6 +5,22 @@
       "PackagePath": "staticwebassets\\TechNova.xa33zmk180.bundle.scp.css"
     },
     {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
+      "PackagePath": "staticwebassets\\css\\Cart.css"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Iphone.css",
+      "PackagePath": "staticwebassets\\css\\Iphone.css"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Profile.css",
+      "PackagePath": "staticwebassets\\css\\Profile.css"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Store.css",
+      "PackagePath": "staticwebassets\\css\\Store.css"
+    },
+    {
       "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\account.css",
       "PackagePath": "staticwebassets\\css\\account.css"
     },
@@ -17,6 +33,10 @@
       "PackagePath": "staticwebassets\\css\\highlight.css"
     },
     {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\product-detail.css",
+      "PackagePath": "staticwebassets\\css\\product-detail.css"
+    },
+    {
       "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -25,8 +45,180 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AcerSwiftX.jpg",
+      "PackagePath": "staticwebassets\\images\\AcerSwiftX.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\Akko3068BPlus.jpg",
+      "PackagePath": "staticwebassets\\images\\Akko3068BPlus.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleAirPodsPro2.jpg",
+      "PackagePath": "staticwebassets\\images\\AppleAirPodsPro2.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleMagicMouse2.jpg",
+      "PackagePath": "staticwebassets\\images\\AppleMagicMouse2.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchSeries9.jpg",
+      "PackagePath": "staticwebassets\\images\\AppleWatchSeries9.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchUltra2.jpg",
+      "PackagePath": "staticwebassets\\images\\AppleWatchUltra2.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\DellXPS13Plus.jpg",
+      "PackagePath": "staticwebassets\\images\\DellXPS13Plus.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\FuhlenG90Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\FuhlenG90Pro.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyA74.jpg",
+      "PackagePath": "staticwebassets\\images\\GalaxyA74.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24+.jpg",
+      "PackagePath": "staticwebassets\\images\\GalaxyS24+.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24Ultra.jpg",
+      "PackagePath": "staticwebassets\\images\\GalaxyS24Ultra.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFlip5.jpg",
+      "PackagePath": "staticwebassets\\images\\GalaxyZFlip5.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFold5.jpg",
+      "PackagePath": "staticwebassets\\images\\GalaxyZFold5.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GarminVenu3.jpg",
+      "PackagePath": "staticwebassets\\images\\GarminVenu3.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\HuaweiWatch4Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\HuaweiWatch4Pro.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\KeychronK6.jpg",
+      "PackagePath": "staticwebassets\\images\\KeychronK6.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LeopoldFC750R.jpg",
+      "PackagePath": "staticwebassets\\images\\LeopoldFC750R.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG304.jpg",
+      "PackagePath": "staticwebassets\\images\\LogitechG304.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG435.jpg",
+      "PackagePath": "staticwebassets\\images\\LogitechG435.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXKeysS.jpg",
+      "PackagePath": "staticwebassets\\images\\LogitechMXKeysS.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXMaster3S.jpg",
+      "PackagePath": "staticwebassets\\images\\LogitechMXMaster3S.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MSICreatorZ17.jpg",
+      "PackagePath": "staticwebassets\\images\\MSICreatorZ17.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM1.jpg",
+      "PackagePath": "staticwebassets\\images\\MacBookAirM1.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM2.png",
+      "PackagePath": "staticwebassets\\images\\MacBookAirM2.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM3.jpg",
+      "PackagePath": "staticwebassets\\images\\MacBookAirM3.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Max.jpg",
+      "PackagePath": "staticwebassets\\images\\MacBookM3Max.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\MacBookM3Pro.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerDeathAdderV2.jpg",
+      "PackagePath": "staticwebassets\\images\\RazerDeathAdderV2.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerHuntsmanV2.jpg",
+      "PackagePath": "staticwebassets\\images\\RazerHuntsmanV2.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SUSROGStrixG16.jpg",
+      "PackagePath": "staticwebassets\\images\\SUSROGStrixG16.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyBuds2Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\SamsungGalaxyBuds2Pro.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyWatch6Classic.jpg",
+      "PackagePath": "staticwebassets\\images\\SamsungGalaxyWatch6Classic.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SonyWH-1000XM5.jpg",
+      "PackagePath": "staticwebassets\\images\\SonyWH-1000XM5.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SoundPEATSAir3DeluxeHS.jpg",
+      "PackagePath": "staticwebassets\\images\\SoundPEATSAir3DeluxeHS.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg",
+      "PackagePath": "staticwebassets\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg",
+      "PackagePath": "staticwebassets\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg",
+      "PackagePath": "staticwebassets\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg"
+    },
+    {
       "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\default.jpg",
       "PackagePath": "staticwebassets\\images\\default.jpg"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip10.png",
+      "PackagePath": "staticwebassets\\images\\ip10.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip11.png",
+      "PackagePath": "staticwebassets\\images\\ip11.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip12.png",
+      "PackagePath": "staticwebassets\\images\\ip12.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip13.png",
+      "PackagePath": "staticwebassets\\images\\ip13.png"
+    },
+    {
+      "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip14.png",
+      "PackagePath": "staticwebassets\\images\\ip14.png"
     },
     {
       "Id": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\macbook-air.jpg",

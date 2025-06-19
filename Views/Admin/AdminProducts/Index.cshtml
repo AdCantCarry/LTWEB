@@ -14,6 +14,7 @@
             <th>Ảnh</th>
             <th>Tên</th>
             <th>Giá</th>
+            <th>% giảm</th>
             <th>Tạo lúc</th>
             <th>Cập nhật</th>
             <th>Thao tác</th>
@@ -25,19 +26,29 @@
             <tr>
                 <td>@item.ProductId</td>
                 <td>
-                    <img src="@item.ImageUrl" alt="@item.Name" style="height: 50px;" />
+                    <img src="@item.MainImageUrl" alt="@item.Name" style="height: 50px;" />
                 </td>
                 <td>@item.Name</td>
                 <td>@item.Price.ToString("N0") ₫</td>
-                <td>@item.DiscountedPrice.ToString("N0") ₫</td>
+                <td>
+                    @(item.DiscountPercent.HasValue? item.DiscountPercent.Value.ToString("N0") + " %" : "-")
+                </td>
                 <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
                 <td>
                     @(item.UpdatedAt.HasValue? item.UpdatedAt.Value.ToString("dd/MM/yyyy") : "-")
                 </td>
                 <td>
-                    <a href="/Admin/AdminProducts/Edit/@item.ProductId" class="btn btn-primary btn-sm">Sửa</a>
-                    <a href="/Admin/AdminProducts/Delete/@item.ProductId" class="btn btn-danger btn-sm">Xóa</a>
+                    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-sm btn-warning">✏️ Sửa</a>
+
+                    <a asp-controller="AdminProducts"
+                       asp-action="Delete"
+                       asp-route-id="@item.ProductId"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">
+                        🗑️ Xóa
+                    </a>
                 </td>
+
             </tr>
         }
     </tbody>

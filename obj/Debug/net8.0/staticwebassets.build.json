@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ep84P3dkHoH33ynq55Hf6+X1D+SMqHYeguWNztFJtJI=",
+  "Hash": "XVhHBXN70dkGHIJoR4HvPuTEPvlIM2zWF1oLlpn5MKc=",
   "Source": "TechNova",
   "BasePath": "_content/TechNova",
   "Mode": "Default",
@@ -94,11 +94,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "w2eoadpotg",
-      "Integrity": "SItnucbZmuZjc8JHyYbneycnVIC3QrsDL6tNNc1Y5Qc=",
+      "Fingerprint": "n3wxy8avz9",
+      "Integrity": "wwKM5iqRKn8SxkThlcPYsAZejifls0t5wco7no9/yaQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\admin.css"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "css/Cart#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3jpmtv9uat",
+      "Integrity": "v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Cart.css"
     },
     {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\highlight.css",
@@ -122,6 +143,69 @@
       "OriginalItemSpec": "wwwroot\\css\\highlight.css"
     },
     {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Iphone.css",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "css/Iphone#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z9cwkamr3e",
+      "Integrity": "JyKJzGHaXGkPdkwFxkGQNbsEWGcH3hK3BVe+U1alWHs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Iphone.css"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\product-detail.css",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "css/product-detail#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gjdeztqc5o",
+      "Integrity": "DHPHswklQn4dO3S1SJ8zojdn7E49rXLBsAO7fMfZ0b4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\product-detail.css"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Profile.css",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "css/Profile#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3pa9pf03os",
+      "Integrity": "mUwmIpemNjDuVw2rbJew7RtlI1W4dtkTtlsFvGmWv2I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Profile.css"
+    },
+    {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\site.css",
       "SourceId": "TechNova",
       "SourceType": "Discovered",
@@ -136,11 +220,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xlbk3q85nd",
-      "Integrity": "Oz0VPQqNUReujM4CWN+OtK2B6iTwRLTcPlFExfGDO0Y=",
+      "Fingerprint": "5vh4tndqxk",
+      "Integrity": "cXzmjbae2pBCq7NrlQZtfuNqg9rLSt/csns0twXIVng=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Store.css",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "css/Store#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "c26a9r649s",
+      "Integrity": "NJLJp2Kpn3Qdx98OHe/Pp7WSr8mSRgtAw1S1KPKulBQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Store.css"
     },
     {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\favicon.ico",
@@ -164,6 +269,216 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AcerSwiftX.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/AcerSwiftX#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jwx268xd3i",
+      "Integrity": "3bGJBr+y2Xyr+hvBryTn5ogJW6zOHorFbz0sxvrAyvs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AcerSwiftX.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\Akko3068BPlus.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/Akko3068BPlus#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wd8j0cagf0",
+      "Integrity": "zP4IPUv2N8ySLbCJ6gGEzkI52wNLeQw0PSP+ZkZNwOw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Akko3068BPlus.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleAirPodsPro2.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/AppleAirPodsPro2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mxlrc96hgp",
+      "Integrity": "ypcn+f/DCwY/YumL3/u2r58t+mASJ4ozSIQNzqFZHos=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AppleAirPodsPro2.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleMagicMouse2.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/AppleMagicMouse2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1tom2sp6oj",
+      "Integrity": "FWnPlUncEBsI3ZohNbvJtLytcvGZR6NyiQsIV/d9wWY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AppleMagicMouse2.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchSeries9.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/AppleWatchSeries9#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5uuqvp1lr6",
+      "Integrity": "nfFU49iPfQ46sgJ5ybQrID/au7UWqDHoqMzitKHfvUc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AppleWatchSeries9.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchUltra2.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/AppleWatchUltra2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e206llnpb4",
+      "Integrity": "KmH4q0C5yL2BLZTewDyb2GH2VjG7zjx9vcpnxaN+6Qs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AppleWatchUltra2.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/avatars/7b2b414d-a480-41c4-817b-038feaf66d18#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tuxb89h21j",
+      "Integrity": "2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/avatars/891cefd4-1af6-4824-925a-f7e7323443dd#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fpft4s4zqv",
+      "Integrity": "PZeFjP8U9YaV41EfwQ/+WmSnslvwEzQDxN4bTawppB0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/avatars/c3482616-3859-4cee-a810-822ce0a87be3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tuxb89h21j",
+      "Integrity": "2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/avatars/e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jhdv972ol4",
+      "Integrity": "B5uQkZy7Yhgbo27b71mHZwPQcE6A/OTPeQBqwmqAhdo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg"
+    },
+    {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\default.jpg",
       "SourceId": "TechNova",
       "SourceType": "Discovered",
@@ -183,6 +498,426 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\default.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\DellXPS13Plus.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/DellXPS13Plus#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "egwky68s31",
+      "Integrity": "smSb7/bBlU/TPrMaVEVqsiIDnuQEMbHspQyXO+cHgSw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\DellXPS13Plus.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\FuhlenG90Pro.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/FuhlenG90Pro#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tgcrsh8kol",
+      "Integrity": "3XcnDsNWiZt0Qw9adrqK4wgv1RY46NRY9PTNM2FLSfg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\FuhlenG90Pro.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyA74.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GalaxyA74#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4c53z1jeba",
+      "Integrity": "xJRWD6tCMGA/6lo8h/iDBZMEZNAZ3ZczigWWi72p49E=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GalaxyA74.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24+.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GalaxyS24+#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0sfnahhzsq",
+      "Integrity": "YFJzhSJeVTadGrBCygDbcozMrqEfXy38sgij4FcRuyM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GalaxyS24+.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24Ultra.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GalaxyS24Ultra#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "00624hjack",
+      "Integrity": "IF1K1XJWii2CUQxC9Vd1KzEekppf25N7l8Bphc17MDc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GalaxyS24Ultra.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFlip5.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GalaxyZFlip5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lgcw8h4f8p",
+      "Integrity": "FfMmwpQkCeRJfPw5edIFjCU8D73Xr19QIUBgpo3uBYI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GalaxyZFlip5.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFold5.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GalaxyZFold5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ohuaegx3qp",
+      "Integrity": "3JaCLx2+7RRd8Dfsk5MSFA7XAGMvSu8k+qIItXmTFCc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GalaxyZFold5.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GarminVenu3.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/GarminVenu3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8rjs03fz2w",
+      "Integrity": "BO8qlV78Jw06dceH57Frw56VdfeLJHBsH7oeU4pig7k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\GarminVenu3.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\HuaweiWatch4Pro.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/HuaweiWatch4Pro#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gd0cdotkh3",
+      "Integrity": "HBZMHfczocut0nVMttoJvWWZKzl8KST2oyK8PG/EZ4Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\HuaweiWatch4Pro.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip10.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/ip10#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9fv39hqok9",
+      "Integrity": "1e6D6KxiA9kiaK0L9kkbpHnb5dPPh7kOHSGJWl9HxDs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ip10.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip11.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/ip11#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kat9brrnds",
+      "Integrity": "dFwk/JfNoyKBDXfdfy5HK+UWNxqiBLPMaAleG6yXEbk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ip11.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip12.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/ip12#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lk9rlgz9rg",
+      "Integrity": "NU6yhlg9O14dr67ESud+eIMUHHt9a2AT8P5eHfzhGxE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ip12.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip13.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/ip13#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tco2ikt6wr",
+      "Integrity": "zVkqCubTWZoZaWFWubGNJF6V0+oH3Lj+0jPX6hr00RY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ip13.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip14.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/ip14#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ijo27klagh",
+      "Integrity": "QhAXVlw7+NOC/ybLDNcstI6WnIX5/6tbJk3ACTOqxCU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ip14.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\KeychronK6.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/KeychronK6#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lq09m1gqfv",
+      "Integrity": "/WWD3LUKNHkaUQg7gkLrPYXsE+RPEboATB0pAZB2LBM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\KeychronK6.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LeopoldFC750R.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/LeopoldFC750R#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "imq617yp7y",
+      "Integrity": "Skls2AcSQCs/AT0e+GsucITn9dc506GUECyy5TySZYo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LeopoldFC750R.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG304.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/LogitechG304#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xcwll58n67",
+      "Integrity": "77+O1KKaC0i9GcwXXCdJExGvW073ZzMPHRc8omRVlMM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LogitechG304.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG435.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/LogitechG435#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "brsouu7g8z",
+      "Integrity": "adK8hGoTcYai9wh8UIt05g6D1HZhhKsIjbrqq0osuPE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LogitechG435.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXKeysS.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/LogitechMXKeysS#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vscnfezvhr",
+      "Integrity": "cQj0e0ruusvFPvuyGXQZV7fY0Z7aW6lwnfx2XqTDDow=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LogitechMXKeysS.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXMaster3S.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/LogitechMXMaster3S#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j2cusn19ul",
+      "Integrity": "Zb9WZplPNhW5HwA26DpPeiTHyNmldw56A2U/1vaNZwM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LogitechMXMaster3S.jpg"
     },
     {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\macbook-air.jpg",
@@ -206,6 +941,279 @@
       "OriginalItemSpec": "wwwroot\\images\\macbook-air.jpg"
     },
     {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM1.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MacBookAirM1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "s39zklx2os",
+      "Integrity": "KE9RffqQwpiT1Uvf3N2WsYoHyeH76oxp0o8eSYsHBfo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MacBookAirM1.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM2.png",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MacBookAirM2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "stmke09elr",
+      "Integrity": "kI41aYBruWF485b1rK7grFolV6GZCq2fWRv4QBtQZ24=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MacBookAirM2.png"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM3.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MacBookAirM3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cutjx0i979",
+      "Integrity": "LMGpib+4G037lHCL5fcBq8sR2j3FeJHjxmSjp0p+mNM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MacBookAirM3.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Max.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MacBookM3Max#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sl81qa00zt",
+      "Integrity": "MFzTg5ybZ3bbVrLO2js2ksV/76qM3dYpCvgPEpdieqo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MacBookM3Max.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Pro.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MacBookM3Pro#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vht8ifk0g9",
+      "Integrity": "rYqruB8mRIO/W0oegdtzEd1h5LUhCoLspetEki3BZEc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MacBookM3Pro.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MSICreatorZ17.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/MSICreatorZ17#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lqfae7tubb",
+      "Integrity": "0/d/VsScVfylZIt4gbcDDNkvMKwbiFwqOxfVM2hTBG8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MSICreatorZ17.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerDeathAdderV2.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/RazerDeathAdderV2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w7uh1h7dcl",
+      "Integrity": "xBeykKk+pbChqytv1PYSA8kgKBIO1cQm5poFZq5lAFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\RazerDeathAdderV2.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerHuntsmanV2.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/RazerHuntsmanV2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "axy2qjtmur",
+      "Integrity": "TvMOJXnTRHM7As+PMxYTkeuGPt46Az3/eMB1X/auv7w=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\RazerHuntsmanV2.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyBuds2Pro.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/SamsungGalaxyBuds2Pro#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5bmgqltny3",
+      "Integrity": "D82faATbdoKJwm1UazOa8YKvldrzGJpfW0vfmqIF8KE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\SamsungGalaxyBuds2Pro.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyWatch6Classic.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/SamsungGalaxyWatch6Classic#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k11iu95a0b",
+      "Integrity": "OLgcEdHCvN/xVGVVUy42ii2NAeP/up4/qzAkmMZ8+3Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\SamsungGalaxyWatch6Classic.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SonyWH-1000XM5.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/SonyWH-1000XM5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "he7x0bnapw",
+      "Integrity": "R2BR/5s/WB+5V3irNcZavnM8H2/MW2EjUS0CNrsQ0Aw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\SonyWH-1000XM5.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SoundPEATSAir3DeluxeHS.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/SoundPEATSAir3DeluxeHS#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "p9ryf3690g",
+      "Integrity": "jbnTaJ7jUw9lvlEahG5ky4gw+Q2Va1k3CCEpKdzFLMY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\SoundPEATSAir3DeluxeHS.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SUSROGStrixG16.jpg",
+      "SourceId": "TechNova",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\",
+      "BasePath": "_content/TechNova",
+      "RelativePath": "images/SUSROGStrixG16#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "byj3u2laoz",
+      "Integrity": "PYLYT0m7un6QABxO7jFRa0qyaXRGMdd4mboFFY6zNo8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\SUSROGStrixG16.jpg"
+    },
+    {
       "Identity": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\js\\site.js",
       "SourceId": "TechNova",
       "SourceType": "Discovered",
@@ -220,8 +1228,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xtxxf3hu2r",
-      "Integrity": "hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=",
+      "Fingerprint": "gx0k6lre00",
+      "Integrity": "TFS61KF5YdLjQYHAzWfIAXh/HJ7b76PkmlrpI9VU8Vs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -1518,7 +2526,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2270"
+          "Value": "2624"
         },
         {
           "Name": "Content-Type",
@@ -1526,11 +2534,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SItnucbZmuZjc8JHyYbneycnVIC3QrsDL6tNNc1Y5Qc=\""
+          "Value": "\"wwKM5iqRKn8SxkThlcPYsAZejifls0t5wco7no9/yaQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:55:40 GMT"
+          "Value": "Thu, 19 Jun 2025 07:22:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1540,12 +2548,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SItnucbZmuZjc8JHyYbneycnVIC3QrsDL6tNNc1Y5Qc="
+          "Value": "sha256-wwKM5iqRKn8SxkThlcPYsAZejifls0t5wco7no9/yaQ="
         }
       ]
     },
     {
-      "Route": "css/admin.w2eoadpotg.css",
+      "Route": "css/admin.n3wxy8avz9.css",
       "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\admin.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1555,7 +2563,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2270"
+          "Value": "2624"
         },
         {
           "Name": "Content-Type",
@@ -1563,11 +2571,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SItnucbZmuZjc8JHyYbneycnVIC3QrsDL6tNNc1Y5Qc=\""
+          "Value": "\"wwKM5iqRKn8SxkThlcPYsAZejifls0t5wco7no9/yaQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:55:40 GMT"
+          "Value": "Thu, 19 Jun 2025 07:22:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1577,7 +2585,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w2eoadpotg"
+          "Value": "n3wxy8avz9"
         },
         {
           "Name": "label",
@@ -1585,7 +2593,89 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-SItnucbZmuZjc8JHyYbneycnVIC3QrsDL6tNNc1Y5Qc="
+          "Value": "sha256-wwKM5iqRKn8SxkThlcPYsAZejifls0t5wco7no9/yaQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/Cart.3jpmtv9uat.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3952"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Jun 2025 15:56:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3jpmtv9uat"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Cart.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA="
+        }
+      ]
+    },
+    {
+      "Route": "css/Cart.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3952"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Jun 2025 15:56:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA="
         }
       ]
     },
@@ -1672,6 +2762,297 @@
       ]
     },
     {
+      "Route": "css/Iphone.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Iphone.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1076"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JyKJzGHaXGkPdkwFxkGQNbsEWGcH3hK3BVe+U1alWHs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Jun 2025 16:09:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JyKJzGHaXGkPdkwFxkGQNbsEWGcH3hK3BVe+U1alWHs="
+        }
+      ]
+    },
+    {
+      "Route": "css/Iphone.z9cwkamr3e.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Iphone.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1076"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JyKJzGHaXGkPdkwFxkGQNbsEWGcH3hK3BVe+U1alWHs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Jun 2025 16:09:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z9cwkamr3e"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Iphone.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JyKJzGHaXGkPdkwFxkGQNbsEWGcH3hK3BVe+U1alWHs="
+        }
+      ]
+    },
+    {
+      "Route": "css/product-detail.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\product-detail.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3197"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DHPHswklQn4dO3S1SJ8zojdn7E49rXLBsAO7fMfZ0b4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Jun 2025 15:49:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DHPHswklQn4dO3S1SJ8zojdn7E49rXLBsAO7fMfZ0b4="
+        }
+      ]
+    },
+    {
+      "Route": "css/product-detail.gjdeztqc5o.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\product-detail.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3197"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DHPHswklQn4dO3S1SJ8zojdn7E49rXLBsAO7fMfZ0b4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Jun 2025 15:49:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gjdeztqc5o"
+        },
+        {
+          "Name": "label",
+          "Value": "css/product-detail.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DHPHswklQn4dO3S1SJ8zojdn7E49rXLBsAO7fMfZ0b4="
+        }
+      ]
+    },
+    {
+      "Route": "css/Profile.3pa9pf03os.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3707"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mUwmIpemNjDuVw2rbJew7RtlI1W4dtkTtlsFvGmWv2I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 05:38:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3pa9pf03os"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Profile.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mUwmIpemNjDuVw2rbJew7RtlI1W4dtkTtlsFvGmWv2I="
+        }
+      ]
+    },
+    {
+      "Route": "css/Profile.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3707"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mUwmIpemNjDuVw2rbJew7RtlI1W4dtkTtlsFvGmWv2I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 05:38:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mUwmIpemNjDuVw2rbJew7RtlI1W4dtkTtlsFvGmWv2I="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.5vh4tndqxk.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4102"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cXzmjbae2pBCq7NrlQZtfuNqg9rLSt/csns0twXIVng=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:26:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5vh4tndqxk"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cXzmjbae2pBCq7NrlQZtfuNqg9rLSt/csns0twXIVng="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -1682,7 +3063,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2770"
+          "Value": "4102"
         },
         {
           "Name": "Content-Type",
@@ -1690,11 +3071,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Oz0VPQqNUReujM4CWN+OtK2B6iTwRLTcPlFExfGDO0Y=\""
+          "Value": "\"cXzmjbae2pBCq7NrlQZtfuNqg9rLSt/csns0twXIVng=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 15:58:13 GMT"
+          "Value": "Tue, 17 Jun 2025 07:26:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1704,13 +3085,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Oz0VPQqNUReujM4CWN+OtK2B6iTwRLTcPlFExfGDO0Y="
+          "Value": "sha256-cXzmjbae2pBCq7NrlQZtfuNqg9rLSt/csns0twXIVng="
         }
       ]
     },
     {
-      "Route": "css/site.xlbk3q85nd.css",
-      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\site.css",
+      "Route": "css/Store.c26a9r649s.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Store.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1719,7 +3100,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2770"
+          "Value": "6273"
         },
         {
           "Name": "Content-Type",
@@ -1727,11 +3108,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Oz0VPQqNUReujM4CWN+OtK2B6iTwRLTcPlFExfGDO0Y=\""
+          "Value": "\"NJLJp2Kpn3Qdx98OHe/Pp7WSr8mSRgtAw1S1KPKulBQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 15:58:13 GMT"
+          "Value": "Wed, 18 Jun 2025 06:07:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1741,15 +3122,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xlbk3q85nd"
+          "Value": "c26a9r649s"
         },
         {
           "Name": "label",
-          "Value": "css/site.css"
+          "Value": "css/Store.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Oz0VPQqNUReujM4CWN+OtK2B6iTwRLTcPlFExfGDO0Y="
+          "Value": "sha256-NJLJp2Kpn3Qdx98OHe/Pp7WSr8mSRgtAw1S1KPKulBQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/Store.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Store.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6273"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NJLJp2Kpn3Qdx98OHe/Pp7WSr8mSRgtAw1S1KPKulBQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 06:07:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NJLJp2Kpn3Qdx98OHe/Pp7WSr8mSRgtAw1S1KPKulBQ="
         }
       ]
     },
@@ -1836,6 +3254,826 @@
       ]
     },
     {
+      "Route": "images/AcerSwiftX.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AcerSwiftX.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "201120"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3bGJBr+y2Xyr+hvBryTn5ogJW6zOHorFbz0sxvrAyvs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:31:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3bGJBr+y2Xyr+hvBryTn5ogJW6zOHorFbz0sxvrAyvs="
+        }
+      ]
+    },
+    {
+      "Route": "images/AcerSwiftX.jwx268xd3i.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AcerSwiftX.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "201120"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3bGJBr+y2Xyr+hvBryTn5ogJW6zOHorFbz0sxvrAyvs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:31:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jwx268xd3i"
+        },
+        {
+          "Name": "label",
+          "Value": "images/AcerSwiftX.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3bGJBr+y2Xyr+hvBryTn5ogJW6zOHorFbz0sxvrAyvs="
+        }
+      ]
+    },
+    {
+      "Route": "images/Akko3068BPlus.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\Akko3068BPlus.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8060"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zP4IPUv2N8ySLbCJ6gGEzkI52wNLeQw0PSP+ZkZNwOw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-zP4IPUv2N8ySLbCJ6gGEzkI52wNLeQw0PSP+ZkZNwOw="
+        }
+      ]
+    },
+    {
+      "Route": "images/Akko3068BPlus.wd8j0cagf0.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\Akko3068BPlus.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8060"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zP4IPUv2N8ySLbCJ6gGEzkI52wNLeQw0PSP+ZkZNwOw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wd8j0cagf0"
+        },
+        {
+          "Name": "label",
+          "Value": "images/Akko3068BPlus.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zP4IPUv2N8ySLbCJ6gGEzkI52wNLeQw0PSP+ZkZNwOw="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleAirPodsPro2.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleAirPodsPro2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ypcn+f/DCwY/YumL3/u2r58t+mASJ4ozSIQNzqFZHos=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ypcn+f/DCwY/YumL3/u2r58t+mASJ4ozSIQNzqFZHos="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleAirPodsPro2.mxlrc96hgp.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleAirPodsPro2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ypcn+f/DCwY/YumL3/u2r58t+mASJ4ozSIQNzqFZHos=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mxlrc96hgp"
+        },
+        {
+          "Name": "label",
+          "Value": "images/AppleAirPodsPro2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ypcn+f/DCwY/YumL3/u2r58t+mASJ4ozSIQNzqFZHos="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleMagicMouse2.1tom2sp6oj.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleMagicMouse2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3155"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FWnPlUncEBsI3ZohNbvJtLytcvGZR6NyiQsIV/d9wWY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:38:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1tom2sp6oj"
+        },
+        {
+          "Name": "label",
+          "Value": "images/AppleMagicMouse2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FWnPlUncEBsI3ZohNbvJtLytcvGZR6NyiQsIV/d9wWY="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleMagicMouse2.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleMagicMouse2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3155"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FWnPlUncEBsI3ZohNbvJtLytcvGZR6NyiQsIV/d9wWY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:38:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FWnPlUncEBsI3ZohNbvJtLytcvGZR6NyiQsIV/d9wWY="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleWatchSeries9.5uuqvp1lr6.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchSeries9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "930300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nfFU49iPfQ46sgJ5ybQrID/au7UWqDHoqMzitKHfvUc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:41:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5uuqvp1lr6"
+        },
+        {
+          "Name": "label",
+          "Value": "images/AppleWatchSeries9.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nfFU49iPfQ46sgJ5ybQrID/au7UWqDHoqMzitKHfvUc="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleWatchSeries9.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchSeries9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "930300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nfFU49iPfQ46sgJ5ybQrID/au7UWqDHoqMzitKHfvUc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:41:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nfFU49iPfQ46sgJ5ybQrID/au7UWqDHoqMzitKHfvUc="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleWatchUltra2.e206llnpb4.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchUltra2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KmH4q0C5yL2BLZTewDyb2GH2VjG7zjx9vcpnxaN+6Qs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:30:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e206llnpb4"
+        },
+        {
+          "Name": "label",
+          "Value": "images/AppleWatchUltra2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KmH4q0C5yL2BLZTewDyb2GH2VjG7zjx9vcpnxaN+6Qs="
+        }
+      ]
+    },
+    {
+      "Route": "images/AppleWatchUltra2.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\AppleWatchUltra2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KmH4q0C5yL2BLZTewDyb2GH2VjG7zjx9vcpnxaN+6Qs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:30:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KmH4q0C5yL2BLZTewDyb2GH2VjG7zjx9vcpnxaN+6Qs="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/7b2b414d-a480-41c4-817b-038feaf66d18.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33071"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:30:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/7b2b414d-a480-41c4-817b-038feaf66d18.tuxb89h21j.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\7b2b414d-a480-41c4-817b-038feaf66d18.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33071"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:30:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tuxb89h21j"
+        },
+        {
+          "Name": "label",
+          "Value": "images/avatars/7b2b414d-a480-41c4-817b-038feaf66d18.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/891cefd4-1af6-4824-925a-f7e7323443dd.fpft4s4zqv.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1362157"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PZeFjP8U9YaV41EfwQ/+WmSnslvwEzQDxN4bTawppB0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:37:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fpft4s4zqv"
+        },
+        {
+          "Name": "label",
+          "Value": "images/avatars/891cefd4-1af6-4824-925a-f7e7323443dd.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PZeFjP8U9YaV41EfwQ/+WmSnslvwEzQDxN4bTawppB0="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/891cefd4-1af6-4824-925a-f7e7323443dd.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\891cefd4-1af6-4824-925a-f7e7323443dd.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1362157"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PZeFjP8U9YaV41EfwQ/+WmSnslvwEzQDxN4bTawppB0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:37:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-PZeFjP8U9YaV41EfwQ/+WmSnslvwEzQDxN4bTawppB0="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/c3482616-3859-4cee-a810-822ce0a87be3.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33071"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 10:22:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/c3482616-3859-4cee-a810-822ce0a87be3.tuxb89h21j.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\c3482616-3859-4cee-a810-822ce0a87be3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33071"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 10:22:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tuxb89h21j"
+        },
+        {
+          "Name": "label",
+          "Value": "images/avatars/c3482616-3859-4cee-a810-822ce0a87be3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yPBISeyKJfL9qd5k6gHhV/JuQpwhieDEBS2cJCokBs="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jhdv972ol4.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "451198"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"B5uQkZy7Yhgbo27b71mHZwPQcE6A/OTPeQBqwmqAhdo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:31:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jhdv972ol4"
+        },
+        {
+          "Name": "label",
+          "Value": "images/avatars/e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-B5uQkZy7Yhgbo27b71mHZwPQcE6A/OTPeQBqwmqAhdo="
+        }
+      ]
+    },
+    {
+      "Route": "images/avatars/e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\avatars\\e2d0fe65-1cb3-4291-874b-9fdcc8bf74a1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "451198"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"B5uQkZy7Yhgbo27b71mHZwPQcE6A/OTPeQBqwmqAhdo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 08:31:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-B5uQkZy7Yhgbo27b71mHZwPQcE6A/OTPeQBqwmqAhdo="
+        }
+      ]
+    },
+    {
       "Route": "images/default.jpg",
       "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\default.jpg",
       "Selectors": [],
@@ -1914,6 +4152,1646 @@
         {
           "Name": "integrity",
           "Value": "sha256-WTRojqaeCl5zldUuvf1XU0n+791yLOAR8rLrlbaHXPs="
+        }
+      ]
+    },
+    {
+      "Route": "images/DellXPS13Plus.egwky68s31.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\DellXPS13Plus.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4497"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"smSb7/bBlU/TPrMaVEVqsiIDnuQEMbHspQyXO+cHgSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:24:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "egwky68s31"
+        },
+        {
+          "Name": "label",
+          "Value": "images/DellXPS13Plus.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-smSb7/bBlU/TPrMaVEVqsiIDnuQEMbHspQyXO+cHgSw="
+        }
+      ]
+    },
+    {
+      "Route": "images/DellXPS13Plus.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\DellXPS13Plus.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4497"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"smSb7/bBlU/TPrMaVEVqsiIDnuQEMbHspQyXO+cHgSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:24:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-smSb7/bBlU/TPrMaVEVqsiIDnuQEMbHspQyXO+cHgSw="
+        }
+      ]
+    },
+    {
+      "Route": "images/FuhlenG90Pro.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\FuhlenG90Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3109"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3XcnDsNWiZt0Qw9adrqK4wgv1RY46NRY9PTNM2FLSfg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:38:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3XcnDsNWiZt0Qw9adrqK4wgv1RY46NRY9PTNM2FLSfg="
+        }
+      ]
+    },
+    {
+      "Route": "images/FuhlenG90Pro.tgcrsh8kol.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\FuhlenG90Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3109"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3XcnDsNWiZt0Qw9adrqK4wgv1RY46NRY9PTNM2FLSfg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:38:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tgcrsh8kol"
+        },
+        {
+          "Name": "label",
+          "Value": "images/FuhlenG90Pro.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3XcnDsNWiZt0Qw9adrqK4wgv1RY46NRY9PTNM2FLSfg="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyA74.4c53z1jeba.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyA74.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xJRWD6tCMGA/6lo8h/iDBZMEZNAZ3ZczigWWi72p49E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:21:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4c53z1jeba"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GalaxyA74.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xJRWD6tCMGA/6lo8h/iDBZMEZNAZ3ZczigWWi72p49E="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyA74.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyA74.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xJRWD6tCMGA/6lo8h/iDBZMEZNAZ3ZczigWWi72p49E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:21:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xJRWD6tCMGA/6lo8h/iDBZMEZNAZ3ZczigWWi72p49E="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyS24+.0sfnahhzsq.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24+.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109152"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YFJzhSJeVTadGrBCygDbcozMrqEfXy38sgij4FcRuyM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:59:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0sfnahhzsq"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GalaxyS24+.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YFJzhSJeVTadGrBCygDbcozMrqEfXy38sgij4FcRuyM="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyS24+.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24+.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109152"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YFJzhSJeVTadGrBCygDbcozMrqEfXy38sgij4FcRuyM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:59:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YFJzhSJeVTadGrBCygDbcozMrqEfXy38sgij4FcRuyM="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyS24Ultra.00624hjack.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24Ultra.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "46739"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IF1K1XJWii2CUQxC9Vd1KzEekppf25N7l8Bphc17MDc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:58:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "00624hjack"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GalaxyS24Ultra.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IF1K1XJWii2CUQxC9Vd1KzEekppf25N7l8Bphc17MDc="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyS24Ultra.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyS24Ultra.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "46739"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IF1K1XJWii2CUQxC9Vd1KzEekppf25N7l8Bphc17MDc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:58:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IF1K1XJWii2CUQxC9Vd1KzEekppf25N7l8Bphc17MDc="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyZFlip5.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFlip5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44702"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FfMmwpQkCeRJfPw5edIFjCU8D73Xr19QIUBgpo3uBYI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:20:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FfMmwpQkCeRJfPw5edIFjCU8D73Xr19QIUBgpo3uBYI="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyZFlip5.lgcw8h4f8p.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFlip5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44702"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FfMmwpQkCeRJfPw5edIFjCU8D73Xr19QIUBgpo3uBYI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:20:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lgcw8h4f8p"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GalaxyZFlip5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FfMmwpQkCeRJfPw5edIFjCU8D73Xr19QIUBgpo3uBYI="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyZFold5.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFold5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3841"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3JaCLx2+7RRd8Dfsk5MSFA7XAGMvSu8k+qIItXmTFCc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:18:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3JaCLx2+7RRd8Dfsk5MSFA7XAGMvSu8k+qIItXmTFCc="
+        }
+      ]
+    },
+    {
+      "Route": "images/GalaxyZFold5.ohuaegx3qp.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GalaxyZFold5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3841"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3JaCLx2+7RRd8Dfsk5MSFA7XAGMvSu8k+qIItXmTFCc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 12:18:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ohuaegx3qp"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GalaxyZFold5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3JaCLx2+7RRd8Dfsk5MSFA7XAGMvSu8k+qIItXmTFCc="
+        }
+      ]
+    },
+    {
+      "Route": "images/GarminVenu3.8rjs03fz2w.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GarminVenu3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "79729"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BO8qlV78Jw06dceH57Frw56VdfeLJHBsH7oeU4pig7k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:32:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8rjs03fz2w"
+        },
+        {
+          "Name": "label",
+          "Value": "images/GarminVenu3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BO8qlV78Jw06dceH57Frw56VdfeLJHBsH7oeU4pig7k="
+        }
+      ]
+    },
+    {
+      "Route": "images/GarminVenu3.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\GarminVenu3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "79729"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BO8qlV78Jw06dceH57Frw56VdfeLJHBsH7oeU4pig7k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:32:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BO8qlV78Jw06dceH57Frw56VdfeLJHBsH7oeU4pig7k="
+        }
+      ]
+    },
+    {
+      "Route": "images/HuaweiWatch4Pro.gd0cdotkh3.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\HuaweiWatch4Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6022"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBZMHfczocut0nVMttoJvWWZKzl8KST2oyK8PG/EZ4Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:31:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gd0cdotkh3"
+        },
+        {
+          "Name": "label",
+          "Value": "images/HuaweiWatch4Pro.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBZMHfczocut0nVMttoJvWWZKzl8KST2oyK8PG/EZ4Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/HuaweiWatch4Pro.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\HuaweiWatch4Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6022"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBZMHfczocut0nVMttoJvWWZKzl8KST2oyK8PG/EZ4Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:31:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBZMHfczocut0nVMttoJvWWZKzl8KST2oyK8PG/EZ4Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip10.9fv39hqok9.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip10.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2264275"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1e6D6KxiA9kiaK0L9kkbpHnb5dPPh7kOHSGJWl9HxDs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:50:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9fv39hqok9"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ip10.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1e6D6KxiA9kiaK0L9kkbpHnb5dPPh7kOHSGJWl9HxDs="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip10.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip10.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2264275"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1e6D6KxiA9kiaK0L9kkbpHnb5dPPh7kOHSGJWl9HxDs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:50:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1e6D6KxiA9kiaK0L9kkbpHnb5dPPh7kOHSGJWl9HxDs="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip11.kat9brrnds.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip11.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2043246"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dFwk/JfNoyKBDXfdfy5HK+UWNxqiBLPMaAleG6yXEbk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:53:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kat9brrnds"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ip11.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dFwk/JfNoyKBDXfdfy5HK+UWNxqiBLPMaAleG6yXEbk="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip11.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip11.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2043246"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dFwk/JfNoyKBDXfdfy5HK+UWNxqiBLPMaAleG6yXEbk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:53:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dFwk/JfNoyKBDXfdfy5HK+UWNxqiBLPMaAleG6yXEbk="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip12.lk9rlgz9rg.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip12.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2920734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NU6yhlg9O14dr67ESud+eIMUHHt9a2AT8P5eHfzhGxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:54:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lk9rlgz9rg"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ip12.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NU6yhlg9O14dr67ESud+eIMUHHt9a2AT8P5eHfzhGxE="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip12.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip12.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2920734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NU6yhlg9O14dr67ESud+eIMUHHt9a2AT8P5eHfzhGxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:54:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NU6yhlg9O14dr67ESud+eIMUHHt9a2AT8P5eHfzhGxE="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip13.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip13.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123329"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zVkqCubTWZoZaWFWubGNJF6V0+oH3Lj+0jPX6hr00RY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:51:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-zVkqCubTWZoZaWFWubGNJF6V0+oH3Lj+0jPX6hr00RY="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip13.tco2ikt6wr.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip13.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123329"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zVkqCubTWZoZaWFWubGNJF6V0+oH3Lj+0jPX6hr00RY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:51:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tco2ikt6wr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ip13.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zVkqCubTWZoZaWFWubGNJF6V0+oH3Lj+0jPX6hr00RY="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip14.ijo27klagh.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip14.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1974042"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QhAXVlw7+NOC/ybLDNcstI6WnIX5/6tbJk3ACTOqxCU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:34:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ijo27klagh"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ip14.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QhAXVlw7+NOC/ybLDNcstI6WnIX5/6tbJk3ACTOqxCU="
+        }
+      ]
+    },
+    {
+      "Route": "images/ip14.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\ip14.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1974042"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QhAXVlw7+NOC/ybLDNcstI6WnIX5/6tbJk3ACTOqxCU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 07:34:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QhAXVlw7+NOC/ybLDNcstI6WnIX5/6tbJk3ACTOqxCU="
+        }
+      ]
+    },
+    {
+      "Route": "images/KeychronK6.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\KeychronK6.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "52053"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/WWD3LUKNHkaUQg7gkLrPYXsE+RPEboATB0pAZB2LBM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/WWD3LUKNHkaUQg7gkLrPYXsE+RPEboATB0pAZB2LBM="
+        }
+      ]
+    },
+    {
+      "Route": "images/KeychronK6.lq09m1gqfv.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\KeychronK6.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "52053"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/WWD3LUKNHkaUQg7gkLrPYXsE+RPEboATB0pAZB2LBM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lq09m1gqfv"
+        },
+        {
+          "Name": "label",
+          "Value": "images/KeychronK6.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/WWD3LUKNHkaUQg7gkLrPYXsE+RPEboATB0pAZB2LBM="
+        }
+      ]
+    },
+    {
+      "Route": "images/LeopoldFC750R.imq617yp7y.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LeopoldFC750R.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12409"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Skls2AcSQCs/AT0e+GsucITn9dc506GUECyy5TySZYo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "imq617yp7y"
+        },
+        {
+          "Name": "label",
+          "Value": "images/LeopoldFC750R.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Skls2AcSQCs/AT0e+GsucITn9dc506GUECyy5TySZYo="
+        }
+      ]
+    },
+    {
+      "Route": "images/LeopoldFC750R.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LeopoldFC750R.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12409"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Skls2AcSQCs/AT0e+GsucITn9dc506GUECyy5TySZYo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Skls2AcSQCs/AT0e+GsucITn9dc506GUECyy5TySZYo="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechG304.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG304.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"77+O1KKaC0i9GcwXXCdJExGvW073ZzMPHRc8omRVlMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:37:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-77+O1KKaC0i9GcwXXCdJExGvW073ZzMPHRc8omRVlMM="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechG304.xcwll58n67.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG304.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"77+O1KKaC0i9GcwXXCdJExGvW073ZzMPHRc8omRVlMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:37:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xcwll58n67"
+        },
+        {
+          "Name": "label",
+          "Value": "images/LogitechG304.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-77+O1KKaC0i9GcwXXCdJExGvW073ZzMPHRc8omRVlMM="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechG435.brsouu7g8z.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG435.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5522"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"adK8hGoTcYai9wh8UIt05g6D1HZhhKsIjbrqq0osuPE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:34:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "brsouu7g8z"
+        },
+        {
+          "Name": "label",
+          "Value": "images/LogitechG435.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-adK8hGoTcYai9wh8UIt05g6D1HZhhKsIjbrqq0osuPE="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechG435.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechG435.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5522"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"adK8hGoTcYai9wh8UIt05g6D1HZhhKsIjbrqq0osuPE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:34:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-adK8hGoTcYai9wh8UIt05g6D1HZhhKsIjbrqq0osuPE="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechMXKeysS.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXKeysS.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7794"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cQj0e0ruusvFPvuyGXQZV7fY0Z7aW6lwnfx2XqTDDow=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cQj0e0ruusvFPvuyGXQZV7fY0Z7aW6lwnfx2XqTDDow="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechMXKeysS.vscnfezvhr.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXKeysS.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7794"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cQj0e0ruusvFPvuyGXQZV7fY0Z7aW6lwnfx2XqTDDow=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:35:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vscnfezvhr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/LogitechMXKeysS.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cQj0e0ruusvFPvuyGXQZV7fY0Z7aW6lwnfx2XqTDDow="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechMXMaster3S.j2cusn19ul.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXMaster3S.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7992"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zb9WZplPNhW5HwA26DpPeiTHyNmldw56A2U/1vaNZwM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j2cusn19ul"
+        },
+        {
+          "Name": "label",
+          "Value": "images/LogitechMXMaster3S.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zb9WZplPNhW5HwA26DpPeiTHyNmldw56A2U/1vaNZwM="
+        }
+      ]
+    },
+    {
+      "Route": "images/LogitechMXMaster3S.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\LogitechMXMaster3S.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7992"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zb9WZplPNhW5HwA26DpPeiTHyNmldw56A2U/1vaNZwM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zb9WZplPNhW5HwA26DpPeiTHyNmldw56A2U/1vaNZwM="
         }
       ]
     },
@@ -2000,6 +5878,1117 @@
       ]
     },
     {
+      "Route": "images/MacBookAirM1.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KE9RffqQwpiT1Uvf3N2WsYoHyeH76oxp0o8eSYsHBfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:19:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KE9RffqQwpiT1Uvf3N2WsYoHyeH76oxp0o8eSYsHBfo="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookAirM1.s39zklx2os.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KE9RffqQwpiT1Uvf3N2WsYoHyeH76oxp0o8eSYsHBfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:19:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "s39zklx2os"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MacBookAirM1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KE9RffqQwpiT1Uvf3N2WsYoHyeH76oxp0o8eSYsHBfo="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookAirM2.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250364"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kI41aYBruWF485b1rK7grFolV6GZCq2fWRv4QBtQZ24=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:20:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kI41aYBruWF485b1rK7grFolV6GZCq2fWRv4QBtQZ24="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookAirM2.stmke09elr.png",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250364"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kI41aYBruWF485b1rK7grFolV6GZCq2fWRv4QBtQZ24=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:20:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "stmke09elr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MacBookAirM2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kI41aYBruWF485b1rK7grFolV6GZCq2fWRv4QBtQZ24="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookAirM3.cutjx0i979.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "444984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LMGpib+4G037lHCL5fcBq8sR2j3FeJHjxmSjp0p+mNM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:20:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cutjx0i979"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MacBookAirM3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LMGpib+4G037lHCL5fcBq8sR2j3FeJHjxmSjp0p+mNM="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookAirM3.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookAirM3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "444984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LMGpib+4G037lHCL5fcBq8sR2j3FeJHjxmSjp0p+mNM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:20:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LMGpib+4G037lHCL5fcBq8sR2j3FeJHjxmSjp0p+mNM="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookM3Max.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Max.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6886"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MFzTg5ybZ3bbVrLO2js2ksV/76qM3dYpCvgPEpdieqo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:21:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MFzTg5ybZ3bbVrLO2js2ksV/76qM3dYpCvgPEpdieqo="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookM3Max.sl81qa00zt.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Max.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6886"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MFzTg5ybZ3bbVrLO2js2ksV/76qM3dYpCvgPEpdieqo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:21:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sl81qa00zt"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MacBookM3Max.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MFzTg5ybZ3bbVrLO2js2ksV/76qM3dYpCvgPEpdieqo="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookM3Pro.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rYqruB8mRIO/W0oegdtzEd1h5LUhCoLspetEki3BZEc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:21:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rYqruB8mRIO/W0oegdtzEd1h5LUhCoLspetEki3BZEc="
+        }
+      ]
+    },
+    {
+      "Route": "images/MacBookM3Pro.vht8ifk0g9.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MacBookM3Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rYqruB8mRIO/W0oegdtzEd1h5LUhCoLspetEki3BZEc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:21:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vht8ifk0g9"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MacBookM3Pro.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rYqruB8mRIO/W0oegdtzEd1h5LUhCoLspetEki3BZEc="
+        }
+      ]
+    },
+    {
+      "Route": "images/MSICreatorZ17.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MSICreatorZ17.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7994"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0/d/VsScVfylZIt4gbcDDNkvMKwbiFwqOxfVM2hTBG8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:31:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0/d/VsScVfylZIt4gbcDDNkvMKwbiFwqOxfVM2hTBG8="
+        }
+      ]
+    },
+    {
+      "Route": "images/MSICreatorZ17.lqfae7tubb.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\MSICreatorZ17.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7994"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0/d/VsScVfylZIt4gbcDDNkvMKwbiFwqOxfVM2hTBG8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:31:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lqfae7tubb"
+        },
+        {
+          "Name": "label",
+          "Value": "images/MSICreatorZ17.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0/d/VsScVfylZIt4gbcDDNkvMKwbiFwqOxfVM2hTBG8="
+        }
+      ]
+    },
+    {
+      "Route": "images/RazerDeathAdderV2.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerDeathAdderV2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109944"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xBeykKk+pbChqytv1PYSA8kgKBIO1cQm5poFZq5lAFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:37:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xBeykKk+pbChqytv1PYSA8kgKBIO1cQm5poFZq5lAFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/RazerDeathAdderV2.w7uh1h7dcl.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerDeathAdderV2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109944"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xBeykKk+pbChqytv1PYSA8kgKBIO1cQm5poFZq5lAFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:37:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w7uh1h7dcl"
+        },
+        {
+          "Name": "label",
+          "Value": "images/RazerDeathAdderV2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xBeykKk+pbChqytv1PYSA8kgKBIO1cQm5poFZq5lAFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/RazerHuntsmanV2.axy2qjtmur.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerHuntsmanV2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "153240"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TvMOJXnTRHM7As+PMxYTkeuGPt46Az3/eMB1X/auv7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "axy2qjtmur"
+        },
+        {
+          "Name": "label",
+          "Value": "images/RazerHuntsmanV2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TvMOJXnTRHM7As+PMxYTkeuGPt46Az3/eMB1X/auv7w="
+        }
+      ]
+    },
+    {
+      "Route": "images/RazerHuntsmanV2.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\RazerHuntsmanV2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "153240"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TvMOJXnTRHM7As+PMxYTkeuGPt46Az3/eMB1X/auv7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:36:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TvMOJXnTRHM7As+PMxYTkeuGPt46Az3/eMB1X/auv7w="
+        }
+      ]
+    },
+    {
+      "Route": "images/SamsungGalaxyBuds2Pro.5bmgqltny3.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyBuds2Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "182132"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D82faATbdoKJwm1UazOa8YKvldrzGJpfW0vfmqIF8KE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5bmgqltny3"
+        },
+        {
+          "Name": "label",
+          "Value": "images/SamsungGalaxyBuds2Pro.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D82faATbdoKJwm1UazOa8YKvldrzGJpfW0vfmqIF8KE="
+        }
+      ]
+    },
+    {
+      "Route": "images/SamsungGalaxyBuds2Pro.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyBuds2Pro.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "182132"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D82faATbdoKJwm1UazOa8YKvldrzGJpfW0vfmqIF8KE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D82faATbdoKJwm1UazOa8YKvldrzGJpfW0vfmqIF8KE="
+        }
+      ]
+    },
+    {
+      "Route": "images/SamsungGalaxyWatch6Classic.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyWatch6Classic.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6684"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OLgcEdHCvN/xVGVVUy42ii2NAeP/up4/qzAkmMZ8+3Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:31:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OLgcEdHCvN/xVGVVUy42ii2NAeP/up4/qzAkmMZ8+3Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/SamsungGalaxyWatch6Classic.k11iu95a0b.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SamsungGalaxyWatch6Classic.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6684"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OLgcEdHCvN/xVGVVUy42ii2NAeP/up4/qzAkmMZ8+3Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:31:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k11iu95a0b"
+        },
+        {
+          "Name": "label",
+          "Value": "images/SamsungGalaxyWatch6Classic.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OLgcEdHCvN/xVGVVUy42ii2NAeP/up4/qzAkmMZ8+3Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/SonyWH-1000XM5.he7x0bnapw.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SonyWH-1000XM5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3367"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"R2BR/5s/WB+5V3irNcZavnM8H2/MW2EjUS0CNrsQ0Aw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "he7x0bnapw"
+        },
+        {
+          "Name": "label",
+          "Value": "images/SonyWH-1000XM5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-R2BR/5s/WB+5V3irNcZavnM8H2/MW2EjUS0CNrsQ0Aw="
+        }
+      ]
+    },
+    {
+      "Route": "images/SonyWH-1000XM5.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SonyWH-1000XM5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3367"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"R2BR/5s/WB+5V3irNcZavnM8H2/MW2EjUS0CNrsQ0Aw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:33:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-R2BR/5s/WB+5V3irNcZavnM8H2/MW2EjUS0CNrsQ0Aw="
+        }
+      ]
+    },
+    {
+      "Route": "images/SoundPEATSAir3DeluxeHS.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SoundPEATSAir3DeluxeHS.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "59979"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jbnTaJ7jUw9lvlEahG5ky4gw+Q2Va1k3CCEpKdzFLMY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:34:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jbnTaJ7jUw9lvlEahG5ky4gw+Q2Va1k3CCEpKdzFLMY="
+        }
+      ]
+    },
+    {
+      "Route": "images/SoundPEATSAir3DeluxeHS.p9ryf3690g.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SoundPEATSAir3DeluxeHS.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "59979"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jbnTaJ7jUw9lvlEahG5ky4gw+Q2Va1k3CCEpKdzFLMY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 13:34:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "p9ryf3690g"
+        },
+        {
+          "Name": "label",
+          "Value": "images/SoundPEATSAir3DeluxeHS.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jbnTaJ7jUw9lvlEahG5ky4gw+Q2Va1k3CCEpKdzFLMY="
+        }
+      ]
+    },
+    {
+      "Route": "images/SUSROGStrixG16.byj3u2laoz.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SUSROGStrixG16.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PYLYT0m7un6QABxO7jFRa0qyaXRGMdd4mboFFY6zNo8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:24:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "byj3u2laoz"
+        },
+        {
+          "Name": "label",
+          "Value": "images/SUSROGStrixG16.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PYLYT0m7un6QABxO7jFRa0qyaXRGMdd4mboFFY6zNo8="
+        }
+      ]
+    },
+    {
+      "Route": "images/SUSROGStrixG16.jpg",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\images\\SUSROGStrixG16.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PYLYT0m7un6QABxO7jFRa0qyaXRGMdd4mboFFY6zNo8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Jun 2025 11:24:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-PYLYT0m7un6QABxO7jFRa0qyaXRGMdd4mboFFY6zNo8="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.gx0k6lre00.js",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2462"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TFS61KF5YdLjQYHAzWfIAXh/HJ7b76PkmlrpI9VU8Vs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 17 Jun 2025 09:53:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gx0k6lre00"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TFS61KF5YdLjQYHAzWfIAXh/HJ7b76PkmlrpI9VU8Vs="
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\js\\site.js",
       "Selectors": [],
@@ -2010,7 +6999,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "231"
+          "Value": "2462"
         },
         {
           "Name": "Content-Type",
@@ -2018,11 +7007,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "\"TFS61KF5YdLjQYHAzWfIAXh/HJ7b76PkmlrpI9VU8Vs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 14:38:55 GMT"
+          "Value": "Tue, 17 Jun 2025 09:53:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2032,52 +7021,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "231"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 14:38:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
+          "Value": "sha256-TFS61KF5YdLjQYHAzWfIAXh/HJ7b76PkmlrpI9VU8Vs="
         }
       ]
     },
@@ -6778,7 +11722,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:31:50 GMT"
+          "Value": "Thu, 19 Jun 2025 07:43:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6815,7 +11759,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:31:50 GMT"
+          "Value": "Thu, 19 Jun 2025 07:43:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6852,7 +11796,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:31:50 GMT"
+          "Value": "Thu, 19 Jun 2025 07:43:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6897,7 +11841,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Jun 2025 17:31:50 GMT"
+          "Value": "Thu, 19 Jun 2025 07:43:24 GMT"
         },
         {
           "Name": "Cache-Control",

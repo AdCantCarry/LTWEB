@@ -1,0 +1,26 @@
+﻿@model TechNova.Models.Category
+@{
+    ViewData["Title"] = "Sửa danh mục";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Sửa danh mục</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="CategoryId" />
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MainImageUrl">Ảnh đại diện (URL)</label>
+        <input asp-for="MainImageUrl" class="form-control" />
+        <span asp-validation-for="MainImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">💾 Lưu</button>
+    <a href="/AdminCategories" class="btn btn-secondary">⬅️ Quay lại</a>
+</form>

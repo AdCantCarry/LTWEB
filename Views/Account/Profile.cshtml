@@ -1,0 +1,182 @@
+﻿    @model TechNova.Models.User
+    @{
+        ViewData["Title"] = "Hồ sơ cá nhân";
+    }
+
+    <div class="profile-container">
+        <div class="sidebar">
+            <form id="avatarForm" asp-action="UpdateAvatar" asp-controller="Account" method="post" enctype="multipart/form-data">
+                <label for="avatarInput" class="avatar-wrapper">
+                    <img id="avatarImg" src="@Model.AvatarUrl" alt="Avatar" />
+                </label>
+                <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="submitAvatar()" hidden />
+            </form>
+            <h3>@Model.Username</h3>
+
+            <ul class="profile-menu">
+                <li class="active" data-target="personal-info">Thông tin cá nhân</li>
+                <li data-target="address-info">Địa chỉ</li>
+                <li data-target="orders-info">Lịch sử đơn hàng</li>
+                <li data-target="security-info">Bảo mật</li>
+            </ul>
+        </div>
+
+        <div class="profile-content">
+            <!-- Thông tin cá nhân -->
+            <div class="profile-section active" id="personal-info">
+                <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Họ tên</label>
+                        <input type="text" name="Username" value="@Model.Username" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" value="@Model.Email" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input type="tel" name="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày sinh</label>
+                        <input type="date" name="BirthDate" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+            </div>
+
+        <!-- Địa chỉ -->
+        <div class="profile-section" id="address-info">
+            <h2 class="mb-4 fw-bold text-primary">📍 Địa chỉ giao hàng</h2>
+
+            <ul class="address-list">
+                @if (Model.Addresses != null && Model.Addresses.Any())
+                {
+                    @foreach (var addr in Model.Addresses)
+                    {
+                        <li class="address-item">
+                            <div>
+                                <strong>@addr.FullName</strong> - @addr.Phone<br />
+                                @addr.Street, @addr.Ward, @addr.District, @addr.City
+                                @if (addr.IsDefault)
+                                {
+                                    <span class="badge bg-success ms-2">Mặc định</span>
+                                }
+                            </div>
+                            <form asp-action="DeleteAddress" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@addr.AddressId" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Xoá</button>
+                            </form>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="text-muted">Bạn chưa có địa chỉ giao hàng nào.</li>
+                }
+            </ul>
+
+            <div id="add-address-toggle" class="text-end mb-3">
+                <button class="btn btn-outline-primary" onclick="toggleAddAddress()">➕ Thêm địa chỉ mới</button>
+
+            </div>
+
+           
+        </div>
+
+
+            <!-- Lịch sử đơn hàng -->
+            <div class="profile-section" id="orders-info">
+                <h4>Lịch sử đơn hàng</h4>
+                <p>Hiển thị danh sách đơn hàng đã mua. Sẽ được kết nối với bảng Orders trong database.</p>
+            </div>
+
+            <!-- Bảo mật -->
+            <div class="profile-section" id="security-info">
+                <h4>Thay đổi mật khẩu</h4>
+
+                <form asp-action="ChangePassword" method="post">
+                    <div class="form-group">
+                        <label>Mật khẩu hiện tại</label>
+                        <input type="password" name="CurrentPassword" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu mới</label>
+                        <input type="password" name="NewPassword" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Nhập lại mật khẩu mới</label>
+                        <input type="password" name="ConfirmPassword" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-danger">Đổi mật khẩu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<div class="toast-container">
+    @if (TempData["PasswordSuccess"] != null)
+    {
+        <div class="toast toast-success">
+            @TempData["PasswordSuccess"]
+        </div>
+    }
+    @if (TempData["PasswordError"] != null)
+    {
+        <div class="toast toast-error">
+            @TempData["PasswordError"]
+        </div>
+    }
+</div>
+
+    @section Scripts {
+        <script>
+            function submitAvatar() {
+                document.getElementById("avatarForm").submit();
+            }
+
+            function toggleAddressForm() {
+                const form = document.getElementById("addAddressForm");
+                form.classList.toggle("d-none");
+            }
+
+            // Reload avatar nếu cập nhật
+            @if (TempData["AvatarUpdated"] != null)
+            {
+                    <text>
+                        const avatarImg = document.getElementById("avatarImg");
+                        if (avatarImg) {
+                            let base = avatarImg.src.split('?')[0];
+                            avatarImg.src = base + '?v=' + new Date().getTime();
+                        }
+                        const headerAvatar = document.querySelector(".user-avatar img");
+                        if (headerAvatar) {
+                            let base = headerAvatar.src.split('?')[0];
+                            headerAvatar.src = base + '?v=' + new Date().getTime();
+                        }
+                    </text>
+            }
+
+            // Tab switching
+            document.querySelectorAll(".profile-menu li").forEach(item => {
+                item.addEventListener("click", function () {
+                    document.querySelectorAll(".profile-menu li").forEach(li => li.classList.remove("active"));
+                    document.querySelectorAll(".profile-section").forEach(section => section.classList.remove("active"));
+                    this.classList.add("active");
+                    const targetId = this.getAttribute("data-target");
+                    document.getElementById(targetId).classList.add("active");
+                });
+            });
+                       function toggleAddAddress() {
+            const form = document.getElementById("add-address-form");
+            form.classList.toggle("d-none");
+            // Scroll đến form nếu đang mở
+            if (!form.classList.contains("d-none")) {
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+         setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(el => el.remove());
+        }, 4000); // 4 giây
+        }
+        </script>
+    }

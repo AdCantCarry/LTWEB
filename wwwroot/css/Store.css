@@ -1,0 +1,263 @@
+﻿/* ===== STORE SECTION ===== */
+.store-section {
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+.store-intro {
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+    padding-left: 1rem;
+    text-align: left;
+}
+
+.intro-text {
+    font-size: 2rem;
+    color: #6c757d;
+}
+
+    .intro-text .highlight {
+        color: #000;
+        font-weight: bold;
+    }
+
+/* ==== SECTION TITLE ==== */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ==== CATEGORY GRID ==== */
+.category-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    justify-items: center;
+}
+
+.category-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-box {
+    text-align: center;
+}
+
+    .category-box img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+/* ==== PRODUCT CAROUSEL ==== */
+.carousel-wrapper {
+    position: relative;
+    max-width: 1200px; /* Đặt max-width để carousel không quá rộng trên màn hình lớn */
+    overflow: hidden;
+    margin: 0 auto 3rem auto;
+}
+
+.product-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem;
+}
+
+    /* Ẩn thanh cuộn cho trình duyệt Webkit */
+    .product-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* === THAY ĐỔI CHÍNH Ở ĐÂY === */
+    .product-carousel .product-card {
+        width: 300px; /* Đặt một chiều rộng cố định cho các card */
+        flex-shrink: 0;
+        /* Bỏ height cố định để card tự điều chỉnh theo nội dung */
+        /* height: 450px; */
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+        display: flex; /* Sử dụng flexbox để căn chỉnh nội dung bên trong */
+        flex-direction: column; /* Sắp xếp nội dung theo chiều dọc */
+    }
+
+        .product-carousel .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* === VÀ Ở ĐÂY: CÂN BẰNG HÌNH ẢNH === */
+        .product-carousel .product-card img {
+            width: 100%; /* Cho ảnh rộng hết cỡ trong card */
+            aspect-ratio: 1 / 1; /* Tạo khung hình vuông (bạn có thể đổi thành 4/3, 16/9 tùy ý) */
+            object-fit:contain; /* Lấp đầy khung mà không làm méo ảnh */
+            border-radius: 8px;
+            margin-bottom: 1rem; /* Tạo khoảng cách giữa ảnh và chữ */
+        }
+
+        .product-carousel .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            /* Đảm bảo tên sản phẩm không đẩy các card khác */
+            flex-grow: 1;
+        }
+
+
+/* ==== CAROUSEL BUTTONS ==== */
+.carousel-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: 1px solid #ddd;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Ẩn nút theo mặc định */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, background-color 0.2s;
+}
+
+/* Hiển thị nút khi hover vào .carousel-wrapper */
+.carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+    visibility: visible;
+}
+    .carousel-btn:hover {
+        background: white;
+    }
+
+
+    .carousel-btn.prev {
+        left: -10px;
+    }
+
+    .carousel-btn.next {
+        right: -10px;
+    }
+
+/* ==== PRODUCT GRID (if needed outside carousel) ==== */
+.product-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive hơn */
+    gap: 1.5rem;
+}
+
+    .product-grid .product-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+
+        .product-grid .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-grid .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+/* ==== PRICE + BUTTON ==== */
+.price {
+    color: #dc3545;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.btn-detail {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* ==== SALE PRODUCT STYLING ==== */
+.sale-card {
+    background: #fff5f5; /* Màu nền nhẹ nhàng hơn */
+    border: 1px solid #ffdddd;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 1rem;
+    margin: 0.25rem 0;
+}
+
+.discounted-price {
+    color: #d60000;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0.25rem 0;
+}
+/* ==== BENEFIT SECTION ==== */
+.benefit-section {
+    background-color: #ffffff;
+    padding: 3rem 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.benefit-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.benefit-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+    .benefit-card:hover {
+        transform: translateY(-5px);
+    }
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #343a40;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.5;
+}

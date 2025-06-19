@@ -1,20 +1,93 @@
 ﻿@model IEnumerable<TechNova.Models.Product>
 @{
     ViewData["Title"] = "Store";
+    var categories = ViewBag.Categories as List<TechNova.Models.Category>;
+
+    // Ép kiểu Model rõ ràng
+    var productList = Model.ToList(); // ép về List<Product>
+    var saleProducts = productList.Where(p => p.DiscountPercent > 0).ToList();
 }
 
 <section class="store-section">
-    <h2 class="section-title">Tất cả sản phẩm</h2>
-
-    <div class="product-grid">
-        @foreach (var product in Model)
-        {
-            <div class="product-card">
-                <img src="@Url.Content(product.ImageUrl)" alt="@product.Name" />
-                <h3>@product.Name</h3>
-                <p class="price">@product.Price.ToString("N0") ₫</p>
-                <a class="btn-detail" href="/Product/Details/@product.ProductId">Xem chi tiết</a>
-            </div>
-        }
+    <div class="store-intro">
+        <span class="intro-text">
+            Nơi mua sắm các sản phẩm <strong class="highlight">hot</strong>
+        </span>
     </div>
+    <section class="category-grid">
+        <div class="category-row">
+            @foreach (var cat in categories.Take(5))
+            {
+                <div class="category-card">
+                    <a href="/Home/Store?categoryId=@cat.CategoryId">
+                        <div class="category-box">
+                            <img src="@cat.MainImageUrl" alt="@cat.Name" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px;" />
+                            <div style="margin-top: 0.5rem;">@cat.Name</div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+    </section>
+
+    <h2 class="section-title">Sản phẩm sale sập sàn</h2>
+
+    <div class="carousel-wrapper">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="product-carousel" id="productCarousel">
+            @foreach (var product in saleProducts)
+            {
+                <a href="@Url.Action("ProductDetails", "Home", new { id = product.ProductId })" class="product-card sale-card">
+                    <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
+                    <h3>@product.Name</h3>
+                    <p class="original-price">@product.Price.ToString("N0") ₫</p>
+                    <p class="discounted-price">@product.DiscountedPrice.ToString("N0") ₫</p>
+                </a>
+            }
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+    </div>
+    <section class="benefit-section">
+        <div class="benefit-container">
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h4>Uy tín hàng đầu</h4>
+                <p>Cam kết hàng chính hãng, bảo hành minh bạch.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚚</div>
+                <h4>Giao hàng nhanh</h4>
+                <p>Miễn phí nội thành, toàn quốc từ 2–5 ngày.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📞</div>
+                <h4>Hỗ trợ 24/7</h4>
+                <p>Đội ngũ tư vấn nhiệt tình, luôn sẵn sàng giúp đỡ.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h4>Giá tốt mỗi ngày</h4>
+                <p>Luôn có khuyến mãi và giá cạnh tranh nhất.</p>
+            </div>
+        </div>
+    </section>
+
+
 </section>
+
+<script>
+    const carousel = document.getElementById("productCarousel");
+    const prevBtn = document.querySelector(".carousel-btn.prev");
+    const nextBtn = document.querySelector(".carousel-btn.next");
+
+    const scrollAmount = 400 * 3 + 20; // 3 cards mỗi lần, thêm khoảng cách
+
+    prevBtn.addEventListener("click", () => {
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener("click", () => {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+</script>

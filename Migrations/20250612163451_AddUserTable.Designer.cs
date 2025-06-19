@@ -43,7 +43,7 @@ namespace TechNova.Migrations
                     b.Property<int?>("DiscountPercent")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("MainImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

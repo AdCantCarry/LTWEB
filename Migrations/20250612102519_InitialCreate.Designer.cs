@@ -40,7 +40,7 @@ namespace TechNova.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("MainImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

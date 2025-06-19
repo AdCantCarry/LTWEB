@@ -19,10 +19,23 @@ namespace TechNova.Controllers
             var products = await _context.Products.ToListAsync();
             return View(products);
         }
-        public async Task<IActionResult> Store()
+        public IActionResult Store()
         {
-            var products = await _context.Products.ToListAsync();
-            return View(products); // trả về Views/Home/Store.cshtml
+            var products = _context.Products.Include(p => p.Category).ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            return View(products);
+        }
+        public IActionResult iPhone()
+        {
+            var products = _context.Products.Include(p => p.Category).ToList();
+            return View(products);
+        }
+        public IActionResult ProductDetails(int id)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+            if (product == null) return NotFound();
+
+            return View(product);
         }
 
     }

@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/highlight.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/store.css" />
+    <link rel="stylesheet" href="~/css/Iphone.css" />
+    <link rel="stylesheet" href="~/css/Profile.css  " />
+    <link rel="stylesheet" href="~/css/product-detail.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
 
     @RenderSection("Styles", required: false)
 </head>
@@ -30,7 +35,7 @@
 
             <div class="menu">
                 <a href="/Home/Store">Store</a>
-                <a href="/Iphone">Iphone</a>
+                <a href="/Home/Iphone">Iphone</a>
                 <a href="/Watch">Watch</a>
                 <a href="/Laptop">Laptop</a>
                 <a href="/Accessories">Accessories</a>
@@ -42,18 +47,38 @@
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
 
-                <a href="/Cart" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
+                <a href="/Cart/Index" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
 
                 @{
                     var username = Context.Session.GetString("Username");
+                    var avatar = Context.Session.GetString("AvatarUrl") ?? "/images/default.jpg";
                 }
 
                 @if (!string.IsNullOrEmpty(username))
                 {
-                    <div class="user-info">
-                        <span style="margin-right: 10px;">👋 @username</span>
-                        <a href="/Account/Logout" title="Đăng xuất"><i class="fas fa-sign-out-alt"></i></a>
+                    <div class="user-dropdown-wrapper">
+                        <div class="user-avatar" id="userToggle">
+                            <img src="@avatar" alt="avatar" />
+                        </div>
+
+                        <div class="user-dropdown" id="userDropdown">
+                            <p><strong>@username</strong></p>
+                            <p style="font-size: 13px; color: #666;">@Context.Session.GetString("Email")</p>
+                            <a href="/Account/Profile"><i class="fas fa-user"></i> Hồ sơ</a>
+                            <a href="/Orders/MyOrders"><i class="fas fa-box"></i> Đơn hàng</a>
+
+                            @if (Context.Session.GetString("Role") == "Admin")
+                            {
+                                <a href="/AdminProducts"><i class="fas fa-tools"></i> Quản lý</a>
+                            }
+
+                            <a href="/Account/Logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+
                     </div>
+
+                    <!-- Overlay mờ khi mở dropdown -->
+                    <div class="overlay" id="dropdownOverlay"></div>
                 }
                 else
                 {

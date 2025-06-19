@@ -1,0 +1,106 @@
+﻿@model List<CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    decimal total = Model.Sum(item => item.TotalPrice);
+}
+
+<link rel="stylesheet" href="~/css/cart.css" />
+
+<div class="cart-wrapper">
+    <div class="cart-box">
+        <h2>🛒 Giỏ hàng của bạn</h2>
+
+        <div class="cart-list">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                <div class="cart-item" data-index="@i" data-price="@item.Price">
+                    <div class="cart-image">
+                        <img src="@item.ImageUrl" alt="@item.Name" />
+                    </div>
+
+                    <div class="cart-info">
+                        <h3>@item.Name</h3>
+                        <p><strong>Màu:</strong> @item.Color</p>
+                        <p><strong>Dung lượng:</strong> @item.Storage</p>
+                        <p><strong>Giá:</strong> <span class="item-price">@item.TotalPrice.ToString("N0")₫</span></p>
+                    </div>
+
+                    <div class="cart-actions">
+                        <div class="qty-group">
+                            <button class="qty-minus">-</button>
+                            <span class="qty-value">@item.Quantity</span>
+                            <button class="qty-plus">+</button>
+                        </div>
+
+                        <form asp-action="Remove" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="hidden" name="color" value="@item.Color" />
+                            <input type="hidden" name="storage" value="@item.Storage" />
+                            <button class="btn-remove">🗑️</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="cart-summary-box">
+            <div class="summary-line">
+                <span>Tạm tính:</span>
+                <span id="subtotalAmount">@total.ToString("N0")₫</span>
+            </div>
+            <div class="summary-line total">
+                <span>Tổng cộng:</span>
+                <span id="totalAmount">@total.ToString("N0")₫</span>
+            </div>
+            <a href="/Checkout" class="cart-checkout-btn">Tiến hành thanh toán</a>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const unitPrice = parseFloat(item.dataset.price || 0);
+            const qtyDisplay = item.querySelector('.qty-value');
+            const priceEl = item.querySelector('.item-price');
+
+            item.querySelector('.qty-minus').addEventListener('click', () => updateQty(-1));
+            item.querySelector('.qty-plus').addEventListener('click', () => updateQty(1));
+
+            function updateQty(change) {
+                let qty = parseInt(qtyDisplay.textContent) || 1;
+                qty = Math.max(1, qty + change);
+                qtyDisplay.textContent = qty;
+                priceEl.textContent = (qty * unitPrice).toLocaleString() + '₫';
+                updateTotalAll();
+            }
+        });
+
+        function updateTotalAll() {
+            let total = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.dataset.price);
+                const qty = parseInt(item.querySelector('.qty-value').textContent) || 1;
+                total += price * qty;
+            });
+            const formatted = total.toLocaleString() + '₫';
+            document.getElementById('totalAmount').innerText = formatted;
+            document.getElementById('subtotalAmount').innerText = formatted;
+        }
+
+        document.querySelectorAll('.btn-remove').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                const form = btn.closest('form');
+                const itemDiv = btn.closest('.cart-item');
+                itemDiv.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+                itemDiv.style.opacity = "0";
+                itemDiv.style.transform = "translateX(20px)";
+                setTimeout(() => {
+                    form.submit();
+                }, 300);
+            });
+        });
+    </script>
+}

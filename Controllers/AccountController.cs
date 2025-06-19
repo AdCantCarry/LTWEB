@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechNova.Models;
-using TechNova.Helpers; // dùng để mã hóa
 using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using TechNova.Models;
+using TechNova.Helpers;
 
 namespace TechNova.Controllers
 {
@@ -15,10 +18,9 @@ namespace TechNova.Controllers
             _context = context;
         }
 
-        // GET: /Account/Register
+        // Đăng ký
         public IActionResult Register() => View();
 
-        // POST: /Account/Register
         [HttpPost]
         public IActionResult Register(User user)
         {
@@ -30,7 +32,8 @@ namespace TechNova.Controllers
             if (ModelState.IsValid)
             {
                 user.Password = PasswordHelper.Hash(user.Password);
-                user.Role ??= "User"; // Gán role mặc định là User nếu không được set
+                user.Role ??= "User";
+                user.AvatarUrl ??= "/images/default-avatar.png";
 
                 _context.Users.Add(user);
                 _context.SaveChanges();
@@ -41,20 +44,20 @@ namespace TechNova.Controllers
             return View(user);
         }
 
-        // GET: /Account/Login
+        // Đăng nhập
         public IActionResult Login() => View();
 
-        // POST: /Account/Login
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            string hashedPassword = PasswordHelper.Hash(password);
-
-            var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword);
-            if (user != null)
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user != null && PasswordHelper.Verify(password, user.Password))
             {
                 HttpContext.Session.SetString("Username", user.Username);
+                HttpContext.Session.SetString("Email", user.Email);
                 HttpContext.Session.SetString("Role", user.Role ?? "User");
+                HttpContext.Session.SetString("AvatarUrl",
+                    string.IsNullOrEmpty(user.AvatarUrl) ? "/images/default-avatar.png" : user.AvatarUrl);
 
                 if (user.Role == "Admin")
                     return RedirectToAction("Index", "AdminProducts", new { area = "Admin" });
@@ -70,6 +73,175 @@ namespace TechNova.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
+        }
+
+        // Trang cá nhân
+        public IActionResult Profile()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users
+                .Where(u => u.Username == username)
+                .Select(u => new User
+                {
+                    UserId = u.UserId,
+                    Username = u.Username,
+                    Email = u.Email,
+                    AvatarUrl = u.AvatarUrl,
+                    PhoneNumber = u.PhoneNumber,
+                    BirthDate = u.BirthDate,
+                    Addresses = _context.Addresses.Where(a => a.UserId == u.UserId).ToList()
+                }).FirstOrDefault();
+
+            if (user == null) return RedirectToAction("Login");
+            return View(user);
+        }
+
+        // Cập nhật thông tin cá nhân
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(IFormCollection form, IFormFile avatarInput)
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return RedirectToAction("Login");
+
+            user.Username = form["Username"];
+            user.PhoneNumber = form["PhoneNumber"];
+            if (DateTime.TryParse(form["BirthDate"], out var birthDate))
+                user.BirthDate = birthDate;
+
+            if (avatarInput != null && avatarInput.Length > 0)
+            {
+                var folderPath = Path.Combine("wwwroot", "images", "avatars");
+                Directory.CreateDirectory(folderPath);
+
+                // Xoá ảnh cũ (trừ mặc định)
+                if (!string.IsNullOrEmpty(user.AvatarUrl) && !user.AvatarUrl.Contains("default"))
+                {
+                    var oldPath = Path.Combine("wwwroot", user.AvatarUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(oldPath))
+                        System.IO.File.Delete(oldPath);
+                }
+
+                var fileName = Guid.NewGuid() + Path.GetExtension(avatarInput.FileName);
+                var filePath = Path.Combine(folderPath, fileName);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await avatarInput.CopyToAsync(stream);
+
+                user.AvatarUrl = "/images/avatars/" + fileName;
+                HttpContext.Session.SetString("AvatarUrl", user.AvatarUrl);
+            }
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Profile");
+        }
+
+        // Cập nhật avatar riêng
+        [HttpPost]
+        public async Task<IActionResult> UpdateAvatar(IFormFile avatar)
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return RedirectToAction("Login");
+
+            if (avatar != null && avatar.Length > 0)
+            {
+                var folderPath = Path.Combine("wwwroot", "images", "avatars");
+                Directory.CreateDirectory(folderPath);
+
+                if (!string.IsNullOrEmpty(user.AvatarUrl) && !user.AvatarUrl.Contains("default"))
+                {
+                    var oldPath = Path.Combine("wwwroot", user.AvatarUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(oldPath))
+                        System.IO.File.Delete(oldPath);
+                }
+
+                var fileName = Guid.NewGuid() + Path.GetExtension(avatar.FileName);
+                var filePath = Path.Combine(folderPath, fileName);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await avatar.CopyToAsync(stream);
+
+                user.AvatarUrl = "/images/avatars/" + fileName;
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+
+                HttpContext.Session.SetString("AvatarUrl", user.AvatarUrl);
+                TempData["AvatarUpdated"] = true;
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        // Đổi mật khẩu
+        [HttpPost]
+        public IActionResult ChangePassword(string CurrentPassword, string NewPassword, string ConfirmPassword)
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return RedirectToAction("Login");
+
+            if (!PasswordHelper.Verify(CurrentPassword, user.Password))
+            {
+                TempData["PasswordError"] = "Mật khẩu hiện tại không đúng.";
+                return RedirectToAction("Profile");
+            }
+
+            if (NewPassword != ConfirmPassword)
+            {
+                TempData["PasswordError"] = "Mật khẩu mới không khớp.";
+                return RedirectToAction("Profile");
+            }
+
+            user.Password = PasswordHelper.Hash(NewPassword);
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            TempData["PasswordSuccess"] = "Đổi mật khẩu thành công.";
+            return RedirectToAction("Profile");
+        }
+
+        // Thêm địa chỉ
+        [HttpPost]
+        public IActionResult AddAddress(Address address)
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return RedirectToAction("Login");
+
+            address.UserId = user.UserId;
+
+            if (address.IsDefault)
+            {
+                var others = _context.Addresses.Where(a => a.UserId == user.UserId && a.IsDefault);
+                foreach (var a in others)
+                    a.IsDefault = false;
+            }
+
+            _context.Addresses.Add(address);
+            _context.SaveChanges();
+
+            return RedirectToAction("Profile");
+        }
+
+        // Xóa địa chỉ
+        [HttpPost]
+        public IActionResult DeleteAddress(int id)
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return RedirectToAction("Login");
+
+            var addr = _context.Addresses.FirstOrDefault(a => a.AddressId == id && a.UserId == user.UserId);
+            if (addr != null)
+            {
+                _context.Addresses.Remove(addr);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Profile");
         }
     }
 }

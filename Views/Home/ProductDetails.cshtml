@@ -1,0 +1,116 @@
+﻿@model TechNova.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    var colorList = (Model.Color ?? "")
+       .Split(',', StringSplitOptions.RemoveEmptyEntries)
+       .Select(c => c.Trim())
+       .ToArray();
+    var storageList = Model.Storage?.Split(',') ?? new string[] { };
+}
+
+<link rel="stylesheet" href="~/css/product-detail.css" />
+
+<div class="product-detail-container">
+    <div class="image-section">
+        <img src="@Model.MainImageUrl" class="main-img" />
+        <div class="sub-images">
+            <img src="@Model.SubImage1Url" />
+            <img src="@Model.SubImage2Url" />
+            <img src="@Model.SubImage3Url" />
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-wrapper">
+            <div class="product-title">
+                <h2>@Model.Name</h2>
+            </div>
+
+            <p class="description">@Model.Description</p>
+
+            <form method="post" asp-controller="Cart" asp-action="AddToCart" onsubmit="return validateSelection();">
+                <input type="hidden" name="productId" value="@Model.ProductId" />
+                <input type="hidden" name="color" id="SelectedColor" />
+                <input type="hidden" name="storage" id="SelectedStorage" />
+                <input type="hidden" name="quantity" value="1" />
+
+                @if (colorList.Any())
+                {
+                    <div class="option-group">
+                        <strong>Màu sắc:</strong>
+                        <div class="option-items" id="ColorOptions">
+                            @foreach (var c in colorList)
+                            {
+                                <div class="color-box" data-color="@c" style="background-color:@c;" title="@c"></div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (storageList.Any())
+                {
+                    <div class="option-group">
+                        <strong>Dung lượng:</strong>
+                        <div class="option-items" id="StorageOptions">
+                            @foreach (var s in storageList)
+                            {
+                                <div class="storage-box" data-storage="@s">@s</div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="price-box">
+                    <strong>Giá bán:</strong>
+                    <div class="price-values">
+                        @if (Model.DiscountPercent > 0)
+                        {
+                            <span class="original-price">@Model.Price.ToString("N0")₫</span>
+                            <span class="discounted-price">@Model.DiscountedPrice.ToString("N0")₫</span>
+                            <span class="discount-rate">-@Model.DiscountPercent%</span>
+                        }
+                        else
+                        {
+                            <span class="discounted-price">@Model.Price.ToString("N0")₫</span>
+                        }
+                    </div>
+                </div>
+
+                <button type="submit" class="buy-btn">🛒 Mua ngay</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Chọn màu
+        document.querySelectorAll('.color-box').forEach(el => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.color-box').forEach(c => c.classList.remove('selected'));
+                el.classList.add('selected');
+                document.getElementById("SelectedColor").value = el.dataset.color;
+            });
+        });
+
+        // Chọn dung lượng
+        document.querySelectorAll('.storage-box').forEach(el => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.storage-box').forEach(s => s.classList.remove('selected'));
+                el.classList.add('selected');
+                document.getElementById("SelectedStorage").value = el.dataset.storage;
+            });
+        });
+
+        function validateSelection() {
+            const color = document.getElementById("SelectedColor").value;
+            const storage = document.getElementById("SelectedStorage").value;
+            if (!color || !storage) {
+                alert("Vui lòng chọn màu sắc và dung lượng trước khi mua.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

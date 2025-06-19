@@ -119,3 +119,19 @@ td {
     font-size: 0.875rem;
     margin-right: 0.3rem;
 }
+.btn-home-link {
+    display: block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+    .btn-home-link:hover {
+        background-color: #0056b3;
+    }
