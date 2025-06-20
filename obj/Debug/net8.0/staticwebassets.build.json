@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XVhHBXN70dkGHIJoR4HvPuTEPvlIM2zWF1oLlpn5MKc=",
+  "Hash": "b2msnkFpX0ZYSKeVDXWxcZvhOIQY6GxUxPOwrWOqsAQ=",
   "Source": "TechNova",
   "BasePath": "_content/TechNova",
   "Mode": "Default",
@@ -115,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "3jpmtv9uat",
-      "Integrity": "v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=",
+      "Fingerprint": "spx03s0w9x",
+      "Integrity": "UIKT6MnUfU/YV5V/lJoCIcUGpDyKtmh0gilbMVbSsbI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Cart.css"
@@ -2598,51 +2598,6 @@
       ]
     },
     {
-      "Route": "css/Cart.3jpmtv9uat.css",
-      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3952"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 19 Jun 2025 15:56:40 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "3jpmtv9uat"
-        },
-        {
-          "Name": "label",
-          "Value": "css/Cart.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA="
-        }
-      ]
-    },
-    {
       "Route": "css/Cart.css",
       "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
       "Selectors": [],
@@ -2653,7 +2608,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3952"
+          "Value": "9715"
         },
         {
           "Name": "Content-Type",
@@ -2661,11 +2616,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA=\""
+          "Value": "\"UIKT6MnUfU/YV5V/lJoCIcUGpDyKtmh0gilbMVbSsbI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 19 Jun 2025 15:56:40 GMT"
+          "Value": "Thu, 19 Jun 2025 16:53:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2675,7 +2630,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-v1PCIcJwuo9npe3YXG73DqYx6IuraRPzjPTlKOEzumA="
+          "Value": "sha256-UIKT6MnUfU/YV5V/lJoCIcUGpDyKtmh0gilbMVbSsbI="
+        }
+      ]
+    },
+    {
+      "Route": "css/Cart.spx03s0w9x.css",
+      "AssetFile": "D:\\Project\\LTWNC\\LT\\TechNova\\wwwroot\\css\\Cart.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9715"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UIKT6MnUfU/YV5V/lJoCIcUGpDyKtmh0gilbMVbSsbI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 19 Jun 2025 16:53:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "spx03s0w9x"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Cart.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UIKT6MnUfU/YV5V/lJoCIcUGpDyKtmh0gilbMVbSsbI="
         }
       ]
     },

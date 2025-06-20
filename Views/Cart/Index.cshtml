@@ -43,17 +43,33 @@
                 </div>
             }
         </div>
-        <div class="cart-summary-box">
-            <div class="summary-line">
-                <span>Tạm tính:</span>
-                <span id="subtotalAmount">@total.ToString("N0")₫</span>
+        @if (!Model.Any())
+        {
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart fa-3x"></i>
+                <p>Giỏ hàng trống.</p>
+                <a href="/Home/Store" class="continue-btn">Tiếp tục mua sắm</a>
             </div>
-            <div class="summary-line total">
-                <span>Tổng cộng:</span>
-                <span id="totalAmount">@total.ToString("N0")₫</span>
+        }
+        else
+        {
+            <div class="cart-list">
+                @* ... Render các sản phẩm trong giỏ hàng ... *@
             </div>
-            <a href="/Checkout" class="cart-checkout-btn">Tiến hành thanh toán</a>
-        </div>
+
+            <div class="cart-summary-box">
+                <div class="summary-line">
+                    <span>Tạm tính:</span>
+                    <span id="subtotalAmount">@total.ToString("N0")₫</span>
+                </div>
+                <div class="summary-line total">
+                    <span>Tổng cộng:</span>
+                    <span id="totalAmount">@total.ToString("N0")₫</span>
+                </div>
+                <a href="/Checkout" class="cart-checkout-btn">Tiến hành thanh toán</a>
+            </div>
+        }
+
 
     </div>
 </div>
