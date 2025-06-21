@@ -128,21 +128,39 @@
     }
 </div>
 
-    @section Scripts {
-        <script>
-            function submitAvatar() {
-                document.getElementById("avatarForm").submit();
-            }
+@section Scripts {
+    <script>
+        function submitAvatar() {
+            document.getElementById("avatarForm").submit();
+        }
 
-            function toggleAddressForm() {
-                const form = document.getElementById("addAddressForm");
-                form.classList.toggle("d-none");
-            }
+        // Tab switching
+        document.querySelectorAll(".profile-menu li").forEach(item => {
+            item.addEventListener("click", function () {
+                document.querySelectorAll(".profile-menu li").forEach(li => li.classList.remove("active"));
+                document.querySelectorAll(".profile-section").forEach(section => section.classList.remove("active"));
+                this.classList.add("active");
+                const targetId = this.getAttribute("data-target");
+                document.getElementById(targetId).classList.add("active");
+            });
+        });
 
-            // Reload avatar nếu cập nhật
-            @if (TempData["AvatarUpdated"] != null)
-            {
-                    <text>
+        function toggleAddAddress() {
+            const form = document.getElementById("add-address-form");
+            form.classList.toggle("d-none");
+            if (!form.classList.contains("d-none")) {
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(el => el.remove());
+        }, 4000);
+
+        @if (TempData["AvatarUpdated"] != null)
+        {
+                <text>
+                    document.addEventListener("DOMContentLoaded", function () {
                         const avatarImg = document.getElementById("avatarImg");
                         if (avatarImg) {
                             let base = avatarImg.src.split('?')[0];
@@ -153,30 +171,9 @@
                             let base = headerAvatar.src.split('?')[0];
                             headerAvatar.src = base + '?v=' + new Date().getTime();
                         }
-                    </text>
-            }
+                    });
+                </text>
+        }
+    </script>
+}
 
-            // Tab switching
-            document.querySelectorAll(".profile-menu li").forEach(item => {
-                item.addEventListener("click", function () {
-                    document.querySelectorAll(".profile-menu li").forEach(li => li.classList.remove("active"));
-                    document.querySelectorAll(".profile-section").forEach(section => section.classList.remove("active"));
-                    this.classList.add("active");
-                    const targetId = this.getAttribute("data-target");
-                    document.getElementById(targetId).classList.add("active");
-                });
-            });
-                       function toggleAddAddress() {
-            const form = document.getElementById("add-address-form");
-            form.classList.toggle("d-none");
-            // Scroll đến form nếu đang mở
-            if (!form.classList.contains("d-none")) {
-                form.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-         setTimeout(() => {
-            document.querySelectorAll('.alert').forEach(el => el.remove());
-        }, 4000); // 4 giây
-        }
-        </script>
-    }

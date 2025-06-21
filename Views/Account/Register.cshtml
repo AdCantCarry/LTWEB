@@ -7,7 +7,7 @@
     <div class="form-box">
         <h2 class="form-title">Tạo tài khoản</h2>
 
-        <form method="post" class="form-body">
+        <form method="post" class="form-body" asp-action="Register" asp-controller="Account">
             <input asp-for="Username" placeholder="Họ tên" class="form-input" />
             <span asp-validation-for="Username" class="error-message"></span>
 

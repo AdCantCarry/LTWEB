@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Controllers/AccountController.cs
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
@@ -18,7 +19,6 @@ namespace TechNova.Controllers
             _context = context;
         }
 
-        // Đăng ký
         public IActionResult Register() => View();
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace TechNova.Controllers
             {
                 user.Password = PasswordHelper.Hash(user.Password);
                 user.Role ??= "User";
-                user.AvatarUrl ??= "/images/default-avatar.png";
+                user.AvatarUrl ??= "/images/default.jpg";
 
                 _context.Users.Add(user);
                 _context.SaveChanges();
@@ -41,10 +41,11 @@ namespace TechNova.Controllers
                 return RedirectToAction("Login");
             }
 
+            // ❗ Trả lại View với model => giữ lại dữ liệu nhập
             return View(user);
         }
 
-        // Đăng nhập
+
         public IActionResult Login() => View();
 
         [HttpPost]
@@ -56,13 +57,11 @@ namespace TechNova.Controllers
                 HttpContext.Session.SetString("Username", user.Username);
                 HttpContext.Session.SetString("Email", user.Email);
                 HttpContext.Session.SetString("Role", user.Role ?? "User");
-                HttpContext.Session.SetString("AvatarUrl",
-                    string.IsNullOrEmpty(user.AvatarUrl) ? "/images/default-avatar.png" : user.AvatarUrl);
+                HttpContext.Session.SetString("AvatarUrl", string.IsNullOrEmpty(user.AvatarUrl) ? "/images/default-avatar.png" : user.AvatarUrl);
 
-                if (user.Role == "Admin")
-                    return RedirectToAction("Index", "AdminProducts", new { area = "Admin" });
-
-                return RedirectToAction("Index", "Home");
+                return user.Role == "Admin"
+                    ? RedirectToAction("Index", "AdminProducts", new { area = "Admin" })
+                    : RedirectToAction("Index", "Home");
             }
 
             ViewBag.Error = "Sai email hoặc mật khẩu";
@@ -75,7 +74,6 @@ namespace TechNova.Controllers
             return RedirectToAction("Login");
         }
 
-        // Trang cá nhân
         public IActionResult Profile()
         {
             var username = HttpContext.Session.GetString("Username");
@@ -96,7 +94,6 @@ namespace TechNova.Controllers
             return View(user);
         }
 
-        // Cập nhật thông tin cá nhân
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(IFormCollection form, IFormFile avatarInput)
         {
@@ -114,7 +111,6 @@ namespace TechNova.Controllers
                 var folderPath = Path.Combine("wwwroot", "images", "avatars");
                 Directory.CreateDirectory(folderPath);
 
-                // Xoá ảnh cũ (trừ mặc định)
                 if (!string.IsNullOrEmpty(user.AvatarUrl) && !user.AvatarUrl.Contains("default"))
                 {
                     var oldPath = Path.Combine("wwwroot", user.AvatarUrl.TrimStart('/'));
@@ -134,11 +130,11 @@ namespace TechNova.Controllers
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
+            TempData["AvatarUpdated"] = true;
 
             return RedirectToAction("Profile");
         }
 
-        // Cập nhật avatar riêng
         [HttpPost]
         public async Task<IActionResult> UpdateAvatar(IFormFile avatar)
         {
@@ -165,17 +161,16 @@ namespace TechNova.Controllers
                 await avatar.CopyToAsync(stream);
 
                 user.AvatarUrl = "/images/avatars/" + fileName;
-                _context.Update(user);
-                await _context.SaveChangesAsync();
-
                 HttpContext.Session.SetString("AvatarUrl", user.AvatarUrl);
                 TempData["AvatarUpdated"] = true;
+
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToAction("Profile");
         }
 
-        // Đổi mật khẩu
         [HttpPost]
         public IActionResult ChangePassword(string CurrentPassword, string NewPassword, string ConfirmPassword)
         {
@@ -203,7 +198,6 @@ namespace TechNova.Controllers
             return RedirectToAction("Profile");
         }
 
-        // Thêm địa chỉ
         [HttpPost]
         public IActionResult AddAddress(Address address)
         {
@@ -216,8 +210,7 @@ namespace TechNova.Controllers
             if (address.IsDefault)
             {
                 var others = _context.Addresses.Where(a => a.UserId == user.UserId && a.IsDefault);
-                foreach (var a in others)
-                    a.IsDefault = false;
+                foreach (var a in others) a.IsDefault = false;
             }
 
             _context.Addresses.Add(address);
@@ -226,7 +219,6 @@ namespace TechNova.Controllers
             return RedirectToAction("Profile");
         }
 
-        // Xóa địa chỉ
         [HttpPost]
         public IActionResult DeleteAddress(int id)
         {

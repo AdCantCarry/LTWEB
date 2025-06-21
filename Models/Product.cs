@@ -33,6 +33,9 @@ namespace TechNova.Models
 
         public string Color { get; set; }
         public string Storage { get; set; }
+        public int? BrandId { get; set; } // FK
+        public Brand? Brand { get; set; } // Navigation
+
         public DateTime? UpdatedAt { get; set; }
     }
 }

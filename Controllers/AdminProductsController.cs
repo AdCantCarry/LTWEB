@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TechNova.middleware;
 using TechNova.Models;
 using System.Linq;
@@ -16,12 +17,24 @@ public class AdminProductsController : Controller
 
     public IActionResult Index()
     {
-        return View("~/Views/Admin/AdminProducts/Index.cshtml", _context.Products.ToList());
+        // Bao gồm thông tin danh mục và thương hiệu
+        var products = _context.Products
+            .Include(p => p.Category)
+            .Include(p => p.Brand)
+            .ToList();
+
+        return View("~/Views/Admin/AdminProducts/Index.cshtml", products);
     }
 
     public IActionResult Create()
     {
-        ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name");
+        ViewBag.CategoryList = new SelectList(
+            _context.Categories.Where(c => c.IsActive), "CategoryId", "Name"
+        );
+        ViewBag.BrandList = new SelectList(
+            _context.Brands, "BrandId", "Name"
+        );
+
         return View("~/Views/Admin/AdminProducts/Create.cshtml");
     }
 
@@ -38,7 +51,9 @@ public class AdminProductsController : Controller
             return RedirectToAction("Index");
         }
 
-        ViewBag.CategoryList = new SelectList(_context.Categories, "CategoryId", "Name");
+        ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
+        ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
+
         return View("~/Views/Admin/AdminProducts/Create.cshtml", product);
     }
 
@@ -47,7 +62,9 @@ public class AdminProductsController : Controller
         var product = _context.Products.Find(id);
         if (product == null) return NotFound();
 
-        ViewBag.CategoryList = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+        ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
+        ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
+
         return View("~/Views/Admin/AdminProducts/Edit.cshtml", product);
     }
 
@@ -67,21 +84,23 @@ public class AdminProductsController : Controller
             existing.Price = product.Price;
             existing.DiscountPercent = product.DiscountPercent;
             existing.CategoryId = product.CategoryId;
+            existing.BrandId = product.BrandId;
             existing.MainImageUrl = product.MainImageUrl;
             existing.SubImage1Url = product.SubImage1Url;
             existing.SubImage2Url = product.SubImage2Url;
             existing.SubImage3Url = product.SubImage3Url;
-            existing.UpdatedAt = DateTime.Now;
-            // ❗❗ Thêm 2 dòng này:
             existing.Color = product.Color;
             existing.Storage = product.Storage;
+            existing.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        ViewBag.CategoryList = new SelectList(_context.Categories, "CategoryId", "Name");
-        return View("~/Views/Admin/AdminProducts/Create.cshtml", product);
+        ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
+        ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
+
+        return View("~/Views/Admin/AdminProducts/Edit.cshtml", product);
     }
 
     public IActionResult Delete(int id)
@@ -95,7 +114,9 @@ public class AdminProductsController : Controller
         return RedirectToAction("Index");
     }
 
-    // ✳️ Hàm tiện ích thêm prefix /images/ nếu thiếu
+    /// <summary>
+    /// Bổ sung "/images/" vào đầu đường dẫn ảnh nếu thiếu
+    /// </summary>
     private void NormalizeImagePaths(Product product)
     {
         string prefix = "/images/";

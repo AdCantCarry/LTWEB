@@ -1,0 +1,17 @@
+﻿@model TechNova.Models.Brand
+@{
+    ViewData["Title"] = "Thêm thương hiệu";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Thêm thương hiệu</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Tên thương hiệu</label>
+        <input asp-for="Name" class="form-control" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a href="/AdminBrands" class="btn btn-secondary">⬅️ Quay lại</a>
+</form>

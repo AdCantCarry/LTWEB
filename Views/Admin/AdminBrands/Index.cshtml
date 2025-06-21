@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TechNova.Models.Brand>
+@{
+    ViewData["Title"] = "Quản lý thương hiệu";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Danh sách thương hiệu</h2>
+<a class="btn btn-success mb-3" href="/AdminBrands/Create">➕ Thêm thương hiệu</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên thương hiệu</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var brand in Model)
+        {
+            <tr>
+                <td>@brand.Name</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/AdminBrands/Edit/@brand.BrandId">✏️ Sửa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

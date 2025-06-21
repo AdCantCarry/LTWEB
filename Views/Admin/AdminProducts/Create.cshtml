@@ -36,6 +36,14 @@
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
+    <!-- Brand -->
+    <<div class="form-group">
+        <label>Thương hiệu (có thể để trống)</label>
+        <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
+            <option value="">-- Chưa chọn thương hiệu --</option>
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
 
     <!-- Đường dẫn ảnh chính -->
     <div class="form-group">
