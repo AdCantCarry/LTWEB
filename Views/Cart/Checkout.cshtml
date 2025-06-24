@@ -1,0 +1,70 @@
+﻿@model TechNova.ViewModels.Checkout
+@{
+    ViewData["Title"] = "Thanh toán";
+}
+
+@if (Model.CartItems.Count == 0)
+{
+    <p>Không có sản phẩm trong giỏ hàng.</p>
+}
+else
+{
+    <form asp-action="ConfirmOrder" method="post">
+        <h4>📦 Sản phẩm</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên</th>
+                    <th>Phân loại</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td><img src="@item.ImageUrl" width="60" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Color - @item.Storage</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price.ToString("N0")₫</td>
+                        <td>@item.TotalPrice.ToString("N0")₫</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h4>🚚 Địa chỉ giao hàng</h4>
+        <select name="SelectedAddressId" class="form-control mb-3" required>
+            @foreach (var addr in Model.Addresses)
+            {
+                <option value="@addr.AddressId" selected="@(addr.IsDefault ? "selected" : null)">
+                    @addr.FullName - @addr.Phone | @addr.Street, @addr.Ward, @addr.District, @addr.City
+                    @(addr.IsDefault ? "(Mặc định)" : "")
+                </option>
+            }
+
+        </select>
+
+        <h4>💳 Phương thức thanh toán</h4>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="PaymentMethod" value="COD" checked />
+                <label class="form-check-label">Thanh toán khi nhận hàng (COD)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="PaymentMethod" value="Momo" />
+                <label class="form-check-label">Thanh toán qua Momo</label>
+            </div>
+        </div>
+
+        <h4>💰 Tổng cộng</h4>
+        <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
+        <p>Tổng thanh toán: <strong class="text-danger">@Model.Total.ToString("N0")₫</strong></p>
+
+        <button type="submit" class="btn btn-success mt-3">Xác nhận đặt hàng</button>
+    </form>
+}

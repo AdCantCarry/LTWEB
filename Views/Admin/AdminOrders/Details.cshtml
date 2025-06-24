@@ -1,0 +1,57 @@
+﻿@model TechNova.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>📝 Chi tiết đơn hàng #@Model.OrderId</h2>
+
+<p><strong>Khách hàng:</strong> @Model.User?.Username</p>
+<p><strong>Ngày đặt:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+<p><strong>Trạng thái:</strong> @Model.Status</p>
+<p><strong>Phương thức thanh toán:</strong> @Model.Payment?.Method</p>
+
+<h4 class="mt-4">🛍️ Sản phẩm</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Tổng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td><img src="@item.Product?.MainImageUrl" alt="@item.Product?.Name" width="60" /></td>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("N0")₫</td>
+                <td>@(((decimal)(item.Price * item.Quantity)).ToString("N0"))₫</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4 class="text-end text-danger">Tổng cộng: @Model.TotalAmount.ToString("N0")₫</h4>
+
+<form asp-action="UpdateStatus" method="post" class="mt-4">
+    <input type="hidden" name="orderId" value="@Model.OrderId" />
+    <div class="form-group">
+        <label for="status">Cập nhật trạng thái:</label>
+        <select name="status" class="form-control w-25 d-inline-block">
+            <option selected>@Model.Status</option>
+            <option value="Đang xử lý">Đang xử lý</option>
+            <option value="Đang giao hàng">Đang giao hàng</option>
+            <option value="Hoàn tất">Hoàn tất</option>
+            <option value="Đã huỷ">Đã huỷ</option>
+        </select>
+        <button type="submit" class="btn btn-success ms-2">Cập nhật</button>
+    </div>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">← Quay lại</a>

@@ -1,4 +1,4 @@
-namespace TechNova.Models
+﻿namespace TechNova.Models
 {
     public class ErrorViewModel
     {

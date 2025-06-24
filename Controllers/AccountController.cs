@@ -41,10 +41,8 @@ namespace TechNova.Controllers
                 return RedirectToAction("Login");
             }
 
-            // ❗ Trả lại View với model => giữ lại dữ liệu nhập
             return View(user);
         }
-
 
         public IActionResult Login() => View();
 
@@ -76,22 +74,44 @@ namespace TechNova.Controllers
 
         public IActionResult Profile()
         {
-            var username = HttpContext.Session.GetString("Username");
-            var user = _context.Users
-                .Where(u => u.Username == username)
-                .Select(u => new User
-                {
-                    UserId = u.UserId,
-                    Username = u.Username,
-                    Email = u.Email,
-                    AvatarUrl = u.AvatarUrl,
-                    PhoneNumber = u.PhoneNumber,
-                    BirthDate = u.BirthDate,
-                    Addresses = _context.Addresses.Where(a => a.UserId == u.UserId).ToList()
-                }).FirstOrDefault();
+            var user = GetLoggedInUser();
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
 
-            if (user == null) return RedirectToAction("Login");
-            return View(user);
+            var addresses = _context.Addresses
+                .Where(a => a.UserId == user.UserId)
+                .ToList();
+
+            var orders = _context.Orders
+                .Where(o => o.UserId == user.UserId)
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new OrderViewModel
+                {
+                    OrderId = o.OrderId,
+                    CreatedAt = o.CreatedAt,
+                    Status = o.Status,
+                    PaymentMethod = o.Payment.Method,
+                    TotalAmount = o.TotalAmount,
+                    Items = o.OrderItems.Select(i => new OrderItemViewModel
+                    {
+                        ProductId = i.ProductId,
+                        ProductName = i.Product.Name,
+                        Price = i.Price,
+                        Quantity = i.Quantity,
+                        Image = i.Product.MainImageUrl
+                    }).ToList()
+                }).ToList();
+
+            var viewModel = new UserProfileViewModel
+            {
+                User = user,
+                Addresses = addresses,
+                Orders = orders
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -199,11 +219,13 @@ namespace TechNova.Controllers
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public IActionResult AddAddress(Address address)
         {
             var username = HttpContext.Session.GetString("Username");
             var user = _context.Users.FirstOrDefault(u => u.Username == username);
-            if (user == null) return RedirectToAction("Login");
+            if (user == null)
+                return Json(new { success = false });
 
             address.UserId = user.UserId;
 
@@ -216,7 +238,20 @@ namespace TechNova.Controllers
             _context.Addresses.Add(address);
             _context.SaveChanges();
 
-            return RedirectToAction("Profile");
+            return Json(new
+            {
+                success = true,
+                address = new
+                {
+                    fullName = address.FullName,
+                    phone = address.Phone,
+                    street = address.Street,
+                    ward = address.Ward,
+                    district = address.District,
+                    city = address.City,
+                    isDefault = address.IsDefault
+                }
+            });
         }
 
         [HttpPost]
@@ -234,6 +269,12 @@ namespace TechNova.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+
+        private User GetLoggedInUser()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            return _context.Users.FirstOrDefault(u => u.Username == username);
         }
     }
 }

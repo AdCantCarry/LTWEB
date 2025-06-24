@@ -35,6 +35,9 @@ namespace TechNova.Models
         public string Storage { get; set; }
         public int? BrandId { get; set; } // FK
         public Brand? Brand { get; set; } // Navigation
+        public int StockQuantity { get; set; } = 0; // Số lượng tồn kho
+
+        public bool IsActive { get; set; } = true; // Đang bán hay ngừng bán
 
         public DateTime? UpdatedAt { get; set; }
     }

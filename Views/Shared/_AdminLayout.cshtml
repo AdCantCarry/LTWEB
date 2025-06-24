@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var avatarUrl = Context.Session.GetString("AvatarUrl") ?? "/images/default.jpg";
+}
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -13,7 +16,7 @@
             <li><a asp-controller="AdminProducts" asp-action="Index">Products</a></li>
             <li><a asp-controller="AdminCategories" asp-action="Index">Categories</a></li>
             <li><a asp-controller="AdminBrands" asp-action="Index">Brands</a></li>
-
+            <li><a asp-controller="AdminOrders" asp-action="Index">Orders</a></li>
         </ul>
 
         <hr />
@@ -22,9 +25,21 @@
         <a href="/" class="btn-home-link">← Trang chủ</a>
     </nav>
 
-    <main class="admin-content">
-        @RenderBody()
+    <main class="admin-content-wrapper">
+        <header class="admin-header">
+            <h1>@ViewData["Title"]</h1>
+            <div class="admin-user-info">
+                <img src="@avatarUrl" alt="Admin Avatar" />
+                <span>@Context.Session.GetString("Username")</span>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            @RenderBody()
+        </div>
     </main>
+
+
 
     @RenderSection("Scripts", required: false)
 </body>

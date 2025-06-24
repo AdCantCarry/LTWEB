@@ -1,7 +1,7 @@
-﻿@model List<CartItem>
+﻿@model List<TechNova.Models.CartItem>
 @{
     ViewData["Title"] = "Giỏ hàng";
-    decimal total = Model.Sum(item => item.TotalPrice);
+    var total = Model.Sum(x => x.TotalPrice);
 }
 
 <link rel="stylesheet" href="~/css/cart.css" />
@@ -10,69 +10,57 @@
     <div class="cart-box">
         <h2>🛒 Giỏ hàng của bạn</h2>
 
-        <div class="cart-list">
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                var item = Model[i];
-                <div class="cart-item" data-index="@i" data-price="@item.Price">
-                    <div class="cart-image">
-                        <img src="@item.ImageUrl" alt="@item.Name" />
-                    </div>
-
-                    <div class="cart-info">
-                        <h3>@item.Name</h3>
-                        <p><strong>Màu:</strong> @item.Color</p>
-                        <p><strong>Dung lượng:</strong> @item.Storage</p>
-                        <p><strong>Giá:</strong> <span class="item-price">@item.TotalPrice.ToString("N0")₫</span></p>
-                    </div>
-
-                    <div class="cart-actions">
-                        <div class="qty-group">
-                            <button class="qty-minus">-</button>
-                            <span class="qty-value">@item.Quantity</span>
-                            <button class="qty-plus">+</button>
-                        </div>
-
-                        <form asp-action="Remove" method="post">
-                            <input type="hidden" name="productId" value="@item.ProductId" />
-                            <input type="hidden" name="color" value="@item.Color" />
-                            <input type="hidden" name="storage" value="@item.Storage" />
-                            <button class="btn-remove">🗑️</button>
-                        </form>
-                    </div>
-                </div>
-            }
-        </div>
         @if (!Model.Any())
         {
             <div class="empty-cart">
-                <i class="fas fa-shopping-cart fa-3x"></i>
                 <p>Giỏ hàng trống.</p>
-                <a href="/Home/Store" class="continue-btn">Tiếp tục mua sắm</a>
+                <a href="/Home/Store" class="btn btn-primary">Tiếp tục mua sắm</a>
             </div>
         }
         else
         {
             <div class="cart-list">
-                @* ... Render các sản phẩm trong giỏ hàng ... *@
+                @foreach (var item in Model)
+                {
+                    <div class="cart-item">
+                        <div class="cart-image">
+                            <img src="@item.ImageUrl" alt="@item.Name" />
+                        </div>
+
+                        <div class="cart-info">
+                            <h4>@item.Name</h4>
+                            <p><strong>Màu:</strong> @item.Color</p>
+                            <p><strong>Dung lượng:</strong> @item.Storage</p>
+                            <p><strong>Đơn giá:</strong> @item.Price.ToString("N0")₫</p>
+                            <p><strong>Số lượng:</strong> @item.Quantity</p>
+                            <p><strong>Phí vận chuyển:</strong> @item.ShippingFee.ToString("N0")₫</p>
+                            <p><strong>Phương thức:</strong> @item.ShippingMethod</p>
+                            <p><strong>Thành tiền:</strong> @item.TotalPrice.ToString("N0")₫</p>
+
+                            <form asp-action="Remove" method="post">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <input type="hidden" name="color" value="@item.Color" />
+                                <input type="hidden" name="storage" value="@item.Storage" />
+                                <button class="btn btn-sm btn-danger">🗑️ Xoá</button>
+                            </form>
+                        </div>
+                    </div>
+                }
             </div>
 
             <div class="cart-summary-box">
+                <hr />
                 <div class="summary-line">
-                    <span>Tạm tính:</span>
-                    <span id="subtotalAmount">@total.ToString("N0")₫</span>
-                </div>
-                <div class="summary-line total">
                     <span>Tổng cộng:</span>
-                    <span id="totalAmount">@total.ToString("N0")₫</span>
+                    <span class="fw-bold text-danger">@total.ToString("N0")₫</span>
                 </div>
-                <a href="/Checkout" class="cart-checkout-btn">Tiến hành thanh toán</a>
+                <a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary">Tiến hành thanh toán</a>
+
             </div>
         }
-
-
     </div>
 </div>
+
 
 @section Scripts {
     <script>

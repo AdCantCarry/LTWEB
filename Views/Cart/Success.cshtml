@@ -1,0 +1,16 @@
+﻿@model TechNova.Models.Order
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="text-success">🎉 Thanh toán thành công!</h2>
+        <p>Cảm ơn bạn đã đặt hàng tại <strong>TechNova</strong>.</p>
+        <p>Mã đơn hàng của bạn là: <strong>@Model.OrderId</strong></p>
+        <p>Phương thức thanh toán: <strong>Thanh toán khi nhận hàng (COD)</strong></p>
+        <p>Tổng tiền: <strong>@Model.TotalAmount.ToString("N0")₫</strong></p>
+        <a href="/Account/Profile" class="btn btn-primary mt-3">Xem đơn hàng</a>
+        <a href="/Home/Store" class="btn btn-outline-secondary mt-3">Tiếp tục mua sắm</a>
+    </div>
+</div>

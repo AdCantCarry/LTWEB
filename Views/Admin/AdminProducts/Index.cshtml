@@ -1,22 +1,56 @@
-﻿@model List<Product>
+﻿@model X.PagedList.IPagedList<TechNova.Models.Product>
+@using X.PagedList.Mvc.Core
+@using TechNova.Models
+
 @{
     ViewData["Title"] = "Quản lý Sản phẩm";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var categories = ViewBag.Categories as List<Category>;
+    string search = ViewBag.Search as string;
+    int? selectedCategoryId = ViewBag.CategoryId as int?;
+    string status = ViewBag.Status as string;
+    var selectedTrue = status == "true" ? "selected" : "";
+    var selectedFalse = status == "false" ? "selected" : "";
 }
 
-<h2>Quản lý Sản phẩm</h2>
-<a class="btn btn-success" href="/AdminProducts/Create">Thêm mới</a>
+<form id="filterForm" method="get" class="d-flex gap-2 mb-3">
+    <select name="categoryId" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 160px;">
+        <option value="">-- Tất cả danh mục --</option>
+        @if (categories != null)
+        {
+            foreach (var cat in categories)
+            {
+                <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId ? "selected" : null)">
+                    @cat.Name
+                </option>
 
-<table class="table table-bordered mt-3">
-    <thead>
+            }
+        }
+    </select>
+
+    <select name="status" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 140px;">
+        <option value="">-- Tất cả trạng thái --</option>
+        <option value="true" selected="@(status == "true")">Đang bán</option>
+        <option value="false" selected="@(status == "false")">Ngừng bán</option>
+    </select>
+
+    <input type="text" name="search" placeholder="🔍 Tìm tên sản phẩm..." value="@search"
+           class="form-control form-control-sm" style="max-width: 200px;"
+           oninput="clearTimeout(window.searchTimer); window.searchTimer = setTimeout(() => this.form.submit(), 500);" />
+
+    <a class="btn btn-success btn-sm ms-auto" href="/AdminProducts/Create">➕ Thêm mới</a>
+</form>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
         <tr>
-            <th>ID</th>
-            <th>Ảnh</th>
-            <th>Tên</th>
+            <th>Sản phẩm</th>
+            <th>Danh mục</th>
             <th>Giá</th>
-            <th>% giảm</th>
-            <th>Tạo lúc</th>
-            <th>Cập nhật</th>
+            <th>% Giảm</th>
+            <th>Tồn kho</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
         </tr>
     </thead>
@@ -24,33 +58,70 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.ProductId</td>
                 <td>
-                    <img src="@item.MainImageUrl" alt="@item.Name" style="height: 50px;" />
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="@item.MainImageUrl" alt="@item.Name" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" />
+                        <span>@item.Name</span>
+                    </div>
                 </td>
-                <td>@item.Name</td>
+                <td>@item.Category?.Name</td>
                 <td>@item.Price.ToString("N0") ₫</td>
+                <td>@(item.DiscountPercent.HasValue ? item.DiscountPercent.Value + "%" : "-")</td>
+                <td>@item.StockQuantity</td>
                 <td>
-                    @(item.DiscountPercent.HasValue? item.DiscountPercent.Value.ToString("N0") + " %" : "-")
+                    @if (item.IsActive)
+                    {
+                        <span class="badge bg-success">Đang bán</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Ngừng bán</span>
+                    }
                 </td>
-                <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
                 <td>
-                    @(item.UpdatedAt.HasValue? item.UpdatedAt.Value.ToString("dd/MM/yyyy") : "-")
+                    <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-warning btn-sm">✏️</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">🗑️</a>
                 </td>
-                <td>
-                    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-sm btn-warning">✏️ Sửa</a>
-
-                    <a asp-controller="AdminProducts"
-                       asp-action="Delete"
-                       asp-route-id="@item.ProductId"
-                       class="btn btn-sm btn-danger"
-                       onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">
-                        🗑️ Xóa
-                    </a>
-                </td>
-
             </tr>
         }
     </tbody>
-</table>
 
+</table>
+<div class="d-flex justify-content-center mt-3">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        categoryId = ViewBag.CategoryId,
+        search = ViewBag.Search,
+        status = ViewBag.Status
+        }),
+        new PagedListRenderOptions
+        {
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" },
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            DisplayLinkToIndividualPages = true,
+            Display = PagedListDisplayMode.IfNeeded
+        })
+</div>
+
+
+@section Scripts {
+    <script>
+        let typingTimer;
+        const form = document.getElementById("filterForm");
+        const searchInput = form.querySelector('input[name="search"]');
+
+        searchInput.addEventListener("input", function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                form.submit();
+            }, 500); // chỉ submit sau 500ms không gõ nữa
+        });
+    </script>
+}

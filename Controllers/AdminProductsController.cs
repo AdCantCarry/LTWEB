@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using TechNova.middleware;
 using TechNova.Models;
 using System.Linq;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 [AdminAuthorize]
 public class AdminProductsController : Controller
@@ -15,16 +17,37 @@ public class AdminProductsController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(int? categoryId, string search, string status, int page = 1)
     {
-        // Bao gồm thông tin danh mục và thương hiệu
-        var products = _context.Products
+        var query = _context.Products
             .Include(p => p.Category)
-            .Include(p => p.Brand)
-            .ToList();
+            .AsQueryable();
 
-        return View("~/Views/Admin/AdminProducts/Index.cshtml", products);
+        if (categoryId.HasValue)
+            query = query.Where(p => p.CategoryId == categoryId);
+
+        if (!string.IsNullOrEmpty(search))
+            query = query.Where(p => p.Name.Contains(search));
+
+        if (!string.IsNullOrEmpty(status))
+        {
+            bool isActive = status == "true";
+            query = query.Where(p => p.IsActive == isActive);
+        }
+
+        int pageSize = 10;
+        var pagedProducts = query.OrderByDescending(p => p.ProductId).ToPagedList(page, pageSize);
+
+        ViewBag.Categories = _context.Categories.ToList();
+        ViewBag.CategoryId = categoryId;
+        ViewBag.Search = search;
+        ViewBag.Status = status;
+
+        return View("~/Views/Admin/AdminProducts/Index.cshtml", pagedProducts);
     }
+
+
+
 
     public IActionResult Create()
     {
@@ -56,6 +79,7 @@ public class AdminProductsController : Controller
 
         return View("~/Views/Admin/AdminProducts/Create.cshtml", product);
     }
+
 
     public IActionResult Edit(int id)
     {
@@ -92,6 +116,8 @@ public class AdminProductsController : Controller
             existing.Color = product.Color;
             existing.Storage = product.Storage;
             existing.UpdatedAt = DateTime.Now;
+            existing.StockQuantity = product.StockQuantity;
+            existing.IsActive = product.IsActive;
 
             _context.SaveChanges();
             return RedirectToAction("Index");
