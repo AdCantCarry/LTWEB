@@ -73,6 +73,8 @@ public class AdminProductsController : Controller
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        if (product.StockQuantity == 0)
+            product.IsActive = false;
 
         ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
         ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
@@ -102,7 +104,6 @@ public class AdminProductsController : Controller
             var existing = _context.Products.Find(product.ProductId);
             if (existing == null) return NotFound();
 
-            // Cập nhật giá trị
             existing.Name = product.Name;
             existing.Description = product.Description;
             existing.Price = product.Price;
@@ -115,19 +116,25 @@ public class AdminProductsController : Controller
             existing.SubImage3Url = product.SubImage3Url;
             existing.Color = product.Color;
             existing.Storage = product.Storage;
-            existing.UpdatedAt = DateTime.Now;
             existing.StockQuantity = product.StockQuantity;
-            existing.IsActive = product.IsActive;
+            existing.IsActive = product.IsActive; // mặc định từ form
+
+            if (existing.StockQuantity == 0)
+                existing.IsActive = false; // tự động ngừng bán nếu hết hàng
+
+            existing.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        // load lại list
         ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
         ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
 
         return View("~/Views/Admin/AdminProducts/Edit.cshtml", product);
     }
+
 
     public IActionResult Delete(int id)
     {

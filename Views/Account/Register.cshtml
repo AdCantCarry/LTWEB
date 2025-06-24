@@ -1,28 +1,49 @@
-﻿@model TechNova.Models.User
+﻿@model TechNova.Models.RegisterViewModel
 @{
-    ViewData["Title"] = "Đăng ký";
+    ViewData["Title"] = "Tạo tài khoản";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
-<div class="account-page">
-    <div class="form-box">
-        <h2 class="form-title">Tạo tài khoản</h2>
+<div class="auth-box">
+    <div class="logo-container">
+        <img src="/images/logo.png" alt="Logo" class="logo" />
+    </div>
 
-        <form method="post" class="form-body" asp-action="Register" asp-controller="Account">
-            <input asp-for="Username" placeholder="Họ tên" class="form-input" />
-            <span asp-validation-for="Username" class="error-message"></span>
+    <h2 class="auth-title">Tạo tài khoản</h2>
+    <p class="auth-subtitle">Đăng ký để tiếp tục mua sắm</p>
 
-            <input asp-for="Email" placeholder="Email" class="form-input" />
-            <span asp-validation-for="Email" class="error-message"></span>
+    <form asp-action="Register" asp-controller="Account" method="post" class="auth-form">
 
-            <input asp-for="Password" type="password" placeholder="Mật khẩu" class="form-input" />
-            <span asp-validation-for="Password" class="error-message"></span>
-
-            <button type="submit" class="form-button">Đăng ký</button>
-        </form>
-
-        <div class="form-footer">
-            <a href="/Account/Login">Đã có tài khoản? Đăng nhập</a>
+        <div class="form-group-row">
+            <input asp-for="FirstName" class="form-input" placeholder="First Name" />
+            <input asp-for="LastName" class="form-input" placeholder="Last Name" />
         </div>
+        <span asp-validation-for="FirstName" class="error-message"></span>
+        <span asp-validation-for="LastName" class="error-message"></span>
+
+        <input asp-for="Email" class="form-input" placeholder="Email" />
+        <span asp-validation-for="Email" class="error-message"></span>
+
+        <input asp-for="Password" class="form-input" placeholder="Password" type="password" />
+        <span asp-validation-for="Password" class="error-message"></span>
+
+        <input asp-for="ConfirmPassword" class="form-input" placeholder="Confirm Password" type="password" />
+        <span asp-validation-for="ConfirmPassword" class="error-message"></span>
+
+        <div class="form-check">
+            <input asp-for="AgreeTerms" type="checkbox" />
+            <label asp-for="AgreeTerms">
+                I agree to the <a href="#">privacy policy</a> and <a href="#">terms of service</a>
+            </label>
+        </div>
+        <span asp-validation-for="AgreeTerms" class="error-message"></span>
+
+        <button type="submit" class="form-button">Create Account</button>
+    </form>
+
+    <div class="form-footer">
+        Already have an account?
+        <a href="/Account/Login">Sign in</a>
     </div>
 </div>
 

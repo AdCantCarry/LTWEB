@@ -1,14 +1,30 @@
-﻿@{
+﻿@model TechNova.Models.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
     ViewData["Title"] = "Đăng nhập";
 }
 
-<div class="account-page">
-    <div class="form-box">
-        <h2 class="form-title">Đăng nhập</h2>
 
-        <form method="post" class="form-body">
-            <input name="email" type="email" placeholder="Email" required class="form-input" />
-            <input name="password" type="password" placeholder="Mật khẩu" required class="form-input" />
+<div class="auth-page">
+    <div class="auth-box">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="Logo" class="logo" />
+        </div>
+
+        <h2 class="auth-title">Đăng nhập</h2>
+        <p class="auth-subtitle">Chào mừng bạn trở lại</p>
+
+        <form asp-action="Login" method="post" class="auth-form">
+            <input asp-for="Email" placeholder="Email" class="form-input" />
+            <span asp-validation-for="Email" class="error-message"></span>
+
+            <input asp-for="Password" type="password" placeholder="Mật khẩu" class="form-input" />
+            <span asp-validation-for="Password" class="error-message"></span>
+
+            <div class="form-check">
+                <input asp-for="RememberMe" type="checkbox" />
+                <label asp-for="RememberMe">Ghi nhớ đăng nhập</label>
+            </div>
 
             @if (ViewBag.Error != null)
             {
@@ -19,7 +35,13 @@
         </form>
 
         <div class="form-footer">
-            <a href="/Account/Register">Chưa có tài khoản? Đăng ký</a>
+            <a href="/Account/ForgotPassword">Quên mật khẩu?</a>
+            <br />
+            <span>Chưa có tài khoản? <a href="/Account/Register">Đăng ký</a></span>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

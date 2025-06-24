@@ -22,18 +22,30 @@ namespace TechNova.Controllers
         public IActionResult Register() => View();
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(RegisterViewModel model)
         {
-            if (_context.Users.Any(u => u.Email == user.Email))
+            if (_context.Users.Any(u => u.Email == model.Email))
             {
                 ModelState.AddModelError("Email", "Email đã được sử dụng.");
             }
 
+            if (!model.AgreeTerms)
+            {
+                ModelState.AddModelError("AgreeTerms", "Bạn phải đồng ý với điều khoản.");
+            }
+
             if (ModelState.IsValid)
             {
-                user.Password = PasswordHelper.Hash(user.Password);
-                user.Role ??= "User";
-                user.AvatarUrl ??= "/images/default.jpg";
+                var user = new User
+                {
+                    Username = model.FirstName + " " + model.LastName,
+                    Email = model.Email,
+                    Password = PasswordHelper.Hash(model.Password),
+                    Role = "User",
+                    AvatarUrl = "/images/default.jpg",
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
 
                 _context.Users.Add(user);
                 _context.SaveChanges();
@@ -41,13 +53,14 @@ namespace TechNova.Controllers
                 return RedirectToAction("Login");
             }
 
-            return View(user);
+            return View(model);
         }
+
 
         public IActionResult Login() => View();
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string password, bool rememberMe)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user != null && PasswordHelper.Verify(password, user.Password))
@@ -57,6 +70,19 @@ namespace TechNova.Controllers
                 HttpContext.Session.SetString("Role", user.Role ?? "User");
                 HttpContext.Session.SetString("AvatarUrl", string.IsNullOrEmpty(user.AvatarUrl) ? "/images/default-avatar.png" : user.AvatarUrl);
 
+                // Ghi nhớ đăng nhập qua cookie
+                if (rememberMe)
+                {
+                    CookieOptions options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(7),
+                        IsEssential = true,
+                        HttpOnly = true
+                    };
+
+                    Response.Cookies.Append("RememberMe_Email", email, options);
+                }
+
                 return user.Role == "Admin"
                     ? RedirectToAction("Index", "AdminProducts", new { area = "Admin" })
                     : RedirectToAction("Index", "Home");
@@ -65,6 +91,7 @@ namespace TechNova.Controllers
             ViewBag.Error = "Sai email hoặc mật khẩu";
             return View();
         }
+
 
         public IActionResult Logout()
         {
