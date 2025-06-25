@@ -3,6 +3,7 @@
     ViewData["Title"] = "Thanh toán";
 }
 
+<div class="checkout-wrapper">
 @if (Model.CartItems.Count == 0)
 {
     <p>Không có sản phẩm trong giỏ hàng.</p>
@@ -26,12 +27,12 @@ else
                 @foreach (var item in Model.CartItems)
                 {
                     <tr>
-                        <td><img src="@item.ImageUrl" width="60" /></td>
-                        <td>@item.Name</td>
-                        <td>@item.Color - @item.Storage</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.Price.ToString("N0")₫</td>
-                        <td>@item.TotalPrice.ToString("N0")₫</td>
+                        <td data-label="Ảnh"><img src="@item.ImageUrl" width="60" /></td>
+                        <td data-label="Tên">@item.Name</td>
+                        <td data-label="Phân loại">@item.Color - @item.Storage</td>
+                        <td data-label="Số lượng">@item.Quantity</td>
+                        <td data-label="Giá">@item.Price.ToString("N0")₫</td>
+                        <td data-label="Tổng">@item.TotalPrice.ToString("N0")₫</td>
                     </tr>
                 }
             </tbody>
@@ -46,7 +47,6 @@ else
                     @(addr.IsDefault ? "(Mặc định)" : "")
                 </option>
             }
-
         </select>
 
         <h4>💳 Phương thức thanh toán</h4>
@@ -68,3 +68,98 @@ else
         <button type="submit" class="btn btn-success mt-3">Xác nhận đặt hàng</button>
     </form>
 }
+</div>
+
+<style>
+.checkout-wrapper{
+    max-width: 960px;
+    margin: 40px auto;
+    background:#fff;
+    padding:32px 24px;
+    border-radius:16px;
+    box-shadow:0 6px 24px rgba(0,0,0,.08);
+}
+
+h4{
+    font-size:20px;
+    font-weight:700;
+    margin:28px 0 16px;
+}
+
+.table{
+    border-collapse:collapse;
+    width:100%;
+    margin-bottom:24px;
+}
+.table thead{
+    background:#f5f7fa;
+}
+.table th,.table td{
+    padding:12px 10px;
+    text-align:left;
+    border-bottom:1px solid #e2e8f0;
+    vertical-align:middle;
+}
+.table tbody tr:hover{
+    background:#fafafa;
+}
+.table img{
+    border-radius:8px;
+}
+
+.form-control{
+    border-radius:8px;
+    padding:8px 12px;
+}
+.form-check-input{
+    width:18px;height:18px;
+    margin-top:2px;
+}
+.form-check-label{
+    margin-left:6px;
+}
+
+.text-danger{
+    color:#e53935!important;
+    font-size:20px;
+    font-weight:700;
+}
+
+.btn-success{
+    background:#43a047;
+    padding:10px 26px;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+}
+.btn-success:hover{
+    background:#388e3c;
+}
+
+media(max-width:768px){
+    .table thead{
+        display:none;
+    }
+    .table, .table tbody, .table tr, .table td{
+        display:block;
+        width:100%;
+    }
+    .table tr{
+        margin-bottom:16px;
+        border:1px solid #e0e0e0;
+        border-radius:12px;
+        overflow:hidden;
+    }
+    .table td{
+        padding:10px 12px;
+        border:none;
+    }
+    .table td:before{
+        content:attr(data-label);
+        font-weight:600;
+        display:block;
+        margin-bottom:4px;
+        color:#555;
+    }
+}
+</style>

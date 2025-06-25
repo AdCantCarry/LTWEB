@@ -17,7 +17,28 @@ namespace TechNova.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
-            return View(products);
+            var saleProducts = _context.Products
+                        .Where(p => p.DiscountPercent > 0)
+                        .OrderByDescending(p => p.DiscountPercent)
+                        .Take(15) // giới hạn 15 sản phẩm
+                        .ToList();
+            var appleProducts = _context.Products
+                .Where(p => p.BrandId == 1)
+                .Include(p => p.Brand)
+                .Take(5)
+                .ToList();
+
+            var samsungProducts = _context.Products
+                .Where(p => p.Brand.Name.Contains("Samsung") && p.IsActive)
+                .Include(p => p.Brand)
+                .Take(5)
+                .ToList();
+
+            ViewBag.SaleProducts = saleProducts;
+            ViewBag.AppleProducts = appleProducts;
+            ViewBag.SamsungProducts = samsungProducts;
+
+            return View();
         }
         public IActionResult Store()
         {

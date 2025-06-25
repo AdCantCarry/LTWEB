@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home";
+    var saleProducts = (ViewBag.SaleProducts as List<Product>)?.Take(4).ToList();
+    var appleProducts = (ViewBag.AppleProducts as List<Product>)?.Take(4).ToList();
+    var samsungProducts = (ViewBag.SamsungProducts as List<Product>)?.Take(4).ToList();
 }
-
 <section class="highlight-section">
     <div class="highlight-content">
         <h1>MacBook Air M2</h1>
@@ -12,3 +14,180 @@
         </div>
     </div>
 </section>
+
+<section class="product-section">
+    <div class="product-box">
+        <h2 class="product-title">Sản phẩm đang SALE</h2>
+        <div class="product-grid">
+            @foreach (var item in saleProducts)
+            {
+                var discountedPrice = item.Price * (100 - item.DiscountPercent) / 100;
+                <div class="product-card">
+                    <img src="@item.MainImageUrl" alt="@item.Name" />
+                    <h4>@item.Name</h4>
+                    <p class="old-price">@item.Price.ToString("N0") đ</p>
+                    <p class="new-price">Còn: @($"{discountedPrice:N0} đ (-{item.DiscountPercent}%)")</p>
+                    <a href="/Home/ProductDetails/@item.ProductId">Xem chi tiết</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="product-section">
+    <div class="product-box">
+        <h2 class="product-title">Sản phẩm Apple</h2>
+        <div class="product-grid">
+            @foreach (var item in appleProducts)
+            {
+                <div class="product-card">
+                    <img src="@item.MainImageUrl" alt="@item.Name" />
+                    <h4>@item.Name</h4>
+                    <p>Giá: @item.Price.ToString("N0") đ</p>
+                    <a href="/Home/ProductDetails/@item.ProductId">Xem chi tiết</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="product-section">
+    <div class="product-box">
+        <h2 class="product-title">Sản phẩm Samsung</h2>
+        <div class="product-grid">
+            @foreach (var item in samsungProducts)
+            {
+                <div class="product-card">
+                    <img src="@item.MainImageUrl" alt="@item.Name" />
+                    <h4>@item.Name</h4>
+                    <p>Giá: @item.Price.ToString("N0") đ</p>
+                    <a href="/Home/ProductDetails/@item.ProductId">Xem chi tiết</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<style>
+    <style >
+    .highlight-section {
+        background: linear-gradient(135deg, #e3f2fd, #fff);
+        padding: 60px 20px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .highlight-content h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .highlight-content p {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 25px;
+    }
+
+    .buttons a {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #2196f3;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f1f1f1;
+        color: #333;
+    }
+
+    .product-section {
+        margin-top:50px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+
+    .product-box {
+        background: #f9f9f9;
+        padding: 25px;
+        width: 90%;
+        max-width: 1100px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .product-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .product-card {
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        width: 220px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h4 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #222;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+    .old-price {
+        text-decoration: line-through;
+        color: #999;
+    }
+
+    .new-price {
+        color: #e53935;
+        font-weight: bold;
+    }
+
+    .product-card a {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #2196f3;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        transi
+
+</style>

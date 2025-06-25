@@ -12,7 +12,7 @@ using TechNova.Models;
 namespace TechNova.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250624151619_init")]
+    [Migration("20250625052905_init")]
     partial class init
     {
         /// <inheritdoc />

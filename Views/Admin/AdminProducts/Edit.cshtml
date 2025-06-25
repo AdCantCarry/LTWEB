@@ -4,145 +4,129 @@
     ViewData["Title"] = "Sửa sản phẩm";
 }
 
-<h2>Sửa sản phẩm</h2>
+<h2 class="mb-4">Sửa sản phẩm</h2>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="ProductId" />
+<div class="edit-form-wrapper">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="ProductId" />
 
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="CategoryId">Danh mục</label>
-        <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control">
-            <option value="">-- Chọn danh mục --</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Thương hiệu (có thể để trống)</label>
-        <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
-            <option value="">-- Chưa chọn thương hiệu --</option>
-        </select>
-        <span asp-validation-for="BrandId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label>Số lượng tồn kho</label>
-        <input asp-for="StockQuantity" class="form-control" min="0" />
-        <span asp-validation-for="StockQuantity" class="text-danger"></span>
-
-    </div>
-    <div class="form-check mt-2">
-        <input asp-for="IsActive" class="form-check-input" />
-        <label asp-for="IsActive" class="form-check-label">Đang bán</label>
-        <span asp-validation-for="IsActive" class="text-danger"></span>
-        <label class="form-check-label" for="isActiveCheck">Đang bán</label>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DiscountPercent">% Giảm giá</label>
-        <input asp-for="DiscountPercent" class="form-control" />
-        <span asp-validation-for="DiscountPercent" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="MainImageUrl">Đường dẫn ảnh</label>
-        <input asp-for="MainImageUrl" class="form-control" />
-        <span asp-validation-for="MainImageUrl" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label>Hình ảnh hiện tại:</label><br />
-        <img src="@Model.MainImageUrl" alt="Ảnh sản phẩm" style="height:100px;" />
-    </div>
-
-    <!-- Màu sắc -->
-    <div class="form-group">
-        <label>Chọn màu sắc</label>
-        <div class="d-flex align-items-center mb-2">
-            <select class="form-control" id="ColorDropdown" onchange="updateSelectedColor(this)">
-                <option value="">-- Chọn màu --</option>
-                <option value="#FF0000">Đỏ</option>
-                <option value="#00FF00">Xanh lá</option>
-                <option value="#0000FF">Xanh dương</option>
-                <option value="#FFFF00">Vàng</option>
-                <option value="#FF00FF">Hồng</option>
-                <option value="#000000">Đen</option>
-                <option value="#FFFFFF">Trắng</option>
-                <option value="#FFA500">Cam</option>
-                <option value="#808080">Xám</option>
-            </select>
-
-            <!-- Preview màu đã chọn -->
-            <div id="ColorPreview" style="width: 40px; height: 40px; margin-left: 10px; border: 1px solid #ccc;"></div>
+        <div class="form-box">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
-        <!-- Trường lưu giá trị thật (được bind vào model) -->
-        <input asp-for="Color" class="form-control" id="SelectedColor" readonly />
-        <span asp-validation-for="Color" class="text-danger"></span>
-    </div>
+        <div class="form-box">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
 
+        <div class="form-box">
+            <label for="CategoryId">Danh mục</label>
+            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control">
+                <option value="">-- Chọn danh mục --</option>
+            </select>
+        </div>
 
-    <div class="form-group">
-        <label>Dung lượng</label>
-        <input asp-for="Storage" class="form-control" />
-        <span asp-validation-for="Storage" class="text-danger"></span>
-    </div>
+        <div class="form-box">
+            <label>Thương hiệu (có thể để trống)</label>
+            <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
+                <option value="">-- Chưa chọn thương hiệu --</option>
+            </select>
+            <span asp-validation-for="BrandId" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Ảnh phụ 1</label>
-        <input asp-for="SubImage1Url" class="form-control" />
-        @if (!string.IsNullOrEmpty(Model.SubImage1Url))
+        <div class="form-box">
+            <label>Số lượng tồn kho</label>
+            <input asp-for="StockQuantity" class="form-control" min="0" />
+            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+        </div>
+
+        <div class="form-box form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label">Đang bán</label>
+        </div>
+
+        <div class="form-box">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-box">
+            <label asp-for="DiscountPercent">% Giảm giá</label>
+            <input asp-for="DiscountPercent" class="form-control" />
+            <span asp-validation-for="DiscountPercent" class="text-danger"></span>
+        </div>
+
+        <div class="form-box">
+            <label asp-for="MainImageUrl">Đường dẫn ảnh</label>
+            <input asp-for="MainImageUrl" class="form-control" />
+            <span asp-validation-for="MainImageUrl" class="text-danger"></span>
+
+            <label class="mt-2">Hình ảnh hiện tại:</label><br />
+            <img src="@Model.MainImageUrl" alt="Ảnh sản phẩm" style="height:100px;" />
+        </div>
+
+        <!-- Màu sắc -->
+        <div class="form-box">
+            <label>Chọn màu sắc</label>
+            <div class="d-flex align-items-center mb-2">
+                <select class="form-control" id="ColorDropdown" onchange="updateSelectedColor(this)">
+                    <option value="">-- Chọn màu --</option>
+                    <option value="#FF0000">Đỏ</option>
+                    <option value="#00FF00">Xanh lá</option>
+                    <option value="#0000FF">Xanh dương</option>
+                    <option value="#FFFF00">Vàng</option>
+                    <option value="#FF00FF">Hồng</option>
+                    <option value="#000000">Đen</option>
+                    <option value="#FFFFFF">Trắng</option>
+                    <option value="#FFA500">Cam</option>
+                    <option value="#808080">Xám</option>
+                </select>
+                <div id="ColorPreview" style="width: 40px; height: 40px; margin-left: 10px; border: 1px solid #ccc;"></div>
+            </div>
+            <input asp-for="Color" class="form-control" id="SelectedColor" readonly />
+            <span asp-validation-for="Color" class="text-danger"></span>
+        </div>
+
+        <div class="form-box">
+            <label>Dung lượng</label>
+            <input asp-for="Storage" class="form-control" />
+            <span asp-validation-for="Storage" class="text-danger"></span>
+        </div>
+
+        @for (int i = 1; i <= 3; i++)
         {
-            <img src="@Model.SubImage1Url" alt="Ảnh phụ 1" style="height:100px; margin-top:5px;" />
+            var propName = $"SubImage{i}Url";
+            var propValue = Model.GetType().GetProperty(propName).GetValue(Model) as string;
+            <div class="form-box">
+                <label>Ảnh phụ @i</label>
+                <input asp-for="@Model.GetType().GetProperty(propName).Name" class="form-control" />
+                @if (!string.IsNullOrEmpty(propValue))
+                {
+                    <img src="@propValue" alt="Ảnh phụ @i" style="height:100px; margin-top:5px;" />
+                }
+            </div>
         }
-    </div>
 
-    <div class="form-group">
-        <label>Ảnh phụ 2</label>
-        <input asp-for="SubImage2Url" class="form-control" />
-        @if (!string.IsNullOrEmpty(Model.SubImage2Url))
-        {
-            <img src="@Model.SubImage2Url" alt="Ảnh phụ 2" style="height:100px; margin-top:5px;" />
-        }
-    </div>
+        <div class="form-box">
+            <label>Ngày tạo:</label>
+            <input class="form-control" value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")" disabled />
+        </div>
 
-    <div class="form-group">
-        <label>Ảnh phụ 3</label>
-        <input asp-for="SubImage3Url" class="form-control" />
-        @if (!string.IsNullOrEmpty(Model.SubImage3Url))
-        {
-            <img src="@Model.SubImage3Url" alt="Ảnh phụ 3" style="height:100px; margin-top:5px;" />
-        }
-    </div>
+        <div class="form-box">
+            <label>Ngày cập nhật:</label>
+            <input class="form-control" value="@(Model.UpdatedAt.HasValue ? Model.UpdatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")" disabled />
+        </div>
 
-    <div class="form-group">
-        <label>Ngày tạo:</label>
-        <input class="form-control" value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")" disabled />
-    </div>
-
-    <div class="form-group">
-        <label>Ngày cập nhật:</label>
-        <input class="form-control" value="@(Model.UpdatedAt.HasValue ? Model.UpdatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")" disabled />
-    </div>
-
-    <button type="submit" class="btn btn-primary">💾 Lưu</button>
-    <a href="/AdminProducts" class="btn btn-secondary">⬅️ Quay lại</a>
-</form>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">💾 Lưu</button>
+            <a href="/AdminProducts" class="btn btn-secondary">⬅️ Quay lại</a>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
     <script>
@@ -155,13 +139,40 @@
         window.onload = function () {
             const currentColor = '@Model.Color';
             if (currentColor) {
-                const colorBoxes = document.querySelectorAll(".color-box");
-                colorBoxes.forEach(box => {
-                    if (box.style.backgroundColor.toLowerCase() === currentColor.toLowerCase()) {
-                        selectColor(currentColor, box);
-                    }
-                });
+                document.getElementById("SelectedColor").value = currentColor;
+                document.getElementById("ColorPreview").style.backgroundColor = currentColor;
             }
         };
     </script>
 }
+
+<style>
+    .edit-form-wrapper {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .form-box {
+        margin-bottom: 20px;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+    }
+
+        .form-check label {
+            margin-left: 8px;
+            margin-bottom: 0;
+        }
+
+    h2 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+</style>
