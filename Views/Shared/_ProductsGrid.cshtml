@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TechNova.Models.Product>
+
+<div class="products-grid">
+    @foreach (var product in Model)
+    {
+        <div class="product-card">
+            <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
+            <div class="product-details">
+                <h3>@product.Name</h3>
+                <div class="product-brand">@product.Brand?.Name</div>
+                <div class="product-price">
+                    @if (product.DiscountPercent > 0)
+                    {
+                        <span class="discounted">@product.DiscountedPrice.ToString("N0") ₫</span>
+                        <span class="original">@product.Price.ToString("N0") ₫</span>
+                    }
+                    else
+                    {
+                        <span class="discounted">@product.Price.ToString("N0") ₫</span>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

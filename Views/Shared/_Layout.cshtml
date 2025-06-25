@@ -6,40 +6,35 @@
     <title>@ViewData["Title"] - E-Shop</title>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/highlight.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/store.css" />
-    <link rel="stylesheet" href="~/css/Iphone.css" />
-    <link rel="stylesheet" href="~/css/Profile.css  " />
+    <link rel="stylesheet" href="~/css/profile.css" />
     <link rel="stylesheet" href="~/css/product-detail.css" />
-    <link rel="stylesheet" href="~/css/Cart.css" />
+    <link rel="stylesheet" href="~/css/cart.css" />
+    <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
 
     @RenderSection("Styles", required: false)
 </head>
 <body>
-    <!-- HEADER -->
+    <!-- ======= HEADER ======= -->
     <header class="glass-header">
         <div class="glass-container">
             <div class="logo">
                 <a href="/">E-Shop</a>
             </div>
 
-            <div class="menu">
+            <nav class="menu">
                 <a href="/Home/Store">Store</a>
-                <a href="/Home/Iphone">Iphone</a>
-                <a href="/Watch">Watch</a>
-                <a href="/Laptop">Laptop</a>
-                <a href="/Accessories">Accessories</a>
-            </div>
+                <a href="/Home/Products">Sản phẩm</a>
+            </nav>
 
             <div class="icons">
                 <form class="search-box" action="/Search" method="get">
@@ -47,7 +42,7 @@
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
 
-                <a href="/Cart/Index" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
+                <a href="/Cart/Index" title="Giỏ hàng"><i class="fa-solid fa-bag-shopping"></i></a>
 
                 @{
                     var username = Context.Session.GetString("Username");
@@ -60,24 +55,18 @@
                         <div class="user-avatar" id="userToggle">
                             <img src="@avatar" alt="avatar" />
                         </div>
-
                         <div class="user-dropdown" id="userDropdown">
                             <p><strong>@username</strong></p>
-                            <p style="font-size: 13px; color: #666;">@Context.Session.GetString("Email")</p>
+                            <p class="user-email">@Context.Session.GetString("Email")</p>
                             <a href="/Account/Profile"><i class="fas fa-user"></i> Hồ sơ</a>
                             <a href="/Orders/MyOrders"><i class="fas fa-box"></i> Đơn hàng</a>
-
                             @if (Context.Session.GetString("Role") == "Admin")
                             {
                                 <a href="/AdminProducts"><i class="fas fa-tools"></i> Quản lý</a>
                             }
-
                             <a href="/Account/Logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                         </div>
-
                     </div>
-
-                    <!-- Overlay mờ khi mở dropdown -->
                     <div class="overlay" id="dropdownOverlay"></div>
                 }
                 else
@@ -88,15 +77,50 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- ======= MAIN ======= -->
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="text-center">
-            &copy; @DateTime.Now.Year - E-Shop
+    <!-- ======= FOOTER ======= -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Về E-Shop</h4>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Trung tâm trợ giúp</a></li>
+                    <li><a href="#">Giao hàng & Thanh toán</a></li>
+                    <li><a href="#">Chính sách hoàn trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Liên hệ</h4>
+                <ul>
+                    <li>Email: support@eshop.com</li>
+                    <li>Hotline: 0123 456 789</li>
+                    <li>Địa chỉ: 123 Nguyễn Văn A, TP.HCM</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Theo dõi chúng tôi</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center copyright">
+            &copy; @DateTime.Now.Year - E-Shop. All rights reserved.
         </div>
     </footer>
 
@@ -104,7 +128,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
