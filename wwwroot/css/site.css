@@ -199,11 +199,63 @@ main, footer, header:not(.glass-header) {
 }
 
 /* ===== FOOTER ===== */
-footer {
-    background-color: #f5f5f5;
-    padding: 1rem 0;
-    text-align: center;
-    color: #555;
-    font-size: 0.9rem;
-    border-top: 1px solid #ddd;
+.footer {
+    background-color: #222;
+    color: #eee;
+    padding: 3rem 1rem;
+    font-size: 0.95rem;
 }
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .footer-column ul li {
+        margin-bottom: 0.5rem;
+    }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            .footer-column ul li a:hover {
+                color: #fff;
+            }
+
+.social-icons a {
+    color: #ccc;
+    margin-right: 12px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+    .social-icons a:hover {
+        color: #fff;
+    }
+
+.copyright {
+    margin-top: 2rem;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    color: #aaa;
+    text-align: center;
+    font-size: 0.85rem;
+}
+

@@ -1,0 +1,224 @@
+﻿/* ======== Layout chính ======== */
+.products-page {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.products-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.products-sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.products-header {
+    margin-bottom: 1.5rem;
+}
+
+.products-filters-bar {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.products-search-form input[type="text"],
+.products-search-form select {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 180px;
+}
+
+.products-search-form button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .products-search-form button:hover {
+        background-color: #0056b3;
+    }
+
+/* ======== Filter sections ======== */
+.filter-section {
+    margin-bottom: 1.5rem;
+}
+
+    .filter-section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .filter-section input[type="number"] {
+        width: 80px;
+        padding: 0.3rem;
+        margin: 0.3rem 0.2rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .filter-section button {
+        margin-top: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        border: none;
+        background-color: #28a745;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+        .filter-section button:hover {
+            background-color: #218838;
+        }
+
+/* ======== Danh sách sản phẩm ======== */
+.products-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .product-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff4d4f;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.product-details h3 {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.product-price {
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+}
+
+    .product-price .discounted {
+        color: #e53935;
+        font-weight: bold;
+    }
+
+    .product-price .original {
+        text-decoration: line-through;
+        color: #999;
+        margin-left: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+.product-brand {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
+/* ==== Price Slider ==== */
+/* Giảm z-index của tooltip và đẩy slider xuống dưới một chút */
+#price-slider {
+    margin-top: 3rem; /* đẩy slider xuống để tránh đè lên trên */
+    margin-bottom: 1rem;
+}
+
+/* Tooltip noUiSlider */
+.noUi-tooltip {
+    z-index: 1 !important;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix position cho filter section */
+.products-sidebar .filter-section {
+    position: relative;
+    z-index: 0;
+}
+
+/* Fix tooltip overflow */
+.noUi-tooltip {
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 768px) {
+    .products-container {
+        flex-direction: column;
+    }
+
+    .products-filters-bar {
+        flex-direction: column;
+    }
+
+    .products-sidebar {
+        width: 100%;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+}
+.form-input {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.price-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+}

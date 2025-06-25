@@ -1,0 +1,160 @@
+﻿@model IEnumerable<TechNova.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    var categories = ViewBag.Categories as List<TechNova.Models.Category>;
+    var brands = ViewBag.Brands as List<TechNova.Models.Brand> ?? new List<TechNova.Models.Brand>();
+    var selectedCategoryId = ViewBag.SelectedCategoryId as int?;
+    var selectedSort = ViewBag.SelectedSort as string;
+    var searchQuery = ViewBag.SearchQuery as string;
+    var selectedBrands = ViewBag.SelectedBrands as List<int> ?? new List<int>();
+    var minPrice = ViewBag.MinPrice as int? ?? 0;
+    var maxPrice = ViewBag.MaxPrice as int? ?? 100000000;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Products.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet" />
+}
+
+<div class="products-page">
+    <form id="filterForm" method="get">
+        <div class="products-header">
+            <div class="products-search-form">
+                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="@searchQuery" oninput="applyFilters()" />
+                <select name="categoryId" onchange="applyFilters()">
+                    <option value="">Tất cả danh mục</option>
+                    @foreach (var cat in categories)
+                    {
+                        <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId)">@cat.Name</option>
+                    }
+                </select>
+                <select name="sort" onchange="applyFilters()">
+                    <option value="">Sắp xếp</option>
+                    <option value="name_asc" selected="@(selectedSort == "name_asc")">Tên A-Z</option>
+                    <option value="name_desc" selected="@(selectedSort == "name_desc")">Tên Z-A</option>
+                    <option value="price_asc" selected="@(selectedSort == "price_asc")">Giá tăng dần</option>
+                    <option value="price_desc" selected="@(selectedSort == "price_desc")">Giá giảm dần</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-container">
+            <aside class="products-sidebar">
+                <div class="filter-section">
+                    <h4>Thương hiệu</h4>
+                    @foreach (var brand in brands)
+                    {
+                        <label>
+                            <input type="checkbox" name="brands" value="@brand.BrandId" @(selectedBrands.Contains(brand.BrandId) ? "checked" : "") onchange="applyFilters()" />
+                            @brand.Name
+                        </label>
+                    
+                        <br />
+                    }
+                </div>
+
+                <div class="filter-section">
+                    <h4>Khoảng giá (₫)</h4>
+                    <div id="price-slider" style="margin-bottom: 10px;"></div>
+                    <div class="price-values" style="margin-bottom: 10px;">
+                        <span id="minPriceText">@minPrice.ToString("N0") ₫</span> -
+                        <span id="maxPriceText">@maxPrice.ToString("N0") ₫</span>
+                    </div>
+                    <input type="hidden" name="minPrice" id="minPrice" value="@minPrice" />
+                    <input type="hidden" name="maxPrice" id="maxPrice" value="@maxPrice" />
+                </div>
+            </aside>
+
+            <div class="products-grid" id="productsGrid">
+                @foreach (var product in Model)
+                {
+                    <div class="product-card">
+                        <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
+                        <div class="product-details">
+                            <h3>@product.Name</h3>
+                            <div class="product-brand">@product.Brand?.Name</div>
+                            <div class="product-price">
+                                @if (product.DiscountPercent > 0)
+                                {
+                                    <span class="discounted">@product.DiscountedPrice.ToString("N0") ₫</span>
+                                    <span class="original">@product.Price.ToString("N0") ₫</span>
+                                }
+                                else
+                                {
+                                    <span class="discounted">@product.Price.ToString("N0") ₫</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+    <script>
+        const slider = document.getElementById('price-slider');
+        const minInput = document.getElementById('minPrice');
+        const maxInput = document.getElementById('maxPrice');
+        const minText = document.getElementById('minPriceText');
+        const maxText = document.getElementById('maxPriceText');
+
+        noUiSlider.create(slider, {
+            start: [@minPrice, @maxPrice],
+            connect: true,
+            range: { min: 0, max: 100000000 },
+            step: 1000000,
+            tooltips: true,
+            format: {
+                to: value => Math.round(value).toLocaleString('vi-VN'),
+                from: value => parseInt(value.replace(/[^\d]/g, ''))
+            }
+        });
+
+        // Throttle to avoid too many requests
+        function throttle(func, delay) {
+            let timeout;
+            return function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, delay);
+            };
+        }
+
+        const throttledApplyFilters = throttle(applyFilters, 400);
+
+        slider.noUiSlider.on('update', function () {
+            const [min, max] = slider.noUiSlider.get(true);
+            minInput.value = Math.round(min);
+            maxInput.value = Math.round(max);
+            minText.textContent = Math.round(min).toLocaleString('vi-VN') + " ₫";
+            maxText.textContent = Math.round(max).toLocaleString('vi-VN') + " ₫";
+            throttledApplyFilters();
+        });
+
+        function applyFilters() {
+            const form = document.getElementById('filterForm');
+            const formData = new FormData(form);
+            const params = new URLSearchParams();
+
+            formData.forEach((value, key) => {
+                if (key === 'brands') {
+                    params.append('brands', value);
+                } else {
+                    params.set(key, value);
+                }
+            });
+
+            fetch('/Home/Products?' + params.toString())
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const newDoc = parser.parseFromString(html, 'text/html');
+                    document.getElementById('productsGrid').innerHTML =
+                        newDoc.getElementById('productsGrid').innerHTML;
+                });
+        }
+    </script>
+}
