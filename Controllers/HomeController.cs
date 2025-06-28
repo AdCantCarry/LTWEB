@@ -113,6 +113,9 @@ namespace TechNova.Controllers
 
             return View(product);
         }
-
+        public IActionResult News()
+        {
+            return View(); 
+        }
     }
 }
