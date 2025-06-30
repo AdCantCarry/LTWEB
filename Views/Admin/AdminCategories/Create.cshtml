@@ -18,6 +18,11 @@
         <input asp-for="MainImageUrl" class="form-control" />
         <span asp-validation-for="MainImageUrl" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="SvgUrl">Svg danh mục (URL)</label>
+        <input asp-for="SvgUrl" class="form-control" />
+        <span asp-validation-for="SvgUrl" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-success">Lưu</button>
     <a href="/AdminCategories" class="btn btn-secondary">⬅️ Quay lại</a>

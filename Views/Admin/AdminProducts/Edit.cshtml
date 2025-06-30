@@ -96,6 +96,17 @@
             <input asp-for="Storage" class="form-control" />
             <span asp-validation-for="Storage" class="text-danger"></span>
         </div>
+        <!-- Có màu? -->
+        <div class="form-check mt-2">
+            <input asp-for="HasColor" class="form-check-input" />
+            <label asp-for="HasColor" class="form-check-label">Sản phẩm có nhiều màu</label>
+        </div>
+
+        <!-- Có dung lượng? -->
+        <div class="form-check mt-2">
+            <input asp-for="HasStorage" class="form-check-input" />
+            <label asp-for="HasStorage" class="form-check-label">Sản phẩm có các tùy chọn dung lượng</label>
+        </div>
 
         @for (int i = 1; i <= 3; i++)
         {
@@ -127,6 +138,17 @@
         </div>
     </form>
 </div>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@modelError.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
 
 @section Scripts {
     <script>

@@ -24,7 +24,6 @@
                 <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId ? "selected" : null)">
                     @cat.Name
                 </option>
-
             }
         }
     </select>
@@ -50,6 +49,8 @@
             <th>Giá</th>
             <th>% Giảm</th>
             <th>Tồn kho</th>
+            <th>Màu</th>
+            <th>Lưu trữ</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
         </tr>
@@ -69,6 +70,26 @@
                 <td>@(item.DiscountPercent.HasValue ? item.DiscountPercent.Value + "%" : "-")</td>
                 <td>@item.StockQuantity</td>
                 <td>
+                    @if (item.HasColor)
+                    {
+                        <span class="badge bg-info">Có</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Không</span>
+                    }
+                </td>
+                <td>
+                    @if (item.HasStorage)
+                    {
+                        <span class="badge bg-info">Có</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Không</span>
+                    }
+                </td>
+                <td>
                     @if (item.IsActive)
                     {
                         <span class="badge bg-success">Đang bán</span>
@@ -86,8 +107,8 @@
             </tr>
         }
     </tbody>
-
 </table>
+
 <div class="d-flex justify-content-center mt-3">
     @Html.PagedListPager(Model, page => Url.Action("Index", new
     {
@@ -110,7 +131,6 @@
         })
 </div>
 
-
 @section Scripts {
     <script>
         let typingTimer;
@@ -121,7 +141,7 @@
             clearTimeout(typingTimer);
             typingTimer = setTimeout(() => {
                 form.submit();
-            }, 500); // chỉ submit sau 500ms không gõ nữa
+            }, 500);
         });
     </script>
 }

@@ -14,22 +14,22 @@ namespace TechNova.Models
             using (var context = new StoreDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<StoreDbContext>>()))
             {
-                // Tạo Category nếu chưa có
+                // Tạo danh mục
                 if (!context.Categories.Any())
                 {
                     context.Categories.AddRange(
-                        new Category { Name = "Laptop", MainImageUrl = "/images/AcerSwiftX.jpg" },
-                        new Category { Name = "Điện thoại", MainImageUrl = "/images/ip15.jpg" },
-                        new Category { Name = "Phụ kiện", MainImageUrl = "/images/SonyWH-1000XM5.jpg" }
+                        new Category { Name = "Laptop", MainImageUrl = "/images/Laptop.jpg" },
+                        new Category { Name = "Điện thoại", MainImageUrl = "/images/DienThoai.jpg" },
+                        new Category { Name = "Phụ kiện", MainImageUrl = "/images/PhuKien.jpg" },
+                        new Category { Name = "Máy tính bảng", MainImageUrl = "/images/Tablet.jpg" },
+                        new Category { Name = "Màn hình", MainImageUrl = "/images/ManHinh.jpg" },
+                        new Category { Name = "Thiết bị mạng", MainImageUrl = "/images/ThietBiMang.jpg" }
                     );
                     context.SaveChanges();
                 }
 
-
-                // Map tên -> ID để dễ dùng
                 var categories = context.Categories.ToDictionary(c => c.Name, c => c.CategoryId);
 
-                // Tạo user Admin nếu chưa có
                 if (!context.Users.Any(u => u.Email == "admin@example.com"))
                 {
                     context.Users.Add(new User
@@ -41,7 +41,6 @@ namespace TechNova.Models
                     });
                 }
 
-                // Tạo sản phẩm
                 if (!context.Products.Any())
                 {
                     var products = new List<Product>
@@ -97,6 +96,7 @@ namespace TechNova.Models
                         Create("SoundPEATS Air3 Deluxe HS", 890000, "Phụ kiện", categories),
                     };
 
+
                     context.Products.AddRange(products);
                 }
 
@@ -106,13 +106,9 @@ namespace TechNova.Models
 
         private static Product Create(string name, decimal price, string categoryName, Dictionary<string, int> categoryMap)
         {
-            var baseName = name.ToLower()
-                .Replace(" ", "_")
-                .Replace("+", "")
-                .Replace(".", "")
-                .Replace("(", "")
-                .Replace(")", "")
-                .Replace("-", "_");
+            // Tên ảnh: viết hoa từng chữ, bỏ ký tự đặc biệt
+            var baseName = string.Concat(name.Where(c => char.IsLetterOrDigit(c)))
+                                .Replace(" ", "");
 
             return new Product
             {
@@ -120,16 +116,15 @@ namespace TechNova.Models
                 Description = $"Sản phẩm {name} chất lượng cao, chính hãng.",
                 Price = price,
                 DiscountPercent = 0,
-                MainImageUrl = "/images/" + baseName + ".jpg",
-                SubImage1Url = "/images/" + baseName + "_1.jpg",
-                SubImage2Url = "/images/" + baseName + "_2.jpg",
-                SubImage3Url = "/images/" + baseName + "_3.jpg",
-                Color = "Đen", // hoặc bạn có thể random hoặc thiết lập tùy loại
-                Storage = "128GB", // tương tự
+                MainImageUrl = $"/images/{baseName}.jpg",
+                SubImage1Url = $"/images/{baseName}1.jpg",
+                SubImage2Url = $"/images/{baseName}2.jpg",
+                SubImage3Url = $"/images/{baseName}3.jpg",
+                Color = "Đen",
+                Storage = "128GB",
                 CategoryId = categoryMap[categoryName],
                 CreatedAt = DateTime.Now
             };
         }
-
     }
 }

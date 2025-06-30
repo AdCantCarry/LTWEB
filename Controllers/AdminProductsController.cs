@@ -78,6 +78,8 @@ public class AdminProductsController : Controller
 
         ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
         ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
+        product.HasColor = product.HasColor;
+        product.HasStorage = product.HasStorage;
 
         return View("~/Views/Admin/AdminProducts/Create.cshtml", product);
     }
@@ -117,10 +119,12 @@ public class AdminProductsController : Controller
             existing.Color = product.Color;
             existing.Storage = product.Storage;
             existing.StockQuantity = product.StockQuantity;
-            existing.IsActive = product.IsActive; // mặc định từ form
+            existing.IsActive = product.IsActive;
+            existing.HasColor = product.HasColor;
+            existing.HasStorage = product.HasStorage;
 
             if (existing.StockQuantity == 0)
-                existing.IsActive = false; // tự động ngừng bán nếu hết hàng
+                existing.IsActive = false;
 
             existing.UpdatedAt = DateTime.Now;
 
@@ -128,12 +132,12 @@ public class AdminProductsController : Controller
             return RedirectToAction("Index");
         }
 
-        // load lại list
         ViewBag.CategoryList = new SelectList(_context.Categories.Where(c => c.IsActive), "CategoryId", "Name", product.CategoryId);
         ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
 
         return View("~/Views/Admin/AdminProducts/Edit.cshtml", product);
     }
+
 
 
     public IActionResult Delete(int id)

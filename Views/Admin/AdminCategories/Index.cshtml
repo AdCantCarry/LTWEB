@@ -13,6 +13,7 @@
             <th>ID</th>
             <th>Tên</th>
             <th>Ảnh</th>
+            <th>SVG</th>
             <th>Kích hoạt</th>
             <th>Ngày tạo</th>
             <th>Thao tác</th>
@@ -34,6 +35,23 @@
                         <span class="text-muted">Không có ảnh</span>
                     }
                 </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.SvgUrl))
+                    {
+                        @if (item.SvgUrl.TrimStart().StartsWith("<svg"))
+                        {
+                            @Html.Raw(item.SvgUrl)<!-- Nội dung SVG inline -->
+                        }
+                        else
+                        {
+                            <img src="@item.SvgUrl" alt="svg" style="width: 40px; height: 40px;" />
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không có SVG</span>
+                    }
+                </td>
                 <td>@(item.IsActive ? "✔" : "❌")</td>
                 <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
                 <td>
@@ -48,4 +66,3 @@
         }
     </tbody>
 </table>
-

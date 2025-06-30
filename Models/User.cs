@@ -8,6 +8,7 @@ namespace TechNova.Models
 
         public string Username { get; set; } = "";
 
+        [Required]
         public string Email { get; set; } = "";
 
         public string? PhoneNumber { get; set; }
@@ -18,6 +19,7 @@ namespace TechNova.Models
 
         public ICollection<Address> Addresses { get; set; } = new List<Address>();
 
+        [Required]
         public string Password { get; set; } = "";
 
         public string Role { get; set; } = "User";
@@ -27,6 +29,9 @@ namespace TechNova.Models
         public string? AvatarUrl { get; set; }
 
         public bool IsActive { get; set; } = true;
-    }
+        public string? ResetCode { get; set; } // Cho phép null
+        public DateTime? ResetCodeExpiry { get; set; }
 
+
+    }
 }

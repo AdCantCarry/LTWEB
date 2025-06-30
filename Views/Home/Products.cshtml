@@ -1,71 +1,59 @@
 ﻿@model IEnumerable<TechNova.Models.Product>
-
 @{
     ViewData["Title"] = "Products";
     var categories = ViewBag.Categories as List<TechNova.Models.Category>;
-    var brands = ViewBag.Brands as List<TechNova.Models.Brand> ?? new List<TechNova.Models.Brand>();
+    var brands = ViewBag.Brands as List<TechNova.Models.Brand> ?? new();
     var selectedCategoryId = ViewBag.SelectedCategoryId as int?;
     var selectedSort = ViewBag.SelectedSort as string;
     var searchQuery = ViewBag.SearchQuery as string;
-    var selectedBrands = ViewBag.SelectedBrands as List<int> ?? new List<int>();
+    var selectedBrands = ViewBag.SelectedBrands as List<int> ?? new();
     var minPrice = ViewBag.MinPrice as int? ?? 0;
-    var maxPrice = ViewBag.MaxPrice as int? ?? 100000000;
+    var maxPrice = ViewBag.MaxPrice as int? ?? 100_000_000;
 }
-
 @section Styles {
     <link rel="stylesheet" href="~/css/Products.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet" />
 }
-
 <div class="products-page">
     <form id="filterForm" method="get">
+        <!-- Filters -->
         <div class="products-header">
-            <div class="products-search-form">
-                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="@searchQuery" oninput="applyFilters()" />
-                <select name="categoryId" onchange="applyFilters()">
-                    <option value="">Tất cả danh mục</option>
-                    @foreach (var cat in categories)
-                    {
-                        <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId)">@cat.Name</option>
-                    }
-                </select>
-                <select name="sort" onchange="applyFilters()">
-                    <option value="">Sắp xếp</option>
-                    <option value="name_asc" selected="@(selectedSort == "name_asc")">Tên A-Z</option>
-                    <option value="name_desc" selected="@(selectedSort == "name_desc")">Tên Z-A</option>
-                    <option value="price_asc" selected="@(selectedSort == "price_asc")">Giá tăng dần</option>
-                    <option value="price_desc" selected="@(selectedSort == "price_desc")">Giá giảm dần</option>
-                </select>
-            </div>
+            <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="@searchQuery" oninput="applyFilters()" />
+            <select name="categoryId" onchange="applyFilters()">
+                <option value="">Tất cả danh mục</option>
+                @foreach (var cat in categories)
+                {
+                    <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId)">@cat.Name</option>
+                }
+            </select>
+            <select name="sort" onchange="applyFilters()">
+                <option value="">Sắp xếp</option>
+                <option value="name_asc" selected="@(selectedSort == "name_asc")">Tên A-Z</option>
+                <option value="name_desc" selected="@(selectedSort == "name_desc")">Tên Z-A</option>
+                <option value="price_asc" selected="@(selectedSort == "price_asc")">Giá tăng dần</option>
+                <option value="price_desc" selected="@(selectedSort == "price_desc")">Giá giảm dần</option>
+            </select>
         </div>
-
         <div class="products-container">
+            <!-- Sidebar -->
             <aside class="products-sidebar">
-                <div class="filter-section">
-                    <h4>Thương hiệu</h4>
-                    @foreach (var brand in brands)
-                    {
-                        <label>
-                            <input type="checkbox" name="brands" value="@brand.BrandId" @(selectedBrands.Contains(brand.BrandId) ? "checked" : "") onchange="applyFilters()" />
-                            @brand.Name
-                        </label>
-                    
-                        <br />
-                    }
-                </div>
-
-                <div class="filter-section">
-                    <h4>Khoảng giá (₫)</h4>
-                    <div id="price-slider" style="margin-bottom: 10px;"></div>
-                    <div class="price-values" style="margin-bottom: 10px;">
-                        <span id="minPriceText">@minPrice.ToString("N0") ₫</span> -
-                        <span id="maxPriceText">@maxPrice.ToString("N0") ₫</span>
-                    </div>
-                    <input type="hidden" name="minPrice" id="minPrice" value="@minPrice" />
-                    <input type="hidden" name="maxPrice" id="maxPrice" value="@maxPrice" />
-                </div>
+                <h4>Thương hiệu</h4>
+                @foreach (var brand in brands)
+                {
+                    <label>
+                        <input type="checkbox" name="brands" value="@brand.BrandId" @(selectedBrands.Contains(brand.BrandId) ? "checked" : "") onchange="applyFilters()" /> @brand.Name
+                    </label>
+                
+                    <br />
+                }
+                <h4>Khoảng giá (₫)</h4>
+                <div id="price-slider"></div>
+                <span id="minPriceText">@minPrice.ToString("N0") ₫</span> -
+                <span id="maxPriceText">@maxPrice.ToString("N0") ₫</span>
+                <input type="hidden" name="minPrice" id="minPrice" value="@minPrice" />
+                <input type="hidden" name="maxPrice" id="maxPrice" value="@maxPrice" />
             </aside>
-
+            <!-- Products Grid -->
             <div class="products-grid" id="productsGrid">
                 @foreach (var product in Model)
                 {
@@ -73,7 +61,8 @@
                         <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
                         <div class="product-details">
                             <h3>@product.Name</h3>
-                            <div class="product-brand">@product.Brand?.Name</div>
+                            <div class="product-description">@product.Description</div>
+                            <div class="product-brand-small">@product.Brand?.Name</div>
                             <div class="product-price">
                                 @if (product.DiscountPercent > 0)
                                 {
@@ -85,17 +74,75 @@
                                     <span class="discounted">@product.Price.ToString("N0") ₫</span>
                                 }
                             </div>
+                            <div class="product-actions">
+                                <button type="button" class="btn-add-cart" data-id="@product.ProductId">Thêm vào giỏ hàng</button>
+                                <a href="/Cart/CheckoutNow?productId=@product.ProductId" class="btn-buy">Mua ngay</a>
+                            </div>
                         </div>
                     </div>
                 }
+
             </div>
         </div>
+        <!-- Phân trang: nằm sau productsGrid -->
+            <div id="paginationContainer" class="pagination">
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <a href="javascript:void(0)" class="page-link @(i == ViewBag.Page ? "active" : "")" onclick="goToPage(@i)">@i</a>
+                }
+            </div
     </form>
 </div>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
     <script>
+        let currentPage = 1;
+
+        function attachAddToCartHandlers() {
+    document.querySelectorAll('.btn-add-cart').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.id;
+            fetch('/Cart/AddToCartAjax', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `productId=${id}&color=&storage=`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const cartCountEl = document.getElementById('cartCount');
+                    const cartIcon = document.querySelector('.cart-icon');
+
+                    // Cập nhật số
+                    cartCountEl.textContent = data.cartCount;
+
+                    // Hiệu ứng cart icon
+                    cartIcon.classList.add('cart-bounce');
+                    setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
+
+                    // Hiệu ứng số lượng (scale nhỏ)
+                    cartCountEl.style.transform = 'scale(1.5)';
+                    setTimeout(() => cartCountEl.style.transform = 'scale(1)', 300);
+
+                    // Optional alert
+                    alert('Đã thêm vào giỏ hàng!');
+                } else {
+                    alert(data.message);
+                    if (data.message.includes("đăng nhập")) {
+                        window.location.href = "/Account/Login";
+                    }
+                }
+            });
+        });
+    });
+}
+
+
+        attachAddToCartHandlers(); // Gọi ban đầu
+
         const slider = document.getElementById('price-slider');
         const minInput = document.getElementById('minPrice');
         const maxInput = document.getElementById('maxPrice');
@@ -114,7 +161,6 @@
             }
         });
 
-        // Throttle to avoid too many requests
         function throttle(func, delay) {
             let timeout;
             return function () {
@@ -123,7 +169,10 @@
             };
         }
 
-        const throttledApplyFilters = throttle(applyFilters, 400);
+        const throttledApplyFilters = throttle(() => {
+            currentPage = 1; // 👈 reset về trang đầu khi dùng slider
+            applyFilters();
+        }, 400);
 
         slider.noUiSlider.on('update', function () {
             const [min, max] = slider.noUiSlider.get(true);
@@ -133,6 +182,11 @@
             maxText.textContent = Math.round(max).toLocaleString('vi-VN') + " ₫";
             throttledApplyFilters();
         });
+
+        function goToPage(page) {
+            currentPage = page;
+            applyFilters();
+        }
 
         function applyFilters() {
             const form = document.getElementById('filterForm');
@@ -147,13 +201,26 @@
                 }
             });
 
+            params.set('page', currentPage); // 👈 Gửi thông tin trang
+
             fetch('/Home/Products?' + params.toString())
                 .then(response => response.text())
                 .then(html => {
                     const parser = new DOMParser();
                     const newDoc = parser.parseFromString(html, 'text/html');
+
+                    // Update sản phẩm
                     document.getElementById('productsGrid').innerHTML =
                         newDoc.getElementById('productsGrid').innerHTML;
+
+                    // Update pagination
+                    const newPagination = newDoc.getElementById('paginationContainer');
+                    const currentPagination = document.getElementById('paginationContainer');
+                    if (newPagination && currentPagination) {
+                        currentPagination.replaceWith(newPagination);
+                    }
+
+                    attachAddToCartHandlers(); // gắn lại button "Thêm vào giỏ"
                 });
         }
     </script>

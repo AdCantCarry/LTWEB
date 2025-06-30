@@ -12,8 +12,8 @@ using TechNova.Models;
 namespace TechNova.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250625052905_init")]
-    partial class init
+    [Migration("20250630091643_FixUser")]
+    partial class FixUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,9 @@ namespace TechNova.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SvgUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
@@ -247,6 +250,12 @@ namespace TechNova.Migrations
                     b.Property<int?>("DiscountPercent")
                         .HasColumnType("int");
 
+                    b.Property<bool>("HasColor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasStorage")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -270,15 +279,12 @@ namespace TechNova.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubImage1Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubImage2Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubImage3Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -327,8 +333,19 @@ namespace TechNova.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResetToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResetTokenExpiry")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Role")
                         .IsRequired()

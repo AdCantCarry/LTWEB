@@ -109,6 +109,17 @@
         <input asp-for="Storage" class="form-control" />
         <span asp-validation-for="Storage" class="text-danger"></span>
     </div>
+    <!-- Có màu? -->
+    <div class="form-check mt-2">
+        <input asp-for="HasColor" class="form-check-input" />
+        <label asp-for="HasColor" class="form-check-label">Sản phẩm có nhiều màu</label>
+    </div>
+
+    <!-- Có dung lượng? -->
+    <div class="form-check mt-2">
+        <input asp-for="HasStorage" class="form-check-input" />
+        <label asp-for="HasStorage" class="form-check-label">Sản phẩm có các tùy chọn dung lượng</label>
+    </div>
 
     <!-- Nút lưu -->
     <button type="submit" class="btn btn-primary">💾 Lưu</button>

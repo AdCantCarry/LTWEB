@@ -15,10 +15,20 @@
     <div class="image-section">
         <img src="@Model.MainImageUrl" class="main-img" />
         <div class="sub-images">
-            <img src="@Model.SubImage1Url" />
-            <img src="@Model.SubImage2Url" />
-            <img src="@Model.SubImage3Url" />
+            @if (!string.IsNullOrWhiteSpace(Model.SubImage1Url))
+            {
+                <img src="@Model.SubImage1Url" />
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.SubImage2Url))
+            {
+                <img src="@Model.SubImage2Url" />
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.SubImage3Url))
+            {
+                <img src="@Model.SubImage3Url" />
+            }
         </div>
+
     </div>
 
     <div class="info-section">
@@ -35,7 +45,7 @@
                 <input type="hidden" name="storage" id="SelectedStorage" />
                 <input type="hidden" name="quantity" value="1" />
 
-                @if (colorList.Any())
+                @if (Model.HasColor && colorList.Any())
                 {
                     <div class="option-group">
                         <strong>Màu sắc:</strong>
@@ -48,7 +58,7 @@
                     </div>
                 }
 
-                @if (storageList.Any())
+                @if (Model.HasStorage && storageList.Any())
                 {
                     <div class="option-group">
                         <strong>Dung lượng:</strong>
@@ -60,6 +70,7 @@
                         </div>
                     </div>
                 }
+
 
                 <div class="price-box">
                     <strong>Giá bán:</strong>
@@ -85,6 +96,26 @@
 
 @section Scripts {
     <script>
+        function validateSelection() {
+            const requireColor = @Model.HasColor.ToString().ToLower();
+            const requireStorage = @Model.HasStorage.ToString().ToLower();
+
+            const color = document.getElementById("SelectedColor").value;
+            const storage = document.getElementById("SelectedStorage").value;
+
+            if (requireColor && !color) {
+                alert("Vui lòng chọn màu sắc.");
+                return false;
+            }
+
+            if (requireStorage && !storage) {
+                alert("Vui lòng chọn dung lượng.");
+                return false;
+            }
+
+            return true;
+        }
+
         // Chọn màu
         document.querySelectorAll('.color-box').forEach(el => {
             el.addEventListener('click', () => {

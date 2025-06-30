@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var cart = HttpContextAccessor.HttpContext?.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+    var cartCount = cart.Sum(x => x.Quantity);
+}
+
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -34,6 +42,7 @@
             <nav class="menu">
                 <a href="/Home/Store">Store</a>
                 <a href="/Home/Products">Sản phẩm</a>
+                <a href="/Home/Categories">Danh mục</a>
             </nav>
 
             <div class="icons">
@@ -42,7 +51,14 @@
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
 
-                <a href="/Cart/Index" title="Giỏ hàng"><i class="fa-solid fa-bag-shopping"></i></a>
+                <div class="cart-icon-wrapper">
+                    <a href="/Cart">
+                        <i class="fa fa-shopping-cart cart-icon"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                </div>
+
+
 
                 @{
                     var username = Context.Session.GetString("Username");

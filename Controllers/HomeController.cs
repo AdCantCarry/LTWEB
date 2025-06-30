@@ -9,6 +9,7 @@ namespace TechNova.Controllers
     public class HomeController : Controller
     {
         private readonly StoreDbContext _context;
+        private const int PageSize = 10; // Mỗi trang hiển thị 10 sản phẩm
 
         public HomeController(StoreDbContext context)
         {
@@ -21,7 +22,7 @@ namespace TechNova.Controllers
             var saleProducts = _context.Products
                         .Where(p => p.DiscountPercent > 0)
                         .OrderByDescending(p => p.DiscountPercent)
-                        .Take(15) // giới hạn 15 sản phẩm
+                        .Take(15)
                         .ToList();
             var appleProducts = _context.Products
                 .Where(p => p.BrandId == 1)
@@ -41,13 +42,15 @@ namespace TechNova.Controllers
 
             return View();
         }
+
         public IActionResult Store()
         {
             var products = _context.Products.Include(p => p.Category).ToList();
             ViewBag.Categories = _context.Categories.ToList();
             return View(products);
         }
-        public IActionResult Products(string search, int? categoryId, string sort, int? minPrice, int? maxPrice, List<int> brands)
+
+        public IActionResult Products(string search, int? categoryId, string sort, int? minPrice, int? maxPrice, List<int> brands, int page = 1)
         {
             var query = _context.Products
                 .Include(p => p.Category)
@@ -91,8 +94,16 @@ namespace TechNova.Controllers
                     (p.DiscountPercent.HasValue
                         ? p.Price * (1 - p.DiscountPercent.Value / 100m)
                         : p.Price)),
-                _ => query
+                _ => query.OrderBy(p => p.ProductId)
             };
+
+            int totalItems = query.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+            var products = query
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
 
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
@@ -102,8 +113,10 @@ namespace TechNova.Controllers
             ViewBag.SelectedBrands = brands ?? new List<int>();
             ViewBag.MinPrice = minPrice ?? 0;
             ViewBag.MaxPrice = maxPrice ?? 100000000;
+            ViewBag.Page = page;
+            ViewBag.TotalPages = totalPages;
 
-            return View(query.ToList());
+            return View(products);
         }
 
         public IActionResult ProductDetails(int id)
@@ -114,5 +127,27 @@ namespace TechNova.Controllers
             return View(product);
         }
 
+        public IActionResult Categories(string search)
+        {
+            var categories = _context.Categories.AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                categories = categories.Where(c => c.Name.Contains(search));
+            }
+
+            var categoryStats = _context.Products
+                .Where(p => p.IsActive)
+                .GroupBy(p => p.CategoryId)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Count()
+                );
+
+            ViewBag.CategoryStats = categoryStats;
+            ViewBag.SearchQuery = search;
+
+            return View(categories.ToList());
+        }
     }
 }

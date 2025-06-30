@@ -62,15 +62,61 @@ namespace TechNova.Controllers
             HttpContext.Session.SetObjectAsJson("Cart", cart);
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public IActionResult AddToCartAjax(int productId, string color = "", string storage = "", int quantity = 1)
+        {
+            var user = HttpContext.Session.GetString("Username");
+            if (string.IsNullOrEmpty(user))
+                return Json(new { success = false, message = "Bạn chưa đăng nhập" });
+
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product == null) return Json(new { success = false, message = "Không tìm thấy sản phẩm" });
+
+            double distanceKm = 6;
+            var (shippingMethod, shippingFee) = CalculateShipping(product, distanceKm);
+
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+
+            var existingItem = cart.FirstOrDefault(x => x.ProductId == productId && x.Color == color && x.Storage == storage);
+            if (existingItem != null)
+            {
+                existingItem.Quantity += quantity;
+            }
+            else
+            {
+                cart.Add(new CartItem
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    ImageUrl = product.MainImageUrl,
+                    Color = color,
+                    Storage = storage,
+                    Quantity = quantity,
+                    Price = product.DiscountedPrice > 0 ? product.DiscountedPrice : product.Price,
+                    ShippingMethod = shippingMethod,
+                    ShippingFee = shippingFee
+                });
+            }
+
+            HttpContext.Session.SetObjectAsJson("Cart", cart);
+            return Json(new { success = true, cartCount = cart.Sum(x => x.Quantity) });
+        }
 
         [HttpPost]
         public IActionResult Remove(int productId, string color, string storage)
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-            cart.RemoveAll(x => x.ProductId == productId && x.Color == color && x.Storage == storage);
+
+            cart.RemoveAll(x =>
+                x.ProductId == productId &&
+                (x.Color ?? "") == (color ?? "") &&
+                (x.Storage ?? "") == (storage ?? "")
+            );
+
             HttpContext.Session.SetObjectAsJson("Cart", cart);
             return RedirectToAction("Index");
         }
+
 
         private (string method, decimal fee) CalculateShipping(Product product, double distanceKm)
         {

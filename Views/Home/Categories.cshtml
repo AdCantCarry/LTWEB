@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TechNova.Models.Category>
+@{
+    ViewData["Title"] = "Product Categories";
+    var categoryStats = ViewBag.CategoryStats as Dictionary<int, int> ?? new();
+    var searchQuery = ViewBag.SearchQuery as string ?? "";
+
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ProductCategories.css" asp-append-version="true" />
+}
+
+<div class="category-container">
+    <h2 class="category-title">Product Categories</h2>
+
+    <div class="category-grid">
+        @foreach (var cat in Model)
+        {
+            <div class="category-card">
+                <img src="@cat.SvgUrl" alt="@cat.Name" class="category-icon" />
+
+                <div class="category-info">
+                    <div class="category-name">@cat.Name</div>
+                    <!-- Vòng tròn góc phải -->
+                    <div class="product-count-circle">
+                        @categoryStats.GetValueOrDefault(cat.CategoryId, 0)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
