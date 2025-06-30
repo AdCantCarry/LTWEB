@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Tin Tức Công Nghệ";
+}
+
+<!-- HERO -->
+<section class="news-hero text-center text-white py-5">
+    <div class="container">
+        <h1 class="display-5 fw-bold">Tin Tức Công Nghệ</h1>
+        <p class="lead">Cập nhật nóng hổi – xu hướng mới – sản phẩm đình đám</p>
+    </div>
+</section>
+
+<!-- 9 MỤC NỔI BẬT -->
+<section class="news-grid py-5">
+    <div class="container">
+        @{
+            var highlights = new[]
+            {
+                new { Title="iPhone 15 Pro Max chính thức mở bán", Img="https://images.unsplash.com/photo-1695726072700-170d76e20bfa?auto=format&crop=entropy&w=600&q=80", Desc="Titan · A17 Pro · Zoom 5×" },
+                new { Title="MacBook M3 2024 siêu mỏng nhẹ", Img="https://images.unsplash.com/photo-1627853762265-0d127af437ba?auto=format&crop=entropy&w=600&q=80", Desc="Retina XDR · Magic Keyboard" },
+                new { Title="Galaxy S24 Ultra tích hợp AI", Img="https://images.unsplash.com/photo-1565372911617-fd1a2a4fcbb9?auto=format&crop=entropy&w=600&q=80", Desc="Snapdragon 8 Gen 3 · Camera 200 MP" },
+                new { Title="Sony WH‑1000XM5 chống ồn", Img="https://images.unsplash.com/photo-1623905522463-47b1c98a789e?auto=format&crop=entropy&w=600&q=80", Desc="ANC · 360 Audio" },
+                new { Title="LG UltraGear 240 Hz", Img="https://images.unsplash.com/photo-1614280607817-b698fc243bdb?auto=format&crop=entropy&w=600&q=80", Desc="QHD · 1 ms · G‑Sync" },
+                new { Title="ASUS ROG 2024", Img="https://images.unsplash.com/photo-1613281014938-cabf650997fd?auto=format&crop=entropy&w=600&q=80", Desc="RTX 4080 · 240 Hz" },
+                new { Title="Samsung 990 Pro SSD", Img="https://images.unsplash.com/photo-1600566759344-3d851849b5c7?auto=format&crop=entropy&w=600&q=80", Desc="Đọc 7400 MB/s · PCIe 4.0" },
+                new { Title="Apple Watch Series 9", Img="https://images.unsplash.com/photo-1589533610167-5cc10ae285e4?auto=format&crop=entropy&w=600&q=80", Desc="Always‑On · chip S9" },
+                new { Title="Logitech G Pro X Superlight", Img="https://images.unsplash.com/photo-1614025700469-014bf7b7c0a9?auto=format&crop=entropy&w=600&q=80", Desc="60 g · HERO 2" }
+            };
+        }
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            @foreach (var n in highlights)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@n.Img" class="card-img-top news-img" alt="@n.Title" loading="lazy" />
+                        <div class="card-body">
+                            <h5 class="card-title">@n.Title</h5>
+                            <p class="card-text">@n.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- TIN TICKER -->
+<section class="news-ticker py-4 bg-light">
+    <div class="ticker-track">
+        @{
+            var ticker = new[]
+            {
+                new { Title="Microsoft Copilot+ PC bán ra", Img="https://media.giphy.com/media/ln7z2eWriiQAllfVcn/giphy.gif" },
+                new { Title="Rò rỉ PlayStation 6 concept", Img="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" },
+                new { Title="AMD Ryzen 9000 điểm Geekbench", Img="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" },
+                new { Title="Lenovo màn hình 3D không kính", Img="https://media.giphy.com/media/yYSSBtDgbbRzq/giphy.gif" },
+                new { Title="TikTok thử nghiệm AI nhạc", Img="https://media.giphy.com/media/l3vQX2j6PZBYYJjsA/giphy.gif" }
+            };
+            for (int i = 0; i < 2; i++)
+            {
+                foreach (var t in ticker)
+                {
+                    <div class="ticker-item d-flex align-items-center px-3">
+                        <img src="@t.Img" alt="" class="me-2 gif-thumb" loading="lazy" />
+                        <span>@t.Title</span>
+                    </div>
+                }
+            }
+        }
+    </div>
+</section>
+
+<!-- KHÁM PHÁ THÊM -->
+<section class="extra-news py-5 bg-white">
+    <div class="container">
+        <h2 class="mb-4 fw-bold text-center">Khám Phá Thêm</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1613758947301-f70d2d548235?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="Meta Quest 3" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Meta Quest 3 ra mắt</h5>
+                        <p class="card-text">Thiết bị VR hỗ trợ Mixed Reality · Snapdragon XR2 Gen 2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1606813903124-76b8a77cbe53?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="Game Elden Ring DLC" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Elden Ring: Shadow of the Erdtree</h5>
+                        <p class="card-text">Bản mở rộng siêu khó gây sốt trên Steam</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1606811841650-820ce60cba45?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="AI trong game" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">NPC AI xuất hiện trong game nhập vai</h5>
+                        <p class="card-text">Cho phép người chơi trò chuyện tự nhiên với nhân vật</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TOP GAME MỚI -->
+<section class="top-games py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold">Top Game Mới</h2>
+        <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active text-center">
+                    <img src="https://images.unsplash.com/photo-1606813925806-9a0b9d73d4cf?auto=format&crop=entropy&w=900&q=80" class="d-block mx-auto game-slide" alt="Cyberpunk" />
+                    <div class="mt-3">Cyberpunk 2077: Phantom Liberty</div>
+                </div>
+                <div class="carousel-item text-center">
+                    <img src="https://images.unsplash.com/photo-1611605698335-bbfad57bfa2e?auto=format&crop=entropy&w=900&q=80" class="d-block mx-auto game-slide" alt="Hogwarts Legacy" />
+                    <div class="mt-3">Hogwarts Legacy</div>
+                </div>
+                <div class="carousel-item text-center">
+                    <img src="https://images.unsplash.com/photo-1611605685099-0288f12bfa3f?auto=format&crop=entropy&w=900&q=80" class="d-block mx-auto game-slide" alt="Spider-Man 2" />
+                    <div class="mt-3">Spider-Man 2</div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+.news-hero{background:linear-gradient(120deg,#000428,#004e92);color:#fff;}
+.news-img{height:200px;object-fit:cover;}
+.card-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3em;font-size:1rem;font-weight:600;}
+.card-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em;font-size:0.9rem;color:#555;}
+.card{transition:transform .2s;} .card:hover{transform:translateY(-5px);}
+
+.news-ticker{overflow:hidden;position:relative;}
+.ticker-track{display:flex;white-space:nowrap;animation:scroll 40s linear infinite;}
+keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{flex:none;min-width:300px;}
+.gif-thumb{width:48px;height:48px;object-fit:cover;border-radius:8px;}
+media (max-width:576px){.ticker-item{min-width:250px;}}
+
+.top-games img.game-slide{height:300px;width:auto;border-radius:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.4);}
+.top-games .carousel-inner{text-align:center;}
+</style>
