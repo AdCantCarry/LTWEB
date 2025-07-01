@@ -18,23 +18,24 @@ namespace TechNova.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.ToListAsync();
-            var saleProducts = _context.Products
-                        .Where(p => p.DiscountPercent > 0)
-                        .OrderByDescending(p => p.DiscountPercent)
-                        .Take(15)
-                        .ToList();
-            var appleProducts = _context.Products
-                .Where(p => p.BrandId == 1)
+            var saleProducts = await _context.Products
+                .Where(p => p.DiscountPercent > 0)
+                .OrderByDescending(p => p.DiscountPercent)
+                .Take(15)
+                .Include(p => p.Brand)
+                .ToListAsync();
+
+            var appleProducts = await _context.Products
+                .Where(p => p.Brand.Name.Contains("Apple") && p.IsActive)
                 .Include(p => p.Brand)
                 .Take(5)
-                .ToList();
+                .ToListAsync();
 
-            var samsungProducts = _context.Products
+            var samsungProducts = await _context.Products
                 .Where(p => p.Brand.Name.Contains("Samsung") && p.IsActive)
                 .Include(p => p.Brand)
                 .Take(5)
-                .ToList();
+                .ToListAsync();
 
             ViewBag.SaleProducts = saleProducts;
             ViewBag.AppleProducts = appleProducts;
@@ -42,6 +43,7 @@ namespace TechNova.Controllers
 
             return View();
         }
+
 
         public IActionResult Store()
         {
@@ -126,7 +128,6 @@ namespace TechNova.Controllers
 
             return View(product);
         }
-
         public IActionResult Categories(string search)
         {
             var categories = _context.Categories.AsQueryable();
@@ -149,5 +150,14 @@ namespace TechNova.Controllers
 
             return View(categories.ToList());
         }
+        public IActionResult News()
+        {
+            var newsList = _context.News
+                .Where(n => n.IsPublished)
+                .OrderByDescending(n => n.CreatedAt)
+                .ToList();
+            return View(newsList);
+        }
+
     }
 }
