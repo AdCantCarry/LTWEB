@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq;
-using TechNova.Models;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {
@@ -20,7 +20,7 @@ namespace TechNova.Controllers
         {
             var products = await _context.Products.ToListAsync();
             var saleProducts = _context.Products
-                        .Where(p => p.DiscountPercent > 0)
+                        .Where(p => p.IsActive &&  p.DiscountPercent > 0)
                         .OrderByDescending(p => p.DiscountPercent)
                         .Take(15)
                         .ToList();
@@ -45,7 +45,11 @@ namespace TechNova.Controllers
 
         public IActionResult Store()
         {
-            var products = _context.Products.Include(p => p.Category).ToList();
+            var products = _context.Products.
+                Include(p => p.Category)
+                .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
+                .ToList();
+
             ViewBag.Categories = _context.Categories.ToList();
             return View(products);
         }
@@ -53,6 +57,7 @@ namespace TechNova.Controllers
         public IActionResult Products(string search, int? categoryId, string sort, int? minPrice, int? maxPrice, List<int> brands, int page = 1)
         {
             var query = _context.Products
+                 .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
                 .Include(p => p.Category)
                 .Include(p => p.Brand)
                 .AsQueryable();
@@ -121,7 +126,10 @@ namespace TechNova.Controllers
 
         public IActionResult ProductDetails(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+            var product = _context.Products
+            .Include(p => p.Brand)
+            .FirstOrDefault(p => p.ProductId == id);
+
             if (product == null) return NotFound();
 
             return View(product);
@@ -129,7 +137,23 @@ namespace TechNova.Controllers
 
         public IActionResult Categories(string search)
         {
-            var categories = _context.Categories.AsQueryable();
+            var categoryPrices = _context.Products
+            .Where(p => p.IsActive)
+            .GroupBy(p => p.CategoryId)
+            .ToDictionary(
+                g => g.Key,
+                g => (
+                    g.Min(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price),
+                    g.Max(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price)
+                )
+            );
+
+                    ViewBag.CategoryPrices = categoryPrices;
+
+            var categories = _context.Categories
+                .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
+                .AsQueryable()
+                ;
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -148,6 +172,10 @@ namespace TechNova.Controllers
             ViewBag.SearchQuery = search;
 
             return View(categories.ToList());
+        }
+        public IActionResult News()
+        {
+            return View();
         }
     }
 }

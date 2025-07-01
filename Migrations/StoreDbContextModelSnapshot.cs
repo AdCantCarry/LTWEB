@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TechNova.Models;
+using TechNova.Models.Data;
 
 #nullable disable
 
@@ -22,7 +22,65 @@ namespace TechNova.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TechNova.Models.Address", b =>
+            modelBuilder.Entity("TechNova.Models.Auth.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AvatarUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResetCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResetCodeExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.Address", b =>
                 {
                     b.Property<int>("AddressId")
                         .ValueGeneratedOnAdd()
@@ -67,7 +125,7 @@ namespace TechNova.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Brand", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Brand", b =>
                 {
                     b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
@@ -90,7 +148,7 @@ namespace TechNova.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Category", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -100,6 +158,9 @@ namespace TechNova.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -120,7 +181,7 @@ namespace TechNova.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Order", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Order", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -153,7 +214,7 @@ namespace TechNova.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("TechNova.Models.OrderItem", b =>
+            modelBuilder.Entity("TechNova.Models.Core.OrderItem", b =>
                 {
                     b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
@@ -182,7 +243,7 @@ namespace TechNova.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Payment", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Payment", b =>
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
@@ -219,7 +280,7 @@ namespace TechNova.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Product", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -296,67 +357,16 @@ namespace TechNova.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("TechNova.Models.User", b =>
+            modelBuilder.Entity("TechNova.Models.Auth.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResetCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ResetCodeExpiry")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("BrandId");
-
-                    b.ToTable("Users");
+                    b.HasOne("TechNova.Models.Core.Brand", null)
+                        .WithMany("Users")
+                        .HasForeignKey("BrandId");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Address", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Address", b =>
                 {
-                    b.HasOne("TechNova.Models.User", "User")
+                    b.HasOne("TechNova.Models.Auth.User", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,15 +375,15 @@ namespace TechNova.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Order", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Order", b =>
                 {
-                    b.HasOne("TechNova.Models.Address", "Address")
+                    b.HasOne("TechNova.Models.Core.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TechNova.Models.User", "User")
+                    b.HasOne("TechNova.Models.Auth.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -384,15 +394,15 @@ namespace TechNova.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TechNova.Models.OrderItem", b =>
+            modelBuilder.Entity("TechNova.Models.Core.OrderItem", b =>
                 {
-                    b.HasOne("TechNova.Models.Order", "Order")
+                    b.HasOne("TechNova.Models.Core.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TechNova.Models.Product", "Product")
+                    b.HasOne("TechNova.Models.Core.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -403,24 +413,24 @@ namespace TechNova.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Payment", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Payment", b =>
                 {
-                    b.HasOne("TechNova.Models.Order", "Order")
+                    b.HasOne("TechNova.Models.Core.Order", "Order")
                         .WithOne("Payment")
-                        .HasForeignKey("TechNova.Models.Payment", "OrderId")
+                        .HasForeignKey("TechNova.Models.Core.Payment", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Product", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Product", b =>
                 {
-                    b.HasOne("TechNova.Models.Brand", "Brand")
+                    b.HasOne("TechNova.Models.Core.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId");
 
-                    b.HasOne("TechNova.Models.Category", "Category")
+                    b.HasOne("TechNova.Models.Core.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -431,34 +441,27 @@ namespace TechNova.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("TechNova.Models.User", b =>
+            modelBuilder.Entity("TechNova.Models.Auth.User", b =>
                 {
-                    b.HasOne("TechNova.Models.Brand", null)
-                        .WithMany("Users")
-                        .HasForeignKey("BrandId");
+                    b.Navigation("Addresses");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Brand", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Brand", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Category", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("TechNova.Models.Order", b =>
+            modelBuilder.Entity("TechNova.Models.Core.Order", b =>
                 {
                     b.Navigation("OrderItems");
 
                     b.Navigation("Payment")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TechNova.Models.User", b =>
-                {
-                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

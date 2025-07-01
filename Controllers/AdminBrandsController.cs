@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechNova.Models;
 using System.Linq;
+using TechNova.Models.Core;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {

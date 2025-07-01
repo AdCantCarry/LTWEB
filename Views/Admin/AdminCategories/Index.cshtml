@@ -1,68 +1,129 @@
-﻿@model List<Category>
+﻿@using TechNova.Models.Core
+@model List<Category>
 @{
+    ViewData["Title"] = "Quản lý Danh mục";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Quản lý danh mục";
 }
 
-<h2>Quản lý danh mục</h2>
-<a href="/AdminCategories/Create" class="btn btn-success mb-3">Thêm danh mục</a>
+<h2 class="mb-4 fw-bold text-center">Quản lý Danh mục</h2>
 
-<table class="table table-bordered">
-    <thead>
+<div class="d-flex justify-content-end mb-3">
+    <a href="/AdminCategories/Create" class="btn btn-success">➕ Thêm danh mục</a>
+</div>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
         <tr>
-            <th>ID</th>
-            <th>Tên</th>
-            <th>Ảnh</th>
-            <th>SVG</th>
-            <th>Kích hoạt</th>
+            <th>Danh mục</th>
+            <th>Mô tả</th>
+            <th>SVG/Icon</th>
+            <th>Sản phẩm</th>
+            <th>Trạng thái</th>
             <th>Ngày tạo</th>
-            <th>Thao tác</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var cat in Model)
         {
             <tr>
-                <td>@item.CategoryId</td>
-                <td>@item.Name</td>
+                <!-- Ảnh + Tên -->
                 <td>
-                    @if (!string.IsNullOrEmpty(item.MainImageUrl))
-                    {
-                        <img src="@item.MainImageUrl" alt="@item.Name" style="width: 60px; height: auto;" />
-                    }
-                    else
-                    {
-                        <span class="text-muted">Không có ảnh</span>
-                    }
-                </td>
-                <td>
-                    @if (!string.IsNullOrEmpty(item.SvgUrl))
-                    {
-                        @if (item.SvgUrl.TrimStart().StartsWith("<svg"))
+                    <div class="d-flex align-items-center gap-2">
+                        @if (!string.IsNullOrEmpty(cat.MainImageUrl))
                         {
-                            @Html.Raw(item.SvgUrl)<!-- Nội dung SVG inline -->
+                            <img src="@cat.MainImageUrl" alt="Ảnh" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" />
                         }
                         else
                         {
-                            <img src="@item.SvgUrl" alt="svg" style="width: 40px; height: 40px;" />
+                            <div style="width: 40px; height: 40px; background: #eee; border-radius: 8px;"></div>
                         }
+                        <span>@cat.Name</span>
+                    </div>
+                </td>
+
+                <!-- Mô tả -->
+                <td>@(string.IsNullOrEmpty(cat.Description) ? "-" : cat.Description)</td>
+
+                <!-- SVG (nếu có) -->
+                <td>
+                    @if (!string.IsNullOrEmpty(cat.SvgUrl))
+                    {
+                        @Html.Raw(cat.SvgUrl)
                     }
                     else
                     {
-                        <span class="text-muted">Không có SVG</span>
+                        <span class="text-muted fst-italic">Không có</span>
                     }
                 </td>
-                <td>@(item.IsActive ? "✔" : "❌")</td>
-                <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+
+                <!-- Số sản phẩm -->
+                <td>@(cat.Products?.Count(p => p.IsActive) ?? 0)</td>
+
+
+                <!-- Trạng thái -->
                 <td>
-                    <a href="/AdminCategories/Edit/@item.CategoryId" class="btn btn-sm btn-primary">Sửa</a>
-                    <a href="/AdminCategories/Delete/@item.CategoryId"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
-                        Xóa
-                    </a>
+                    @if (cat.IsActive)
+                    {
+                        <span class="badge bg-success">Đang hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Ngừng</span>
+                    }
+                </td>
+
+                <!-- Ngày tạo -->
+                <td>@cat.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+
+                <!-- Hành động -->
+                <td class="text-nowrap">
+                    <button class="btn btn-sm toggle-status-btn" data-id="@cat.CategoryId" data-status="@cat.IsActive" title="Chuyển trạng thái">
+                        @if (cat.IsActive)
+                        {
+                            <i class="bi bi-eye-fill text-success fs-5"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-eye-slash-fill text-secondary fs-5"></i>
+                        }
+                    </button>
+                    <a href="/AdminCategories/Edit/@cat.CategoryId" class="btn btn-sm btn-warning" title="Sửa">✏️</a>
+                    <a href="/AdminCategories/Delete/@cat.CategoryId" class="btn btn-sm btn-danger" title="Xóa"
+                       onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');">🗑️</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.toggle-status-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const catId = this.dataset.id;
+
+                fetch(`/AdminCategories/ToggleStatus/${catId}`, {
+                    method: 'POST'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const icon = this.querySelector('i');
+                            if (data.newStatus) {
+                                icon.classList.remove('bi-eye-slash-fill', 'text-secondary');
+                                icon.classList.add('bi-eye-fill', 'text-success');
+                            } else {
+                                icon.classList.remove('bi-eye-fill', 'text-success');
+                                icon.classList.add('bi-eye-slash-fill', 'text-secondary');
+                            }
+                            this.dataset.status = data.newStatus;
+                        } else {
+                            alert("Đã xảy ra lỗi khi cập nhật trạng thái.");
+                        }
+                    });
+            });
+        });
+    </script>
+}

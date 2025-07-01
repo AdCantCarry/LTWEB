@@ -1,4 +1,6 @@
-﻿@inject IHttpContextAccessor HttpContextAccessor
+﻿@using TechNova.Models.Auth
+@using TechNova.Models.Core
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     var cart = HttpContextAccessor.HttpContext?.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
@@ -43,6 +45,9 @@
             <nav class="menu">
                 <a href="/Home/Store">Store</a>
                 <a href="/Home/Products">Sản phẩm</a>
+                <a href="/Home/Categories">Danh mục</a>
+                <a href="/Home/News">Tin Tức</a>
+
             </nav>
 
             <div class="icons">

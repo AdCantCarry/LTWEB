@@ -1,4 +1,5 @@
-﻿@{
+﻿@using TechNova.Models.Core
+@{
     ViewData["Title"] = "Home";
     var saleProducts = (ViewBag.SaleProducts as List<Product>)?.Take(4).ToList();
     var appleProducts = (ViewBag.AppleProducts as List<Product>)?.Take(4).ToList();

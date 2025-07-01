@@ -4,9 +4,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using TechNova.Models;
-using TechNova.Helpers;
-using TechNova.ViewModels;
+using TechNova.Models.ViewModels;
+using TechNova.Models.Core;
+using TechNova.Models.Auth;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {

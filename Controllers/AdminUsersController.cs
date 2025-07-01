@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TechNova.middleware;
-using TechNova.Models;
 using System.Linq;
+using TechNova.Models.Auth;
+using TechNova.Models.Data;
 
 [AdminAuthorize]
 public class AdminUsersController : Controller
@@ -31,7 +32,7 @@ public class AdminUsersController : Controller
         if (ModelState.IsValid)
         {
             // Mã hóa mật khẩu nếu cần
-            user.Password = TechNova.Helpers.PasswordHelper.Hash(user.Password);
+            user.Password = PasswordHelper.Hash(user.Password);
 
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -61,7 +62,7 @@ public class AdminUsersController : Controller
             // Nếu có chỉnh sửa mật khẩu thì mã hóa lại
             if (!string.IsNullOrWhiteSpace(user.Password))
             {
-                existingUser.Password = TechNova.Helpers.PasswordHelper.Hash(user.Password);
+                existingUser.Password = PasswordHelper.Hash(user.Password);
             }
 
             _context.SaveChanges();
@@ -79,4 +80,25 @@ public class AdminUsersController : Controller
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
+    [HttpPost]
+    public IActionResult ToggleStatus(int id)
+    {
+        var user = _context.Users.Find(id);
+        if (user == null)
+            return Json(new { success = false });
+
+        user.IsActive = !user.IsActive;
+        _context.SaveChanges();
+        return Json(new { success = true, newStatus = user.IsActive });
+    }
+    public IActionResult DetailPartial(int id)
+    {
+        var user = _context.Users.FirstOrDefault(u => u.UserId == id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return PartialView("~/Views/Admin/AdminUsers/_UserDetailPartial.cshtml", user);
+    }
+
 }

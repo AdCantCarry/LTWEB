@@ -1,9 +1,10 @@
-﻿@model IEnumerable<TechNova.Models.Category>
+﻿@using TechNova.Models.Core
+@model IEnumerable<Category>
 @{
-    ViewData["Title"] = "Product Categories";
+    ViewData["Title"] = "Danh mục sản phẩm";
     var categoryStats = ViewBag.CategoryStats as Dictionary<int, int> ?? new();
     var searchQuery = ViewBag.SearchQuery as string ?? "";
-
+    var categoryPrices = ViewBag.CategoryPrices as Dictionary<int, (decimal Min, decimal Max)> ?? new();
 }
 
 @section Styles {
@@ -11,20 +12,36 @@
 }
 
 <div class="category-container">
-    <h2 class="category-title">Product Categories</h2>
+    <h2 class="category-title">Danh mục sản phẩm</h2>
 
     <div class="category-grid">
         @foreach (var cat in Model)
         {
             <div class="category-card">
-                <img src="@cat.SvgUrl" alt="@cat.Name" class="category-icon" />
+                <img src="@cat.MainImageUrl" alt="@cat.Name" class="category-icon" />
 
                 <div class="category-info">
                     <div class="category-name">@cat.Name</div>
-                    <!-- Vòng tròn góc phải -->
-                    <div class="product-count-circle">
-                        @categoryStats.GetValueOrDefault(cat.CategoryId, 0)
-                    </div>
+
+                    @if (!string.IsNullOrEmpty(cat.Description))
+                    {
+                        <div class="category-desc text-muted small">
+                            @cat.Description
+                        </div>
+                    }
+                    @if (categoryPrices.ContainsKey(cat.CategoryId))
+                    {
+                        var price = categoryPrices[cat.CategoryId];
+                        <div class="price-range">
+                            @($"{price.Min:N0}₫ - {price.Max:N0}₫")
+                        </div>
+                    }
+                   
+                </div>
+
+
+                <div class="product-count-circle">
+                    @categoryStats.GetValueOrDefault(cat.CategoryId, 0)
                 </div>
             </div>
         }

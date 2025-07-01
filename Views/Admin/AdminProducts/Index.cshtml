@@ -1,6 +1,7 @@
-﻿@model X.PagedList.IPagedList<TechNova.Models.Product>
-@using X.PagedList.Mvc.Core
+﻿@model X.PagedList.IPagedList<Product>
 @using TechNova.Models
+@using TechNova.Models.Core
+@using X.PagedList.Mvc.Core
 
 @{
     ViewData["Title"] = "Quản lý Sản phẩm";
@@ -10,21 +11,17 @@
     string search = ViewBag.Search as string;
     int? selectedCategoryId = ViewBag.CategoryId as int?;
     string status = ViewBag.Status as string;
-    var selectedTrue = status == "true" ? "selected" : "";
-    var selectedFalse = status == "false" ? "selected" : "";
+
 }
 
 <form id="filterForm" method="get" class="d-flex gap-2 mb-3">
     <select name="categoryId" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 160px;">
         <option value="">-- Tất cả danh mục --</option>
-        @if (categories != null)
+        @foreach (var cat in categories ?? new List<Category>())
         {
-            foreach (var cat in categories)
-            {
-                <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId ? "selected" : null)">
-                    @cat.Name
-                </option>
-            }
+            <option value="@cat.CategoryId" selected="@(selectedCategoryId == cat.CategoryId ? "selected" : null)">
+                @cat.Name
+            </option>
         }
     </select>
 
@@ -34,7 +31,7 @@
         <option value="false" selected="@(status == "false")">Ngừng bán</option>
     </select>
 
-    <input type="text" name="search" placeholder="🔍 Tìm tên sản phẩm..." value="@search"
+    <input type="text" name="search" placeholder="🔍 Tìm sản phẩm..." value="@search"
            class="form-control form-control-sm" style="max-width: 200px;"
            oninput="clearTimeout(window.searchTimer); window.searchTimer = setTimeout(() => this.form.submit(), 500);" />
 
@@ -46,11 +43,9 @@
         <tr>
             <th>Sản phẩm</th>
             <th>Danh mục</th>
+            <th>Thương hiệu</th>
             <th>Giá</th>
-            <th>% Giảm</th>
             <th>Tồn kho</th>
-            <th>Màu</th>
-            <th>Lưu trữ</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
         </tr>
@@ -61,43 +56,42 @@
             <tr>
                 <td>
                     <div class="d-flex align-items-center gap-2">
-                        <img src="@item.MainImageUrl" alt="@item.Name" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" />
+                        <img src="@item.MainImageUrl" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;" />
                         <span>@item.Name</span>
                     </div>
                 </td>
                 <td>@item.Category?.Name</td>
-                <td>@item.Price.ToString("N0") ₫</td>
-                <td>@(item.DiscountPercent.HasValue ? item.DiscountPercent.Value + "%" : "-")</td>
+                <td>@item.Brand?.Name</td>
+                <td>
+                    @if (item.DiscountPercent > 0)
+                    {
+                        var discount = item.DiscountPercent ?? 0;
+                        var discountedPrice = item.Price * (1 - (decimal)discount / 100);
+
+                        <div>
+                            <span class="text-muted text-decoration-line-through me-2">@item.Price.ToString("N0") ₫</span>
+                            <span class="text-danger fw-bold">@discountedPrice.ToString("N0") ₫</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>@item.Price.ToString("N0") ₫</span>
+                    }
+                </td>
+
+
                 <td>@item.StockQuantity</td>
                 <td>
-                    @if (item.HasColor)
-                    {
-                        <span class="badge bg-info">Có</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-secondary">Không</span>
-                    }
-                </td>
-                <td>
-                    @if (item.HasStorage)
-                    {
-                        <span class="badge bg-info">Có</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-secondary">Không</span>
-                    }
-                </td>
-                <td>
-                    @if (item.IsActive)
-                    {
-                        <span class="badge bg-success">Đang bán</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-secondary">Ngừng bán</span>
-                    }
+                    <button class="btn btn-sm toggle-status-btn" data-id="@item.ProductId" data-status="@item.IsActive">
+                        @if (item.IsActive)
+                        {
+                            <i class="bi bi-eye-fill text-success fs-5"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-eye-slash-fill text-secondary fs-5"></i>
+                        }
+                    </button>
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-warning btn-sm">✏️</a>
@@ -105,6 +99,7 @@
                        onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">🗑️</a>
                 </td>
             </tr>
+
         }
     </tbody>
 </table>
@@ -121,17 +116,39 @@
         {
             UlElementClasses = new[] { "pagination" },
             LiElementClasses = new[] { "page-item" },
-            PageClasses = new[] { "page-link" },
-            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-            DisplayLinkToLastPage = PagedListDisplayMode.Always,
-            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-            DisplayLinkToIndividualPages = true,
-            Display = PagedListDisplayMode.IfNeeded
+            PageClasses = new[] { "page-link" }
         })
 </div>
 
 @section Scripts {
+    <script>
+        document.querySelectorAll('.toggle-status-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const productId = this.dataset.id;
+
+                fetch(`/AdminProducts/ToggleStatus/${productId}`, {
+                    method: 'POST'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const icon = this.querySelector('i');
+                            if (data.newStatus) {
+                                icon.classList.remove('bi-eye-slash-fill', 'text-secondary');
+                                icon.classList.add('bi-eye-fill', 'text-success');
+                            } else {
+                                icon.classList.remove('bi-eye-fill', 'text-success');
+                                icon.classList.add('bi-eye-slash-fill', 'text-secondary');
+                            }
+                            this.dataset.status = data.newStatus;
+                        } else {
+                            alert("Đã xảy ra lỗi khi cập nhật trạng thái.");
+                        }
+                    });
+            });
+        });
+    </script>
+
     <script>
         let typingTimer;
         const form = document.getElementById("filterForm");

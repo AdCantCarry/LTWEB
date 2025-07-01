@@ -1,0 +1,50 @@
+﻿@model TechNova.Models.Auth.User
+
+<div class="row g-3">
+    <div class="col-md-4 text-center">
+        <img src="@Model.AvatarUrl" class="img-thumbnail rounded-circle mb-2" style="width: 120px; height: 120px; object-fit: cover;" />
+        <h5 class="mt-2 fw-bold">@Model.Username</h5>
+        <div class="text-muted">#@Model.UserId</div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-borderless table-sm">
+            <tr>
+                <th>Email:</th>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>SĐT:</th>
+                <td>@(string.IsNullOrWhiteSpace(Model.PhoneNumber) ? "Chưa có" : Model.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <th>Vai trò:</th>
+                <td>@Model.Role</td>
+            </tr>
+            <tr>
+                <th>Ngày sinh:</th>
+                <td>@(Model.BirthDate?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</td>
+            </tr>
+            <tr>
+                <th>Địa chỉ:</th>
+                <td>@(Model.Address ?? "Chưa có")</td>
+            </tr>
+            <tr>
+                <th>Ngày tạo:</th>
+                <td>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+            <tr>
+                <th>Trạng thái:</th>
+                <td>
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge bg-success">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Đã khóa</span>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

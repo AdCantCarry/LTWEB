@@ -1,4 +1,5 @@
-﻿@model TechNova.Models.Category
+﻿@using TechNova.Models.Core
+@model Category
 @{
     ViewData["Title"] = "Thêm danh mục";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -18,6 +19,12 @@
         <input asp-for="MainImageUrl" class="form-control" />
         <span asp-validation-for="MainImageUrl" class="text-danger"></span>
     </div>
+    <div class="form-box">
+        <label asp-for="Description" class="form-label">Mô tả danh mục</label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
     <div class="form-group">
         <label asp-for="SvgUrl">Svg danh mục (URL)</label>
         <input asp-for="SvgUrl" class="form-control" />

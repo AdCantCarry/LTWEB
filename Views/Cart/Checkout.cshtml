@@ -1,74 +1,194 @@
-﻿@model TechNova.ViewModels.Checkout
+﻿@using TechNova.Models.Core
+@model Checkout
 @{
     ViewData["Title"] = "Thanh toán";
+    var defaultAddr = ViewBag.DefaultAddress as Address;
 }
 
 <div class="checkout-wrapper">
-@if (Model.CartItems.Count == 0)
-{
-    <p>Không có sản phẩm trong giỏ hàng.</p>
-}
-else
-{
-    <form asp-action="ConfirmOrder" method="post">
-        <h4>📦 Sản phẩm</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Ảnh</th>
-                    <th>Tên</th>
-                    <th>Phân loại</th>
-                    <th>Số lượng</th>
-                    <th>Giá</th>
-                    <th>Tổng</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.CartItems)
-                {
+    @if (Model.CartItems.Count == 0)
+    {
+        <p>Không có sản phẩm trong giỏ hàng.</p>
+    }
+    else
+    {
+        <form asp-action="ConfirmOrder" method="post">
+            <h4>📦 Sản phẩm</h4>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td data-label="Ảnh"><img src="@item.ImageUrl" width="60" /></td>
-                        <td data-label="Tên">@item.Name</td>
-                        <td data-label="Phân loại">@item.Color - @item.Storage</td>
-                        <td data-label="Số lượng">@item.Quantity</td>
-                        <td data-label="Giá">@item.Price.ToString("N0")₫</td>
-                        <td data-label="Tổng">@item.TotalPrice.ToString("N0")₫</td>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th>Phân loại</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td><img src="@item.ImageUrl" width="60" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.Color - @item.Storage</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price.ToString("N0")₫</td>
+                            <td>@item.TotalPrice.ToString("N0")₫</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-        <h4>🚚 Địa chỉ giao hàng</h4>
-        <select name="SelectedAddressId" class="form-control mb-3" required>
-            @foreach (var addr in Model.Addresses)
-            {
-                <option value="@addr.AddressId" selected="@(addr.IsDefault ? "selected" : null)">
-                    @addr.FullName - @addr.Phone | @addr.Street, @addr.Ward, @addr.District, @addr.City
-                    @(addr.IsDefault ? "(Mặc định)" : "")
-                </option>
-            }
-        </select>
+            <h4>🚚 Địa chỉ giao hàng</h4>
 
-        <h4>💳 Phương thức thanh toán</h4>
-        <div class="mb-3">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="PaymentMethod" value="COD" checked />
-                <label class="form-check-label">Thanh toán khi nhận hàng (COD)</label>
+            @if (Model.Addresses != null && Model.Addresses.Any())
+{
+            <div class="mb-3">
+                <label for="SelectedAddressId" class="form-label fw-bold">Chọn địa chỉ giao hàng:</label>
+                <select name="SelectedAddressId" class="form-select" required>
+                    @foreach (var addr in Model.Addresses)
+                    {
+                                    <option value="@addr.AddressId" selected="@(addr.IsDefault ? "selected" : null)">
+                                        @addr.FullName - @addr.Phone | @addr.Street, @addr.Ward, @addr.District, @addr.City
+                                        @(addr.IsDefault ? "(Mặc định)" : "")
+                                    </option>
+                    }
+                </select>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="PaymentMethod" value="Momo" />
-                <label class="form-check-label">Thanh toán qua Momo</label>
+        }
+
+            <div id="add-address-toggle" class="text-end mb-3">
+                <button type="button" class="btn btn-outline-primary" id="showAddAddressBtn">➕ Thêm địa chỉ mới</button>
             </div>
-        </div>
 
-        <h4>💰 Tổng cộng</h4>
-        <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
-        <p>Tổng thanh toán: <strong class="text-danger">@Model.Total.ToString("N0")₫</strong></p>
+            <div id="add-address-form" class="address-form @(Model.Addresses.Any() ? "d-none" : "")">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label>Họ và tên người nhận</label>
+                        <input type="text" name="FullName" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label>Số điện thoại</label>
+                        <input type="tel" name="Phone" class="form-control" />
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <label>Số nhà, tên đường</label>
+                        <input type="text" name="Street" class="form-control" />
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label>Tỉnh / Thành phố</label>
+                        <select id="city" name="City" class="form-control" required>
+                            <option value="">-- Chọn tỉnh/thành --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label>Quận / Huyện</label>
+                        <select id="district" name="District" class="form-control" required disabled>
+                            <option value="">-- Chọn quận/huyện --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label>Phường / Xã</label>
+                        <select id="ward" name="Ward" class="form-control" required disabled>
+                            <option value="">-- Chọn phường/xã --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-        <button type="submit" class="btn btn-success mt-3">Xác nhận đặt hàng</button>
-    </form>
-}
+
+            <h4>💳 Phương thức thanh toán</h4>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="COD" checked />
+                    <label class="form-check-label">Thanh toán khi nhận hàng (COD)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Momo" />
+                    <label class="form-check-label">Thanh toán qua Momo</label>
+                </div>
+            </div>
+
+            <h4>💰 Tổng cộng</h4>
+            <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
+            <p>Tổng thanh toán: <strong class="text-danger">@Model.Total.ToString("N0")₫</strong></p>
+
+            <button type="submit" class="btn btn-success mt-3">Xác nhận đặt hàng</button>
+        </form>
+    }
 </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("showAddAddressBtn");
+            const form = document.getElementById("add-address-form");
+            btn?.addEventListener("click", function () {
+                form.classList.toggle("d-none");
+            });
+
+            const citySelect = document.getElementById("city");
+            const districtSelect = document.getElementById("district");
+            const wardSelect = document.getElementById("ward");
+
+            fetch("https://provinces.open-api.vn/api/?depth=1")
+                .then(res => res.json())
+                .then(cities => {
+                    cities.forEach(city => {
+                        const opt = document.createElement("option");
+                        opt.value = city.name;
+                        opt.textContent = city.name;
+                        opt.dataset.code = city.code;
+                        citySelect.appendChild(opt);
+                    });
+                });
+
+            citySelect.addEventListener("change", () => {
+                const selectedCode = citySelect.options[citySelect.selectedIndex].dataset.code;
+                if (!selectedCode) return;
+
+                districtSelect.innerHTML = `<option value="">-- Chọn quận/huyện --</option>`;
+                wardSelect.innerHTML = `<option value="">-- Chọn phường/xã --</option>`;
+                districtSelect.disabled = true;
+                wardSelect.disabled = true;
+
+                fetch(`https://provinces.open-api.vn/api/p/${selectedCode}?depth=2`)
+                    .then(res => res.json())
+                    .then(data => {
+                        data.districts.forEach(d => {
+                            const opt = document.createElement("option");
+                            opt.value = d.name;
+                            opt.textContent = d.name;
+                            opt.dataset.code = d.code;
+                            districtSelect.appendChild(opt);
+                        });
+                        districtSelect.disabled = false;
+                    });
+            });
+
+            districtSelect.addEventListener("change", () => {
+                const selectedCode = districtSelect.options[districtSelect.selectedIndex].dataset.code;
+                if (!selectedCode) return;
+
+                wardSelect.innerHTML = `<option value="">-- Chọn phường/xã --</option>`;
+                wardSelect.disabled = true;
+
+                fetch(`https://provinces.open-api.vn/api/d/${selectedCode}?depth=2`)
+                    .then(res => res.json())
+                    .then(data => {
+                        data.wards.forEach(w => {
+                            const opt = document.createElement("option");
+                            opt.value = w.name;
+                            opt.textContent = w.name;
+                            wardSelect.appendChild(opt);
+                        });
+                        wardSelect.disabled = false;
+                    });
+            });
+        });
+    </script>
+}
+
 
 <style>
 .checkout-wrapper{
