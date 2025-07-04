@@ -128,7 +128,11 @@ namespace TechNova.Controllers
         {
             var product = _context.Products
             .Include(p => p.Brand)
+            .Include(p => p.ProductSpecifications)
+                .ThenInclude(ps => ps.SpecificationItem)
+                    .ThenInclude(i => i.Group)
             .FirstOrDefault(p => p.ProductId == id);
+
 
             if (product == null) return NotFound();
 

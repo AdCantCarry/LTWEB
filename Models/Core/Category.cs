@@ -10,6 +10,7 @@
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool IsActive { get; set; } = true;
+        public ICollection<SpecificationGroup> SpecificationGroups { get; set; } = new List<SpecificationGroup>();
 
         // Navigation
         public List<Product>? Products { get; set; }

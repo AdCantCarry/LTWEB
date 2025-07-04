@@ -17,13 +17,35 @@ namespace TechNova.Models.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<SpecificationGroup> SpecificationGroups { get; set; }
+        public DbSet<SpecificationItem> SpecificationItems { get; set; }
+        public DbSet<ProductSpecification> ProductSpecifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // ⚠ Tránh cascade path gây vòng lặp
+            modelBuilder.Entity<SpecificationGroup>()
+        .HasOne(g => g.Category)
+        .WithMany(c => c.SpecificationGroups)
+        .HasForeignKey(g => g.CategoryId);
 
+            modelBuilder.Entity<SpecificationItem>()
+                .HasOne(i => i.Group)
+                .WithMany(g => g.Items)
+                .HasForeignKey(i => i.GroupId);
+
+            modelBuilder.Entity<ProductSpecification>()
+                .HasOne(p => p.Product)
+                .WithMany(p => p.Specifications)
+                .HasForeignKey(p => p.ProductId)
+                .OnDelete(DeleteBehavior.Restrict); // ✅ Tắt cascade ở đây
+
+            modelBuilder.Entity<ProductSpecification>()
+                .HasOne(p => p.SpecificationItem)
+                .WithMany(i => i.ProductSpecifications)
+                .HasForeignKey(p => p.SpecificationItemId);
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany()

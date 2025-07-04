@@ -45,5 +45,9 @@ namespace TechNova.Models.Core
         public bool IsActive { get; set; } = true; // Đang bán hay ngừng bán
 
         public DateTime? UpdatedAt { get; set; }
+        public ICollection<ProductSpecification> Specifications { get; set; } = new List<ProductSpecification>();
+        public ICollection<ProductSpecification> ProductSpecifications { get; set; } = new List<ProductSpecification>();
+
+
     }
 }

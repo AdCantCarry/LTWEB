@@ -1,0 +1,38 @@
+﻿@using TechNova.Models.Core
+@model TechNova.Models.Core.Product
+@{
+    ViewData["Title"] = "Chỉnh sửa thông số kỹ thuật";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var groups = ViewBag.Groups as List<SpecificationGroup>;
+}
+
+<h2 class="mb-4 fw-bold">Thông số kỹ thuật: @Model.Name</h2>
+
+<form asp-action="EditProductSpecs" method="post">
+    <input type="hidden" asp-for="ProductId" />
+
+    @foreach (var group in groups)
+    {
+        <div class="mb-4">
+            <h5 class="fw-bold">@group.GroupName</h5>
+            <div class="row">
+                @foreach (var item in group.Items)
+                {
+                    var value = Model.Specifications
+                    ?.FirstOrDefault(s => s.SpecificationItemId == item.SpecificationItemId)
+                    ?.Value ?? "";
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <label>@item.Name</label>
+                            <input name="spec_@item.SpecificationItemId" class="form-control" value="@value" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">💾 Lưu</button>
+    <a href="/AdminProducts" class="btn btn-secondary">⬅️ Quay lại</a>
+</form>

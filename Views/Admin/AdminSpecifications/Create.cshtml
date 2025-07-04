@@ -1,0 +1,99 @@
+﻿@using TechNova.Models.Core
+@model SpecificationGroup
+
+@{
+    ViewData["Title"] = "➕ Thêm nhóm thông số kỹ thuật";
+    var categories = ViewBag.Categories as List<Category> ?? new();
+    var selectedCategoryId = ViewBag.SelectedCategoryId as int? ?? 0;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-container">
+    <h2 class="form-title">@ViewData["Title"]</h2>
+
+    <form asp-action="CreateGroup" method="post">
+        <div class="form-group">
+            <label asp-for="GroupName">Tên nhóm</label>
+            <input asp-for="GroupName" class="form-control" />
+            <span asp-validation-for="GroupName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DisplayOrder">Thứ tự hiển thị</label>
+            <input asp-for="DisplayOrder" class="form-control" type="number" min="0" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CategoryId">Danh mục</label>
+            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(categories, "CategoryId", "Name", selectedCategoryId))">
+                <option value="">-- Chọn danh mục --</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <hr />
+        <h5>Thông số trong nhóm</h5>
+        <div id="spec-items-container">
+            <!-- Template item đầu tiên -->
+            <div class="spec-item-row d-flex gap-2 mb-2">
+                <input name="Items[0].ItemName" class="form-control" placeholder="Tên thông số" required />
+                <input name="Items[0].DisplayOrder" type="number" class="form-control" placeholder="Thứ tự" min="0" required />
+                <button type="button" class="btn btn-danger btn-remove-spec">X</button>
+            </div>
+        </div>
+        <button type="button" id="btnAddSpecItem" class="btn btn-outline-primary mt-2">➕ Thêm thông số</button>
+
+        <div class="btn-group mt-4">
+            <button type="submit" class="btn btn-success">✔️ Lưu nhóm</button>
+            <a asp-action="Index" asp-route-categoryId="@selectedCategoryId" class="btn btn-secondary">↩️ Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        let specIndex = 1;
+        document.getElementById("btnAddSpecItem").addEventListener("click", function () {
+            const container = document.getElementById("spec-items-container");
+            const div = document.createElement("div");
+            div.className = "spec-item-row d-flex gap-2 mb-2";
+            div.innerHTML = `
+                <input name="Items[${specIndex}].ItemName" class="form-control" placeholder="Tên thông số" required />
+                <input name="Items[${specIndex}].DisplayOrder" type="number" class="form-control" placeholder="Thứ tự" min="0" required />
+                <button type="button" class="btn btn-danger btn-remove-spec">X</button>`;
+            container.appendChild(div);
+            specIndex++;
+        });
+
+        // Xóa dòng
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("btn-remove-spec")) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .form-container {
+            max-width: 720px;
+            margin: auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
+        .spec-item-row input {
+            flex: 1;
+        }
+    </style>
+}

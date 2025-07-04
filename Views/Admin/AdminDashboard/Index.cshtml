@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Thống kê doanh thu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js" />
+}
+<h2>📈 Biểu đồ doanh thu</h2>
+<div class="mb-5">
+    <canvas id="revenueChart" height="100"></canvas>
+</div>
+<h2>📊 Số đơn hàng mỗi tháng</h2>
+<table class="table table-bordered mt-3" id="orderCountTable">
+    <thead class="table-light">
+        <tr>
+            <th>Tháng</th>
+            <th>Số đơn hàng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dữ liệu sẽ được JS chèn vào -->
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/AdminDashboard/RevenueData")
+                .then(res => res.json())
+                .then(data => {
+                    const months = data.map(x => x.month);
+                    const revenues = data.map(x => x.totalRevenue);
+
+                    const ctx = document.getElementById('revenueChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: months,
+                            datasets: [{
+                                label: 'Doanh thu theo tháng (VNĐ)',
+                                data: revenues,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                fill: true,
+                                pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: true },
+                                tooltip: { mode: 'index', intersect: false }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: value => value.toLocaleString('vi-VN') + '₫'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.error("Lỗi khi tải dữ liệu biểu đồ:", err));
+        });
+            fetch("/AdminDashboard/OrderCountData")
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.querySelector("#orderCountTable tbody");
+            tbody.innerHTML = "";
+
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${row.month}</td><td>${row.orderCount}</td>`;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(err => console.error("Lỗi khi tải số đơn hàng:", err));
+
+    </script>
+}

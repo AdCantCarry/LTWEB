@@ -47,10 +47,26 @@ namespace TechNova.Controllers
             var order = _context.Orders.Find(orderId);
             if (order == null) return NotFound();
 
+            var currentStatus = order.Status;
+            var validTransitions = new Dictionary<string, string>
+    {
+        { "Chờ xác nhận", "Đang xử lý" },
+        { "Đang xử lý", "Đang giao hàng" },
+        { "Đang giao hàng", "Hoàn tất" },
+    };
+
+            if (!validTransitions.ContainsKey(currentStatus) || validTransitions[currentStatus] != status)
+            {
+                TempData["Error"] = $"❌ Không thể chuyển từ trạng thái '{currentStatus}' sang '{status}'!";
+                return RedirectToAction("Details", new { id = orderId });
+            }
+
             order.Status = status;
             _context.SaveChanges();
 
-            return RedirectToAction("Details", new { id = orderId });
+            TempData["Success"] = "✅ Cập nhật trạng thái thành công!";
+            return RedirectToAction("Index"); // ➤ Trở về danh sách đơn hàng
         }
+
     }
 }

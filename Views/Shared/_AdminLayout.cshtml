@@ -12,19 +12,18 @@
 @RenderSection("Styles", required: false)
 <body class="admin-wrapper">
     <nav class="admin-sidebar">
-        <h2>Admin Panel</h2>
-        <ul>
-            <li><a asp-controller="AdminUsers" asp-action="Index">Users</a></li>
-            <li><a asp-controller="AdminProducts" asp-action="Index">Products</a></li>
-            <li><a asp-controller="AdminCategories" asp-action="Index">Categories</a></li>
-            <li><a asp-controller="AdminBrands" asp-action="Index">Brands</a></li>
-            <li><a asp-controller="AdminOrders" asp-action="Index">Orders</a></li>
+        <ul class="sidebar-menu">
+            <li><a asp-controller="AdminDashboard" asp-action="Index"><i class="bi bi-bar-chart-line"></i><span> Dashboards</span></a></li>
+            <li><a asp-controller="AdminUsers" asp-action="Index"><i class="bi bi-people"></i><span> Users</span></a></li>
+            <li><a asp-controller="AdminProducts" asp-action="Index"><i class="bi bi-box-seam"></i><span> Products</span></a></li>
+            <li><a asp-controller="AdminCategories" asp-action="Index"><i class="bi bi-tags"></i><span> Categories</span></a></li>
+            <li><a asp-controller="AdminBrands" asp-action="Index"><i class="bi bi-building"></i><span> Brands</span></a></li>
+            <li><a asp-controller="AdminOrders" asp-action="Index"><i class="bi bi-receipt-cutoff"></i><span> Orders</span></a></li>
+            <li><a asp-controller="AdminSpecifications" asp-action="Index"><i class="bi bi-list-check"></i><span> Specs</span></a></li>
         </ul>
-
-        <hr />
-
-        <!-- Nút quay về trang chủ -->
-        <a href="/" class="btn-home-link">← Trang chủ</a>
+        <div class="sidebar-footer">
+            <a href="/"><i class="bi bi-house-door"></i><span> Trang chủ</span></a>
+        </div>
     </nav>
 
     <main class="admin-content-wrapper">
@@ -36,13 +35,31 @@
             </div>
         </header>
 
-        <div class="admin-content">
+        <div id="admin-content">
             @RenderBody()
         </div>
     </main>
 
 
 
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu a').on('click', function (e) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+                $('#admin-content').load(url + ' #admin-content > *'); // chỉ lấy phần nội dung
+
+                // Optional: Highlight active menu
+                $('.sidebar-menu a').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+}

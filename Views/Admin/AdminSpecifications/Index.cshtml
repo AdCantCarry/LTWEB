@@ -1,0 +1,101 @@
+﻿@using TechNova.Models.Core
+@model List<SpecificationGroup>
+
+@{
+    ViewData["Title"] = "Quản lý Thông số kỹ thuật";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var categories = ViewBag.Categories as List<Category> ?? new();
+    var selectedId = ViewBag.SelectedCategoryId as int?;
+}
+
+
+<h2 class="text-center fw-bold mb-4">🛠️ Quản lý Thông số kỹ thuật</h2>
+
+<!-- Form chọn danh mục -->
+<form method="get" class="d-flex align-items-center gap-3 mb-4">
+    <label class="form-label mb-0">Danh mục:</label>
+    <select name="categoryId" class="form-select category-select" onchange="this.form.submit()">
+        <option value="">-- Chọn danh mục --</option>
+        @foreach (var cat in categories)
+        {
+             <option value="@cat.CategoryId" selected="@(cat.CategoryId == selectedId)">
+                @cat.Name
+            </option>
+        }
+    </select>
+
+    @if (selectedId != null)
+    {
+        <a asp-action="CreateGroup" asp-route-categoryId="@selectedId" class="btn btn-success btn-add-group">
+            ➕ Thêm nhóm mới
+        </a>
+    }
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">Vui lòng chọn danh mục để xem hoặc thêm thông số kỹ thuật.</div>
+}
+else
+{
+    @foreach (var group in Model)
+    {
+        <div class="spec-group-card">
+            <h5 class="group-title">@group.GroupName</h5>
+
+            @if (group.Items != null && group.Items.Any())
+            {
+                <ul class="spec-item-list">
+                    @foreach (var item in group.Items)
+                    {
+                        <li>
+                            <strong>@item.ItemName</strong> - (Thứ tự: @item.DisplayOrder)
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">Chưa có thông số trong nhóm này.</p>
+            }
+
+            <a href="/AdminSpecifications/EditGroup/@group.SpecificationGroupId" class="btn btn-sm btn-warning">✏️ Sửa nhóm</a>
+        </div>
+    }
+
+}
+
+@section Styles {
+    <style>
+        .group-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+            .group-box h5 {
+                font-weight: 600;
+                margin-bottom: 12px;
+            }
+
+            .group-box ul {
+                padding-left: 20px;
+                margin-bottom: 12px;
+            }
+
+            .group-box li {
+                line-height: 1.6;
+            }
+
+        .category-select {
+            max-width: 250px;
+        }
+
+        .btn-add-group {
+            font-weight: 500;
+        }
+    </style>
+}

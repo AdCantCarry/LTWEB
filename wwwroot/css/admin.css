@@ -1,66 +1,110 @@
-﻿/* === CẤU TRÚC ADMIN === */
+﻿/* === CẤU TRÚC CHUNG === */
 .admin-wrapper {
     display: flex;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f2f4f8;
+    background-color: #f5f7fb;
 }
 
+/* === SIDEBAR === */
 .admin-sidebar {
-    width: 240px;
-    background-color: #1f1f2e;
-    color: white;
-    padding: 2rem 1rem;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
+    width: 60px;
+    background-color: #1e1e2f;
+    color: #fff;
     height: 100vh;
-    overflow-y: auto;
-    z-index: 1000;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transition: width 0.3s ease;
+    z-index: 100;
+    overflow: hidden;
 }
+
+    .admin-sidebar:hover {
+        width: 220px;
+    }
 
     .admin-sidebar h2 {
-        font-size: 1.4rem;
         text-align: center;
-        border-bottom: 1px solid #444;
-        padding-bottom: 1rem;
-        margin-bottom: 2rem;
+        font-size: 1.3rem;
+        margin: 1rem 0;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
     }
 
-    .admin-sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    .admin-sidebar:hover h2 {
+        opacity: 1;
     }
 
-        .admin-sidebar ul li {
-            margin: 1rem 0;
-        }
-
-    .admin-sidebar a {
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        display: block;
-        border-radius: 6px;
-        transition: background 0.2s;
-    }
-
-        .admin-sidebar a:hover,
-        .admin-sidebar a.active {
-            background-color: #2c2c3f;
-        }
-
-/* === PHẦN NỘI DUNG === */
-.admin-content-wrapper {
-    flex: 1;
-    padding: 2rem;
-    min-height: 100vh;
-    box-sizing: border-box;
+/* MENU + FOOTER */
+.sidebar-menu,
+.sidebar-footer {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
+    .sidebar-menu li {
+        display: block;
+    }
 
-/* HEADER */
+        .sidebar-menu li a,
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.25s;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+            .sidebar-menu li a:hover,
+            .sidebar-footer a:hover {
+                background-color: #2c2c45;
+            }
+
+.admin-sidebar i {
+    font-size: 1.1rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Ẩn chữ khi thu gọn */
+.admin-sidebar span {
+    display: none;
+}
+
+.admin-sidebar:hover span {
+    display: inline;
+}
+
+/* Nút trang chủ dưới cùng */
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid #444;
+}
+
+/* === PHẦN NỘI DUNG CHÍNH === */
+.admin-content-wrapper {
+    margin-left: 60px;
+    flex: 1;
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+}
+
+.admin-sidebar:hover ~ .admin-content-wrapper {
+    margin-left: 220px;
+}
+
+/* === HEADER === */
 .admin-header {
     display: flex;
     justify-content: space-between;
@@ -68,7 +112,7 @@
     margin-bottom: 2rem;
     padding: 1rem 1.5rem;
     background-color: white;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-left: 4px solid #007bff;
 }
@@ -89,18 +133,17 @@
     background-color: #f7f7f9;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
     .admin-user-info img {
-        height: 42px;
-        width: 42px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #ccc;
     }
 
-/* === FILTER BAR === */
+/* === BẢNG VÀ LỌC === */
 .admin-filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -111,20 +154,19 @@
 
     .admin-filter-bar select,
     .admin-filter-bar input[type="text"] {
-        height: 48px;
+        height: 44px;
         padding: 0 1rem;
         border: 1px solid #ccc;
         border-radius: 6px;
         font-size: 1rem;
-        min-width: 200px;
-        flex: 1;
+        min-width: 180px;
     }
 
     .admin-filter-bar button,
     .admin-filter-bar a.btn {
-        height: 48px;
+        height: 44px;
         font-size: 1rem;
-        padding: 0 1.5rem;
+        padding: 0 1.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -135,7 +177,6 @@
         margin-left: auto;
     }
 
-/* === TABLE === */
 table.table {
     width: 100%;
     background-color: white;
@@ -156,29 +197,36 @@ table.table {
     padding: 0.75rem 1rem;
     vertical-align: middle;
     color: #444;
+    font-size: 0.95rem;
 }
 
-/* === PRODUCT NAME/IMG === */
-.product-info-cell {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-    .product-info-cell img {
-        width: 45px;
-        height: 45px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .admin-wrapper {
+        flex-direction: column;
     }
 
-.table th, .table td {
-    padding: 0.5rem 0.75rem;
-    vertical-align: middle;
-    font-size: 0.92rem;
-}
+    .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
 
+        .admin-sidebar ul {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+    .admin-content-wrapper {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 
 /* === BUTTONS === */
 .btn {
@@ -189,14 +237,11 @@ table.table {
     transition: background 0.2s;
 }
 
-.btn-success {
-    background-color: #28a745;
-    color: white;
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    margin-right: 0.3rem;
 }
-
-    .btn-success:hover {
-        background-color: #218838;
-    }
 
 .btn-primary {
     background-color: #007bff;
@@ -205,6 +250,15 @@ table.table {
 
     .btn-primary:hover {
         background-color: #0069d9;
+    }
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
     }
 
 .btn-danger {
@@ -216,89 +270,7 @@ table.table {
         background-color: #c82333;
     }
 
-.btn-warning {
-    background-color: #ffc107;
-    color: black;
-}
-
-    .btn-warning:hover {
-        background-color: #e0a800;
-    }
-
-.btn-sm {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.875rem;
-    margin-right: 0.3rem;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    .admin-wrapper {
-        flex-direction: column;
-    }
-
-    .admin-sidebar {
-        width: 100%;
-        position: relative;
-        height: auto;
-    }
-
-        .admin-sidebar ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-    .admin-content-wrapper {
-        padding: 1rem;
-    }
-
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .admin-filter-bar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-        .admin-filter-bar .btn-success {
-            margin-left: 0;
-            margin-top: 0.5rem;
-        }
-}
-
-.pagination {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-    gap: 4px;
-}
-
-    .pagination li {
-        display: inline;
-    }
-
-    .pagination .page-link {
-        display: inline-block;
-        padding: 6px 12px;
-        background: #eee;
-        border: 1px solid #ccc;
-        text-decoration: none;
-        color: #333;
-        border-radius: 4px;
-    }
-
-    .pagination .active .page-link {
-        background-color: #007bff;
-        color: white;
-        border-color: #007bff;
-    }
-.text-decoration-line-through {
-    text-decoration: line-through;
-}
-
+/* === EXTRA === */
 .text-danger {
     color: #dc3545 !important;
 }
@@ -306,6 +278,7 @@ table.table {
 .fw-bold {
     font-weight: 600 !important;
 }
+
 .badge {
     padding: 5px 10px;
     border-radius: 6px;

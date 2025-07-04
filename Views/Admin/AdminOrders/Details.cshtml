@@ -2,6 +2,7 @@
 @model Order
 
 @{
+    var currentStatus = Model.Status;
     ViewData["Title"] = "Chi tiết đơn hàng";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -57,19 +58,33 @@ else
 
 <h4 class="text-end text-danger">Tổng cộng: @Model.TotalAmount.ToString("N0")₫</h4>
 
-<form asp-action="UpdateStatus" method="post" class="mt-4">
-    <input type="hidden" name="orderId" value="@Model.OrderId" />
-    <div class="form-group">
-        <label for="status">Cập nhật trạng thái:</label>
-        <select name="status" class="form-control w-25 d-inline-block">
-            <option selected>@Model.Status</option>
-            <option value="Đang xử lý">Đang xử lý</option>
-            <option value="Đang giao hàng">Đang giao hàng</option>
-            <option value="Hoàn tất">Hoàn tất</option>
-            <option value="Đã huỷ">Đã huỷ</option>
-        </select>
-        <button type="submit" class="btn btn-success ms-2">Cập nhật</button>
-    </div>
-</form>
+@{
+    var nextStatus = currentStatus switch
+    {
+        "Chờ xác nhận" => "Đang xử lý",
+        "Đang xử lý" => "Đang giao hàng",
+        "Đang giao hàng" => "Hoàn tất",
+        _ => null
+    };
+}
+
+@if (nextStatus != null)
+{
+    <form asp-action="UpdateStatus" method="post" class="mt-4">
+        <input type="hidden" name="orderId" value="@Model.OrderId" />
+        <input type="hidden" name="status" value="@nextStatus" />
+        <div class="form-group">
+            <label>Trạng thái hiện tại: <strong>@currentStatus</strong></label><br />
+            <button type="submit" class="btn btn-warning mt-2">
+                Cập nhật sang: <strong>@nextStatus</strong>
+            </button>
+        </div>
+    </form>
+}
+else
+{
+    <p><span class="badge bg-success">✅ Đơn hàng đã hoàn tất hoặc không thể cập nhật thêm.</span></p>
+}
+
 
 <a asp-action="Index" class="btn btn-secondary mt-3">← Quay lại</a>
