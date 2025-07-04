@@ -1,4 +1,5 @@
-﻿@model TechNova.Models.UserProfileViewModel
+﻿@using TechNova.Models.ViewModels
+@model UserProfileViewModel
 @{
     ViewData["Title"] = "Hồ sơ cá nhân";
 }
@@ -248,12 +249,16 @@
                 });
             });
 
-                    document.getElementById("showAddAddressBtn")?.addEventListener("click", function () {
+                            document.getElementById("showAddAddressBtn")?.addEventListener("click", function () {
             const form = document.getElementById("add-address-form");
-            const isHidden = window.getComputedStyle(form).display === "none";
-            form.style.display = isHidden ? "block" : "none";
-        });
+            const isHidden = form.classList.contains("d-none");
 
+            if (isHidden) {
+                form.classList.remove("d-none");
+            } else {
+                form.classList.add("d-none");
+            }
+        });
 
             const addressForm = document.getElementById("ajaxAddressForm");
             if (addressForm) {

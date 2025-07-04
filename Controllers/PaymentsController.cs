@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechNova.Models;
 using Microsoft.EntityFrameworkCore;
+using TechNova.Models.Core;
+using TechNova.Models.Auth;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {

@@ -1,8 +1,9 @@
-﻿@model IEnumerable<TechNova.Models.Product>
+﻿@using TechNova.Models.Core
+@model IEnumerable<Product>
 @{
     ViewData["Title"] = "Products";
-    var categories = ViewBag.Categories as List<TechNova.Models.Category>;
-    var brands = ViewBag.Brands as List<TechNova.Models.Brand> ?? new();
+    var categories = ViewBag.Categories as List<Category>;
+    var brands = ViewBag.Brands as List<Brand> ?? new();
     var selectedCategoryId = ViewBag.SelectedCategoryId as int?;
     var selectedSort = ViewBag.SelectedSort as string;
     var searchQuery = ViewBag.SearchQuery as string;

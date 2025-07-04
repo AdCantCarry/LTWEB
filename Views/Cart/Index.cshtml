@@ -1,4 +1,5 @@
-﻿@model List<TechNova.Models.CartItem>
+﻿@using TechNova.Models.Core
+@model List<CartItem>
 @{
     ViewData["Title"] = "Giỏ hàng";
     var total = Model.Sum(x => x.TotalPrice);

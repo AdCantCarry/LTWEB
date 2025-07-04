@@ -1,31 +1,109 @@
-﻿@model TechNova.Models.Category
+﻿@using TechNova.Models.Core
+@model Category
 @{
     ViewData["Title"] = "Sửa danh mục";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Sửa danh mục</h2>
+<h2 class="mb-4 text-center fw-bold">Sửa danh mục</h2>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="CategoryId" />
+<div class="edit-category-wrapper">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="CategoryId" />
 
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+        <div class="form-box">
+            <label asp-for="Name" class="form-label">Tên danh mục</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="MainImageUrl">Ảnh đại diện (URL)</label>
-        <input asp-for="MainImageUrl" class="form-control" />
-        <span asp-validation-for="MainImageUrl" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="SvgUrl">Svg danh mục (URL)</label>
-        <input asp-for="SvgUrl" class="form-control" />
-        <span asp-validation-for="SvgUrl" class="text-danger"></span>
-    </div>
+        <div class="form-box">
+            <label asp-for="MainImageUrl" class="form-label">Ảnh đại diện (URL)</label>
+            <input asp-for="MainImageUrl" class="form-control" />
+            <span asp-validation-for="MainImageUrl" class="text-danger"></span>
 
-    <button type="submit" class="btn btn-primary">💾 Lưu</button>
-    <a href="/AdminCategories" class="btn btn-secondary">⬅️ Quay lại</a>
-</form>
+            @if (!string.IsNullOrEmpty(Model.MainImageUrl))
+            {
+                <div class="preview-box mt-2">
+                    <img src="@Model.MainImageUrl" alt="Ảnh danh mục" class="preview-image" />
+                </div>
+            }
+        </div>
+        <div class="form-box">
+            <label asp-for="Description" class="form-label">Mô tả danh mục</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-box">
+            <label asp-for="SvgUrl" class="form-label">SVG/Icon (mã HTML)</label>
+            <input asp-for="SvgUrl" class="form-control" />
+            <span asp-validation-for="SvgUrl" class="text-danger"></span>
+
+            @if (!string.IsNullOrEmpty(Model.SvgUrl))
+            {
+                <div class="preview-box mt-2">
+                    <span>@Html.Raw(Model.SvgUrl)</span>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">💾 Lưu</button>
+            <a href="/AdminCategories" class="btn btn-secondary ms-2">⬅️ Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Styles {
+    <style>
+        .edit-category-wrapper {
+            max-width: 650px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .form-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+            .form-box:hover {
+                border-color: #007bff;
+                background-color: #f0f8ff;
+            }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .preview-box {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .preview-image {
+            max-height: 80px;
+            border-radius: 8px;
+        }
+
+        .text-danger {
+            font-size: 0.875rem;
+        }
+
+        .btn {
+            padding: 8px 16px;
+        }
+    </style>
+}

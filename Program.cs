@@ -1,5 +1,6 @@
-using TechNova.Models;
 using Microsoft.EntityFrameworkCore;
+using TechNova.Models.Auth;
+using TechNova.Models.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();

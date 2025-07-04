@@ -92,7 +92,7 @@
 .products-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 cột cố định */
+    grid-template-columns: repeat(3, 1fr); /* 5 cột cố định */
     gap: 1.5rem;
     align-items: stretch; /* đảm bảo các item cao bằng nhau */
 }

@@ -99,7 +99,9 @@
     padding: 0;
     margin: 0;
 }
-
+#add-address-form.d-none {
+    display: none !important;
+}
 .address-item {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -143,7 +145,6 @@
 
 /* Ẩn form thêm địa chỉ mặc định */
 #add-address-form {
-    display: none;
     margin-top: 1rem;
     border-top: 1px dashed #ccc;
     padding-top: 1rem;

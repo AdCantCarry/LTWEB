@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using TechNova.Helpers;
-using TechNova.Models;
-using TechNova.ViewModels;
+using TechNova.Models.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using TechNova.Models.Core;
+using TechNova.Models.Auth;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {
@@ -176,7 +177,7 @@ namespace TechNova.Controllers
 
 
         [HttpPost]
-        public IActionResult ConfirmOrder(int SelectedAddressId, string PaymentMethod)
+        public IActionResult ConfirmOrder(IFormCollection form, string PaymentMethod)
         {
             var email = HttpContext.Session.GetString("Email");
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
@@ -185,10 +186,44 @@ namespace TechNova.Controllers
             if (user == null || cart == null || !cart.Any())
                 return RedirectToAction("Index", "Cart");
 
+            int selectedAddressId;
+            Address shippingAddress;
+
+            // Nếu có địa chỉ chọn sẵn
+            if (int.TryParse(form["SelectedAddressId"], out selectedAddressId))
+            {
+                shippingAddress = _context.Addresses.FirstOrDefault(a => a.AddressId == selectedAddressId);
+            }
+            else
+            {
+                // Lấy dữ liệu từ form tạo địa chỉ mới
+                shippingAddress = new Address
+                {
+                    UserId = user.UserId,
+                    FullName = form["FullName"],
+                    Phone = form["Phone"],
+                    Street = form["Street"],
+                    Ward = form["Ward"],
+                    District = form["District"],
+                    City = form["City"],
+                    IsDefault = true
+                };
+
+                // Đặt các địa chỉ trước đó không còn là mặc định
+                var existing = _context.Addresses.Where(a => a.UserId == user.UserId);
+                foreach (var addr in existing)
+                {
+                    addr.IsDefault = false;
+                }
+
+                _context.Addresses.Add(shippingAddress);
+                _context.SaveChanges();
+            }
+
             var order = new Order
             {
                 UserId = user.UserId,
-                AddressId = SelectedAddressId,
+                AddressId = shippingAddress.AddressId,
                 CreatedAt = DateTime.Now,
                 TotalAmount = cart.Sum(i => i.TotalPrice),
                 Status = "Pending",
@@ -203,13 +238,12 @@ namespace TechNova.Controllers
             _context.Orders.Add(order);
             _context.SaveChanges();
 
-            // Tạo Payment tương ứng với đơn hàng (COD)
             var payment = new Payment
             {
                 OrderId = order.OrderId,
                 Method = PaymentMethod,
                 Amount = order.TotalAmount,
-                Status = "Chưa thanh toán", // Vì COD
+                Status = "Chưa thanh toán",
                 CreatedAt = DateTime.Now
             };
 
@@ -220,6 +254,7 @@ namespace TechNova.Controllers
 
             return RedirectToAction("Success", new { orderId = order.OrderId });
         }
+
         public IActionResult Success(int orderId)
         {
             var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);

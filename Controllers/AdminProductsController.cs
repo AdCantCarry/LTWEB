@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TechNova.middleware;
-using TechNova.Models;
 using System.Linq;
 using X.PagedList;
 using X.PagedList.Extensions;
+using TechNova.Models.Core;
+using TechNova.Models.Data;
 
 [AdminAuthorize]
 public class AdminProductsController : Controller
@@ -136,6 +137,20 @@ public class AdminProductsController : Controller
         ViewBag.BrandList = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
 
         return View("~/Views/Admin/AdminProducts/Edit.cshtml", product);
+    }
+
+    [HttpPost]
+    public IActionResult ToggleStatus(int id)
+    {
+        var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+        if (product == null)
+            return Json(new { success = false });
+
+        product.IsActive = !product.IsActive;
+        product.UpdatedAt = DateTime.Now;
+        _context.SaveChanges();
+
+        return Json(new { success = true, newStatus = product.IsActive });
     }
 
 

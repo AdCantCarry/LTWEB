@@ -1,31 +1,150 @@
-﻿@model List<User>
+﻿@using TechNova.Models.Auth
+@using TechNova.Models.Core
+@model List<User>
 @{
     ViewData["Title"] = "Quản lý người dùng";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Quản lý Người dùng</h2>
-<a class="btn btn-success" href="/AdminUsers/Create">Thêm người dùng</a>
+<h2 class="mb-4 fw-bold text-center">Quản lý Người dùng</h2>
 
-<table class="table table-bordered mt-3">
-    <thead>
-        <tr><th>ID</th><th>Tên</th><th>Email</th><th>Role</th><th>CreateAt</th><th>IsActive</th></tr>
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Người dùng</th>
+            <th>Liên hệ</th>
+            <th>Vai trò</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
     </thead>
+
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var user in Model)
         {
             <tr>
-                <td>@item.UserId</td>
-                <td>@item.Username</td>
-                <td>@item.Email</td>
-                <td>@item.Role</td>
-                <td>@item.CreatedAt</td>
-                <td>@item.IsActive</td>
+                <!-- Avatar + Tên + ID -->
                 <td>
-                    <a href="/AdminUsers/Edit/@item.UserId" class="btn btn-primary btn-sm">Sửa</a>
-                    <a href="/AdminUsers/Delete/@item.UserId" class="btn btn-danger btn-sm">Xóa</a>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="@user.AvatarUrl" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                        <div>
+                            <div class="fw-bold">@user.Username</div>
+                            <small class="text-muted">#@user.UserId</small>
+                        </div>
+                    </div>
+                </td>
+
+                <!-- Email + SĐT -->
+                <td>
+                    <div><i class="bi bi-envelope"></i> @user.Email</div>
+                    <div><i class="bi bi-telephone"></i> @user.PhoneNumber</div>
+                </td>
+
+                <!-- Role -->
+                <td><span class="badge bg-primary">@user.Role</span></td>
+
+                <!-- Trạng thái -->
+                <td>
+                    @if (user.IsActive)
+                    {
+                        <span class="badge bg-success">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Đã khóa</span>
+                    }
+                </td>
+
+                <!-- Hành động -->
+                <td>
+                    <button class="btn btn-sm btn-outline-danger view-user-detail" data-id="@user.UserId">
+                        <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                    </button>
+
+                    <a href="/AdminUsers/Edit/@user.UserId" class="btn btn-sm btn-warning">✏️</a>
+                    <a href="/AdminUsers/Delete/@user.UserId" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?');">🗑️</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Modal Chi tiết -->
+<div class="user-detail-overlay" id="userOverlay" style="display:none;">
+    <div class="overlay-bg" onclick="closeUserPopup()"></div>
+    <div class="user-detail-popup" onclick="event.stopPropagation();">
+        <div class="popup-header d-flex justify-content-between align-items-center mb-2">
+            <h5 class="m-0">Chi tiết người dùng</h5>
+        </div>
+        <div id="userDetailBody">
+            <div class="text-center text-muted">Đang tải thông tin...</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function closeUserPopup() {
+            document.getElementById('userOverlay').style.display = 'none';
+            document.getElementById('userDetailBody').innerHTML = '<div class="text-center text-muted">Đang tải thông tin...</div>';
+        }
+
+        document.querySelectorAll('.view-user-detail').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const userId = this.dataset.id;
+
+                fetch(`/AdminUsers/DetailPartial/${userId}`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("userDetailBody").innerHTML = html;
+                        document.getElementById("userOverlay").style.display = 'block';
+                    })
+                    .catch(err => {
+                        document.getElementById("userDetailBody").innerHTML = "<div class='text-danger'>Không thể tải dữ liệu.</div>";
+                    });
+            });
+        });
+    </script>
+}
+
+
+@section Styles {
+    <style>
+        .user-detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1055;
+        }
+
+            .user-detail-overlay .overlay-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.6);
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+
+        .user-detail-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 12px;
+            padding: 1.5rem;
+            z-index: 2;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+            cursor: default;    
+        }
+
+        
+    </style>
+}

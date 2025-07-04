@@ -1,105 +1,183 @@
-﻿@model TechNova.Models.Product
+﻿@using TechNova.Models.Core
+@model Product
 
 @{
     ViewData["Title"] = "Chi tiết sản phẩm";
+
     var colorList = (Model.Color ?? "")
-       .Split(',', StringSplitOptions.RemoveEmptyEntries)
-       .Select(c => c.Trim())
-       .ToArray();
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(c => c.Trim())
+        .ToArray();
+
     var storageList = Model.Storage?.Split(',') ?? new string[] { };
 }
 
 <link rel="stylesheet" href="~/css/product-detail.css" />
 
 <div class="product-detail-container">
-    <div class="image-section">
-        <img src="@Model.MainImageUrl" class="main-img" />
-        <div class="sub-images">
+    <!-- Left: Images -->
+    <div class="product-images">
+        <img src="@Model.MainImageUrl" class="main-image" alt="Main Product Image" />
+
+        <div class="thumbnail-images">
             @if (!string.IsNullOrWhiteSpace(Model.SubImage1Url))
             {
-                <img src="@Model.SubImage1Url" />
+                <img src="@Model.SubImage1Url" class="thumbnail-img" />
             }
             @if (!string.IsNullOrWhiteSpace(Model.SubImage2Url))
             {
-                <img src="@Model.SubImage2Url" />
+                <img src="@Model.SubImage2Url" class="thumbnail-img" />
             }
             @if (!string.IsNullOrWhiteSpace(Model.SubImage3Url))
             {
-                <img src="@Model.SubImage3Url" />
+                <img src="@Model.SubImage3Url" class="thumbnail-img" />
+            }
+        </div>
+    </div>
+
+
+    <!-- Right: Product Info -->
+    <div class="product-info">
+        <!-- Thương hiệu và tồn kho -->
+        @if (Model.Brand != null)
+        {
+            <div class="product-meta">
+                <span class="brand-name"><strong>@Model.Brand.Name</strong></span>
+            </div>
+        }
+        <h2 class="product-name">@Model.Name</h2>
+
+
+        <div class="product-price">
+            @if (Model.DiscountPercent > 0)
+            {
+                <span class="price-discounted">@Model.DiscountedPrice.ToString("N0")₫</span>
+                <span class="price-original">@Model.Price.ToString("N0")₫</span>
+                <span class="price-save">Tiết kiệm @((Model.Price - Model.DiscountedPrice).ToString("N0"))₫</span>
+            }
+            else
+            {
+                <span class="price-discounted">@Model.Price.ToString("N0")₫</span>
             }
         </div>
 
+        <!-- Storage Options -->
+        @if (Model.HasStorage && storageList.Any())
+        {
+            <div class="option-section">
+                <h5>Dung lượng</h5>
+                <div class="option-boxes" id="StorageOptions">
+                    @foreach (var s in storageList)
+                    {
+                        <div class="option-box storage-box" data-storage="@s">@s</div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Color Options -->
+        @if (Model.HasColor && colorList.Any())
+        {
+            <div class="option-section">
+                <h5>Màu sắc</h5>
+                <div class="option-boxes" id="ColorOptions">
+                    @foreach (var c in colorList)
+                    {
+                        <div class="option-box color-circle" data-color="@c" style="background-color:@c;" title="@c"></div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Quantity -->
+        <div class="quantity-section">
+            <label>Số lượng</label>
+            <div class="quantity-control">
+                <button type="button" onclick="changeQty(-1)">−</button>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" />
+                <button type="button" onclick="changeQty(1)">+</button>
+            </div>
+        </div>
+        <div class="product-meta">
+            <span class="stock-qty">Kho còn: <strong>@Model.StockQuantity</strong> sản phẩm</span>
+        </div>
+        <!-- Action Buttons -->
+        <form method="post" asp-controller="Cart" asp-action="AddToCart" onsubmit="return validateSelection();">
+            <input type="hidden" name="productId" value="@Model.ProductId" />
+            <input type="hidden" name="color" id="SelectedColor" />
+            <input type="hidden" name="storage" id="SelectedStorage" />
+            <input type="hidden" name="quantity" id="FormQuantity" value="1" />
+
+            <div class="button-group">
+                <button type="submit" class="btn-add-to-cart">
+                    🛒 Thêm vào giỏ - @Model.DiscountedPrice.ToString("N0")₫
+                </button>
+                <button type="button" class="btn-buy-now">Mua ngay</button>
+            </div>
+        </form>
     </div>
 
-    <div class="info-section">
-        <div class="info-wrapper">
-            <div class="product-title">
-                <h2>@Model.Name</h2>
+    <!-- Tabs Section: full width -->
+    <div class="product-tabs">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="description">Mô tả</button>
+            <button class="tab-btn" data-tab="specs">Thông số kỹ thuật</button>
+            <button class="tab-btn" data-tab="reviews">Đánh giá (1234)</button>
+            <button class="tab-btn" data-tab="shipping">Giao hàng & Đổi trả</button>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-panel active" id="description">
+                <p>@Model.Description</p>
+                <h5>Đặc điểm nổi bật</h5>
+                <ul class="feature-list">
+                    <li>Titanium thiết kế với mặt kính mờ chống trượt</li>
+                    <li>Chip A17 Pro mạnh mẽ chơi game console</li>
+                    <li>Camera zoom 5x Telephoto</li>
+                    <li>Nút hành động tùy chỉnh</li>
+                    <li>Cổng USB-C chuẩn USB 3</li>
+                    <li>Màn hình Always-On, 120Hz ProMotion</li>
+                    <li>Hỗ trợ SOS & phát hiện tai nạn</li>
+                    <li>Sạc MagSafe và Qi không dây</li>
+                </ul>
             </div>
 
-            <p class="description">@Model.Description</p>
+            <div class="tab-panel" id="specs">
+                <p>Thông số kỹ thuật sẽ hiển thị ở đây...</p>
+            </div>
 
-            <form method="post" asp-controller="Cart" asp-action="AddToCart" onsubmit="return validateSelection();">
-                <input type="hidden" name="productId" value="@Model.ProductId" />
-                <input type="hidden" name="color" id="SelectedColor" />
-                <input type="hidden" name="storage" id="SelectedStorage" />
-                <input type="hidden" name="quantity" value="1" />
+            <div class="tab-panel" id="reviews">
+                <p>Phần đánh giá từ người dùng...</p>
+            </div>
 
-                @if (Model.HasColor && colorList.Any())
-                {
-                    <div class="option-group">
-                        <strong>Màu sắc:</strong>
-                        <div class="option-items" id="ColorOptions">
-                            @foreach (var c in colorList)
-                            {
-                                <div class="color-box" data-color="@c" style="background-color:@c;" title="@c"></div>
-                            }
-                        </div>
-                    </div>
-                }
-
-                @if (Model.HasStorage && storageList.Any())
-                {
-                    <div class="option-group">
-                        <strong>Dung lượng:</strong>
-                        <div class="option-items" id="StorageOptions">
-                            @foreach (var s in storageList)
-                            {
-                                <div class="storage-box" data-storage="@s">@s</div>
-                            }
-                        </div>
-                    </div>
-                }
-
-
-                <div class="price-box">
-                    <strong>Giá bán:</strong>
-                    <div class="price-values">
-                        @if (Model.DiscountPercent > 0)
-                        {
-                            <span class="original-price">@Model.Price.ToString("N0")₫</span>
-                            <span class="discounted-price">@Model.DiscountedPrice.ToString("N0")₫</span>
-                            <span class="discount-rate">-@Model.DiscountPercent%</span>
-                        }
-                        else
-                        {
-                            <span class="discounted-price">@Model.Price.ToString("N0")₫</span>
-                        }
-                    </div>
-                </div>
-
-                <button type="submit" class="buy-btn">🛒 Mua ngay</button>
-            </form>
+            <div class="tab-panel" id="shipping">
+                <p>Chính sách giao hàng và đổi trả...</p>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mainImage = document.querySelector('.main-image');
+            const thumbnails = document.querySelectorAll('.thumbnail-img');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    if (mainImage) {
+                        mainImage.src = this.src;
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // Validate khi submit form
         function validateSelection() {
             const requireColor = @Model.HasColor.ToString().ToLower();
             const requireStorage = @Model.HasStorage.ToString().ToLower();
-
             const color = document.getElementById("SelectedColor").value;
             const storage = document.getElementById("SelectedStorage").value;
 
@@ -116,16 +194,16 @@
             return true;
         }
 
-        // Chọn màu
-        document.querySelectorAll('.color-box').forEach(el => {
+        // Xử lý chọn màu
+        document.querySelectorAll('.color-circle').forEach(el => {
             el.addEventListener('click', () => {
-                document.querySelectorAll('.color-box').forEach(c => c.classList.remove('selected'));
+                document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
                 el.classList.add('selected');
                 document.getElementById("SelectedColor").value = el.dataset.color;
             });
         });
 
-        // Chọn dung lượng
+        // Xử lý chọn dung lượng
         document.querySelectorAll('.storage-box').forEach(el => {
             el.addEventListener('click', () => {
                 document.querySelectorAll('.storage-box').forEach(s => s.classList.remove('selected'));
@@ -134,14 +212,33 @@
             });
         });
 
-        function validateSelection() {
-            const color = document.getElementById("SelectedColor").value;
-            const storage = document.getElementById("SelectedStorage").value;
-            if (!color || !storage) {
-                alert("Vui lòng chọn màu sắc và dung lượng trước khi mua.");
-                return false;
-            }
-            return true;
+        // Thay đổi số lượng
+        function changeQty(change) {
+            const qtyInput = document.getElementById("quantity");
+            let qty = parseInt(qtyInput.value) || 1;
+            qty = Math.max(1, qty + change);
+            qtyInput.value = qty;
+            document.getElementById("FormQuantity").value = qty;
         }
+        // Đổi ảnh chính khi bấm ảnh phụ
+        document.querySelectorAll('.sub-images img').forEach(img => {
+            img.addEventListener('click', () => {
+                const mainImg = document.querySelector('.main-img');
+                if (mainImg) {
+                    mainImg.src = img.src;
+                }
+            });
+        });
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const tabId = btn.dataset.tab;
+                document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
     </script>
 }

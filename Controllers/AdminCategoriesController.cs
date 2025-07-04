@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TechNova.middleware;
-using TechNova.Models;
+using TechNova.Models.Core;
+using TechNova.Models.Data;
 
 namespace TechNova.Controllers
 {
@@ -15,7 +17,9 @@ namespace TechNova.Controllers
 
         public IActionResult Index()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories.
+                Include(c => c.Products)
+                .ToList();
             return View("~/Views/Admin/AdminCategories/Index.cshtml", categories);
         }
 
@@ -63,6 +67,19 @@ namespace TechNova.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult ToggleStatus(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(c => c.CategoryId == id);
+            if (category == null)
+                return Json(new { success = false });
+
+            category.IsActive = !category.IsActive;
+            category.CreatedAt = DateTime.Now;
+            _context.SaveChanges();
+
+            return Json(new { success = true, newStatus = category.IsActive });
         }
 
     }
