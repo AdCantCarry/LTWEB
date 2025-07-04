@@ -148,14 +148,44 @@ namespace TechNova.Controllers
             else if (distance <= 10) return 30000;
             return 50000;
         }
-
-        public IActionResult Checkout()
+        public IActionResult Checkout(int? productId)
         {
             var email = HttpContext.Session.GetString("Email");
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return RedirectToAction("Login", "Account");
 
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new();
+
+            // 👇 Nếu có productId truyền vào từ nút Mua ngay
+            if (productId.HasValue)
+            {
+                var product = _context.Products.FirstOrDefault(p => p.ProductId == productId.Value);
+                if (product != null)
+                {
+                    var existing = cart.FirstOrDefault(c => c.ProductId == product.ProductId && c.Color == "" && c.Storage == "");
+                    if (existing != null)
+                        existing.Quantity += 1;
+                    else
+                    {
+                        var (method, fee) = CalculateShipping(product, 6); // giả lập khoảng cách
+
+                        cart.Add(new CartItem
+                        {
+                            ProductId = product.ProductId,
+                            Name = product.Name,
+                            ImageUrl = product.MainImageUrl,
+                            Color = "",
+                            Storage = "",
+                            Quantity = 1,
+                            Price = product.DiscountedPrice > 0 ? product.DiscountedPrice : product.Price,
+                            ShippingMethod = method,
+                            ShippingFee = fee
+                        });
+                    }
+
+                    HttpContext.Session.SetObjectAsJson("Cart", cart);
+                }
+            }
 
             var addresses = _context.Addresses.Where(a => a.UserId == user.UserId).ToList();
             var defaultAddr = addresses.FirstOrDefault(a => a.IsDefault) ?? addresses.FirstOrDefault();
@@ -170,10 +200,11 @@ namespace TechNova.Controllers
                 Total = cart.Sum(i => i.TotalPrice) + shippingFee
             };
 
-            ViewBag.DefaultAddress = defaultAddr; // 👈 TRUYỀN VÀO ĐÂY
+            ViewBag.DefaultAddress = defaultAddr;
 
             return View(viewModel);
         }
+
 
 
         [HttpPost]

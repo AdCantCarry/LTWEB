@@ -1,0 +1,78 @@
+﻿@model List<News>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Quản lý tin tức";
+}
+
+<h2 class="mb-4 fw-bold">📰 Quản lý tin tức</h2>
+
+<a class="btn btn-success mb-3 shadow" asp-action="Create">
+    <i class="bi bi-plus-circle"></i> Thêm tin mới
+</a>
+
+<table class="table table-hover table-bordered shadow-sm rounded admin-news-table">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Ngày tạo</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var news in Model)
+        {
+            <tr>
+                <td>@news.Title</td>
+                <td>@news.CreatedAt.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <span class="badge @(news.IsPublished ? "bg-success" : "bg-secondary")">
+                        @(news.IsPublished ? "Đã đăng" : "Ẩn")
+                    </span>
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-sm btn-warning me-1" asp-action="Edit" asp-route-id="@news.NewsId">
+                        <i class="bi bi-pencil-square"></i> Sửa
+                    </a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@news.NewsId" onclick="return confirm('Bạn có chắc muốn xóa tin này không?');">
+                        <i class="bi bi-trash"></i> Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- CSS tùy chỉnh -->
+<style>
+    .admin-news-table {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .admin-news-table th,
+    .admin-news-table td {
+        vertical-align: middle;
+    }
+
+    .badge {
+        padding: 0.5em 0.75em;
+        font-size: 0.85rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        color: #333;
+    }
+
+    .btn {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+</style>

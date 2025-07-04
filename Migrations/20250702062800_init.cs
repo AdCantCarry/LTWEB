@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechNova.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,12 +35,30 @@ namespace TechNova.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MainImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SvgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    NewsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.NewsId);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,6 +77,8 @@ namespace TechNova.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    ResetCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResetCodeExpiry = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BrandId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -83,12 +103,14 @@ namespace TechNova.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountPercent = table.Column<int>(type: "int", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubImage1Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubImage2Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubImage3Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubImage1Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubImage2Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubImage3Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasColor = table.Column<bool>(type: "bit", nullable: false),
                     Storage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasStorage = table.Column<bool>(type: "bit", nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: true),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -267,6 +289,9 @@ namespace TechNova.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "News");
+
             migrationBuilder.DropTable(
                 name: "OrderItems");
 

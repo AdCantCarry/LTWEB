@@ -20,6 +20,7 @@ namespace TechNova.Models.Data
         public DbSet<SpecificationGroup> SpecificationGroups { get; set; }
         public DbSet<SpecificationItem> SpecificationItems { get; set; }
         public DbSet<ProductSpecification> ProductSpecifications { get; set; }
+        public DbSet<News> News { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
