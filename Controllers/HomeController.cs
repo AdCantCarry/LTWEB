@@ -18,14 +18,10 @@ namespace TechNova.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.ToListAsync();
-            var saleProducts = _context.Products
-                        .Where(p => p.DiscountPercent > 0)
-                        .OrderByDescending(p => p.DiscountPercent)
-                        .Take(15)
-                        .ToList();
-            var appleProducts = _context.Products
-                .Where(p => p.BrandId == 1)
+            var saleProducts = await _context.Products
+                .Where(p => p.DiscountPercent > 0)
+                .OrderByDescending(p => p.DiscountPercent)
+                .Take(15)
                 .Include(p => p.Brand)
                 .ToListAsync();
 
@@ -47,6 +43,7 @@ namespace TechNova.Controllers
 
             return View();
         }
+
 
 
         public IActionResult Store()
@@ -178,5 +175,31 @@ namespace TechNova.Controllers
 
             return View(categories.ToList());
         }
+        public IActionResult News()
+        {
+            var newsList = _context.News
+                .Where(n => n.IsPublished)
+                .OrderByDescending(n => n.CreatedAt)
+                .ToList();
+
+            return View(newsList); // Trả về View: Views/Home/News.cshtml
+        }
+        public IActionResult NewsDetails(int id)
+        {
+            var news = _context.News.FirstOrDefault(n => n.NewsId == id && n.IsPublished);
+            if (news == null) return NotFound();
+
+            // Lấy các tin khác (trừ tin hiện tại), tối đa 3 tin mới nhất
+            var relatedNews = _context.News
+                .Where(n => n.IsPublished && n.NewsId != id)
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(3)
+                .ToList();
+
+            ViewBag.RelatedNews = relatedNews;
+
+            return View(news); // Views/Home/NewsDetails.cshtml
+        }
+
     }
 }

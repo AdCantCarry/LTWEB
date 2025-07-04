@@ -14,10 +14,53 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/Products.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <style>
+        .btn-add-cart {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid #0d6efd;
+            background: #fff;
+            color: #0d6efd;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: 0.25s ease;
+        }
+
+            .btn-add-cart:hover {
+                background: #e7f0ff;
+                transform: scale(1.05);
+            }
+
+            .btn-add-cart i {
+                font-size: 1rem;
+            }
+
+        .btn-buy {
+            background: #ff7a2f;
+            color: #fff !important;
+            padding: 6px 18px;
+            font-size: 0.9rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.25s ease;
+            border: none;
+        }
+
+            .btn-buy:hover {
+                background: #f0681a;
+                transform: translateY(-2px);
+            }
+
+        .product-actions {
+            gap: .5rem;
+        }
+    </style>
 }
 <div class="products-page">
     <form id="filterForm" method="get">
-        <!-- Filters -->
         <div class="products-header">
             <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="@searchQuery" oninput="applyFilters()" />
             <select name="categoryId" onchange="applyFilters()">
@@ -36,7 +79,6 @@
             </select>
         </div>
         <div class="products-container">
-            <!-- Sidebar -->
             <aside class="products-sidebar">
                 <h4>Thương hiệu</h4>
                 @foreach (var brand in brands)
@@ -44,7 +86,7 @@
                     <label>
                         <input type="checkbox" name="brands" value="@brand.BrandId" @(selectedBrands.Contains(brand.BrandId) ? "checked" : "") onchange="applyFilters()" /> @brand.Name
                     </label>
-                
+
                     <br />
                 }
                 <h4>Khoảng giá (₫)</h4>
@@ -54,12 +96,13 @@
                 <input type="hidden" name="minPrice" id="minPrice" value="@minPrice" />
                 <input type="hidden" name="maxPrice" id="maxPrice" value="@maxPrice" />
             </aside>
-            <!-- Products Grid -->
             <div class="products-grid" id="productsGrid">
                 @foreach (var product in Model)
                 {
                     <div class="product-card">
-                        <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
+                        <a href="/Home/ProductDetails/@product.ProductId">
+                            <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name" />
+                        </a>
                         <div class="product-details">
                             <h3>@product.Name</h3>
                             <div class="product-description">@product.Description</div>
@@ -75,81 +118,64 @@
                                     <span class="discounted">@product.Price.ToString("N0") ₫</span>
                                 }
                             </div>
-                            <div class="product-actions">
-                                <button type="button" class="btn-add-cart" data-id="@product.ProductId">Thêm vào giỏ hàng</button>
-                                <a href="/Cart/CheckoutNow?productId=@product.ProductId" class="btn-buy">Mua ngay</a>
+                            <div class="product-actions d-flex align-items-center mt-2">
+                                <button type="button" class="btn-add-cart btn-sm" data-id="@product.ProductId" title="Thêm vào giỏ">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                                <a href="/Cart/Checkout?productId=@product.ProductId" class="btn-buy btn-sm flex-grow-1 text-center">Mua ngay</a>
                             </div>
                         </div>
                     </div>
                 }
-
             </div>
         </div>
-        <!-- Phân trang: nằm sau productsGrid -->
-            <div id="paginationContainer" class="pagination">
-                @for (int i = 1; i <= ViewBag.TotalPages; i++)
-                {
-                    <a href="javascript:void(0)" class="page-link @(i == ViewBag.Page ? "active" : "")" onclick="goToPage(@i)">@i</a>
-                }
-            </div
+        <div id="paginationContainer" class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <a href="javascript:void(0)" class="page-link @(i == ViewBag.Page ? "active" : "")" onclick="goToPage(@i)">@i</a>
+            }
+        </div>
     </form>
 </div>
-
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
     <script>
         let currentPage = 1;
-
         function attachAddToCartHandlers() {
-    document.querySelectorAll('.btn-add-cart').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const id = this.dataset.id;
-            fetch('/Cart/AddToCartAjax', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `productId=${id}&color=&storage=`
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    const cartCountEl = document.getElementById('cartCount');
-                    const cartIcon = document.querySelector('.cart-icon');
-
-                    // Cập nhật số
-                    cartCountEl.textContent = data.cartCount;
-
-                    // Hiệu ứng cart icon
-                    cartIcon.classList.add('cart-bounce');
-                    setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
-
-                    // Hiệu ứng số lượng (scale nhỏ)
-                    cartCountEl.style.transform = 'scale(1.5)';
-                    setTimeout(() => cartCountEl.style.transform = 'scale(1)', 300);
-
-                    // Optional alert
-                    alert('Đã thêm vào giỏ hàng!');
-                } else {
-                    alert(data.message);
-                    if (data.message.includes("đăng nhập")) {
-                        window.location.href = "/Account/Login";
-                    }
-                }
+            document.querySelectorAll('.btn-add-cart').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = this.dataset.id;
+                    fetch('/Cart/AddToCartAjax', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `productId=${id}&color=&storage=`
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                const cartCountEl = document.getElementById('cartCount');
+                                const cartIcon = document.querySelector('.cart-icon');
+                                cartCountEl.textContent = data.cartCount;
+                                cartIcon.classList.add('cart-bounce');
+                                setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
+                                cartCountEl.style.transform = 'scale(1.5)';
+                                setTimeout(() => cartCountEl.style.transform = 'scale(1)', 300);
+                            } else {
+                                alert(data.message);
+                                if (data.message.includes('đăng nhập')) {
+                                    window.location.href = '/Account/Login';
+                                }
+                            }
+                        });
+                });
             });
-        });
-    });
-}
-
-
-        attachAddToCartHandlers(); // Gọi ban đầu
-
+        }
+        attachAddToCartHandlers();
         const slider = document.getElementById('price-slider');
         const minInput = document.getElementById('minPrice');
         const maxInput = document.getElementById('maxPrice');
         const minText = document.getElementById('minPriceText');
         const maxText = document.getElementById('maxPriceText');
-
         noUiSlider.create(slider, {
             start: [@minPrice, @maxPrice],
             connect: true,
@@ -161,7 +187,6 @@
                 from: value => parseInt(value.replace(/[^\d]/g, ''))
             }
         });
-
         function throttle(func, delay) {
             let timeout;
             return function () {
@@ -169,12 +194,10 @@
                 timeout = setTimeout(func, delay);
             };
         }
-
         const throttledApplyFilters = throttle(() => {
-            currentPage = 1; // 👈 reset về trang đầu khi dùng slider
+            currentPage = 1;
             applyFilters();
         }, 400);
-
         slider.noUiSlider.on('update', function () {
             const [min, max] = slider.noUiSlider.get(true);
             minInput.value = Math.round(min);
@@ -183,17 +206,14 @@
             maxText.textContent = Math.round(max).toLocaleString('vi-VN') + " ₫";
             throttledApplyFilters();
         });
-
         function goToPage(page) {
             currentPage = page;
             applyFilters();
         }
-
         function applyFilters() {
             const form = document.getElementById('filterForm');
             const formData = new FormData(form);
             const params = new URLSearchParams();
-
             formData.forEach((value, key) => {
                 if (key === 'brands') {
                     params.append('brands', value);
@@ -201,27 +221,19 @@
                     params.set(key, value);
                 }
             });
-
-            params.set('page', currentPage); // 👈 Gửi thông tin trang
-
+            params.set('page', currentPage);
             fetch('/Home/Products?' + params.toString())
                 .then(response => response.text())
                 .then(html => {
                     const parser = new DOMParser();
                     const newDoc = parser.parseFromString(html, 'text/html');
-
-                    // Update sản phẩm
-                    document.getElementById('productsGrid').innerHTML =
-                        newDoc.getElementById('productsGrid').innerHTML;
-
-                    // Update pagination
+                    document.getElementById('productsGrid').innerHTML = newDoc.getElementById('productsGrid').innerHTML;
                     const newPagination = newDoc.getElementById('paginationContainer');
                     const currentPagination = document.getElementById('paginationContainer');
                     if (newPagination && currentPagination) {
                         currentPagination.replaceWith(newPagination);
                     }
-
-                    attachAddToCartHandlers(); // gắn lại button "Thêm vào giỏ"
+                    attachAddToCartHandlers();
                 });
         }
     </script>

@@ -1,4 +1,4 @@
-﻿@model TechNova.Models.News
+﻿@model News
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -71,3 +71,9 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 </style>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#Content'))
+        .catch(error => console.error(error));
+</script>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TechNova.Models;
+using TechNova.Models.Data;
 
 public class AdminNewsController : Controller
 {

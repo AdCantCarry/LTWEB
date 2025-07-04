@@ -1,0 +1,169 @@
+﻿@model TechNova.Models.News
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="news-details py-5">
+    <div class="container">
+        <!-- TIÊU ĐỀ & NGÀY -->
+        <h1 class="fw-bold mb-3">@Model.Title</h1>
+        <p class="text-muted mb-4">🕒 Ngày đăng: @Model.CreatedAt.ToString("dd/MM/yyyy")</p>
+
+        <!-- ẢNH -->
+        <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded mb-4 shadow" />
+
+        <!-- NỘI DUNG -->
+        <div class="news-content">
+            @Html.Raw(Model.Content)
+        </div>
+
+        <!-- TIN LIÊN QUAN -->
+        <hr class="my-5" />
+        <h4 class="fw-bold mb-4">📰 Tin Liên Quan</h4>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 related-news">
+            @foreach (var item in ViewBag.RelatedNews as List<TechNova.Models.News>)
+            {
+                <div class="col">
+                    <a asp-action="NewsDetails" asp-route-id="@item.NewsId" class="text-decoration-none text-dark d-block h-100">
+                        <div class="card h-100 shadow-sm related-card">
+                            <img src="@item.ImageUrl" class="card-img-top related-img" alt="@item.Title" />
+                            <div class="card-body">
+                                <h6 class="card-title">@item.Title</h6>
+                                <p class="card-text">
+                                    @((item.Content?.Length > 80) ? item.Content.Substring(0, 80) + "..." : item.Content)
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <!-- QUAY LẠI -->
+        <div class="mt-5">
+            <a asp-action="News" class="btn btn-outline-primary">← Quay lại danh sách</a>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ STYLE -->
+<style>
+    .news-details {
+        background-color: #f9f9f9;
+        padding: 60px 0;
+    }
+
+    .news-details .container {
+        max-width: 850px;
+        background: #fff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-details h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #222;
+    }
+
+    .news-details p.text-muted {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        color: #777;
+    }
+
+    .news-details img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .news-content {
+        margin-top: 30px;
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #333;
+    }
+
+    /* CKEditor nội dung tự render HTML nên giữ nguyên format */
+    .news-content p {
+        text-indent: 2em;
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+    .news-content ul {
+        padding-left: 2em;
+        margin-bottom: 1.5rem;
+    }
+
+    .news-content li {
+        margin-bottom: 0.6rem;
+        line-height: 1.7;
+    }
+
+    .news-content strong {
+        font-weight: bold;
+    }
+
+    .news-content em {
+        font-style: italic;
+    }
+
+    /* TIN LIÊN QUAN */
+    .related-news .card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .related-news .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .related-img {
+        height: 180px;
+        object-fit: cover;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .related-news .card-title {
+        font-weight: 600;
+        font-size: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 3em;
+    }
+
+    .related-news .card-text {
+        font-size: 0.9rem;
+        color: #666;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    media (max-width: 576px) {
+        .news-details .container {
+            padding: 20px;
+        }
+
+        .news-details h1 {
+            font-size: 1.5rem;
+        }
+
+        .news-content {
+            font-size: 1rem;
+        }
+    }
+</style>

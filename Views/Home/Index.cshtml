@@ -1,4 +1,4 @@
-﻿@using TechNova.Models
+﻿@using TechNova.Models.Core
 @{
     ViewData["Title"] = "Home";
     var saleProducts = (ViewBag.SaleProducts as List<Product>)?.Take(4).ToList();
@@ -12,8 +12,8 @@
         <h1>MacBook Air M2</h1>
         <p>Hiệu năng mạnh mẽ. Mỏng nhẹ đáng kinh ngạc. Được trang bị chip Apple M2.</p>
         <div class="buttons">
-            <a href="/Product/Details/1" class="btn btn-primary">Tìm hiểu thêm</a>
-            <a href="/Product" class="btn btn-secondary">Mua ngay</a>
+            <a href="/Home/News" class="btn btn-primary">Tìm hiểu thêm</a>
+            <a href="/Home/Products" class="btn btn-secondary">Mua ngay</a>
         </div>
     </div>
 </section>

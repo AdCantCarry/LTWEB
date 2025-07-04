@@ -19,185 +19,69 @@
             @foreach (var n in Model)
             {
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <img src="@n.ImageUrl" class="card-img-top news-img" alt="@n.Title" loading="lazy" />
-                        <div class="card-body">
-                            <h5 class="card-title">@n.Title</h5>
-                            <p class="card-text">
-                                @((n.Content?.Length > 100) ? n.Content.Substring(0, 100) + "..." : n.Content)
-                            </p>
+                    <a asp-action="NewsDetails" asp-route-id="@n.NewsId" class="text-decoration-none text-dark d-block h-100">
+                        <div class="card h-100 shadow-sm news-card-hover">
+                            <img src="@n.ImageUrl" class="card-img-top news-img" alt="@n.Title" loading="lazy" />
+                            <div class="card-body">
+                                <h5 class="card-title">@n.Title</h5>
+                                <p class="card-text">
+                                    @((n.Content?.Length > 100) ? n.Content.Substring(0, 100) + "..." : n.Content)
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>
     </div>
 </section>
 
-<!-- TIN TICKER (DUMMY) -->
-<section class="news-ticker py-4 bg-light">
-    <div class="ticker-track">
-        @{
-            var ticker = new[] {
-                new { Title="Microsoft Copilot+ PC bán ra", Img="https://media.giphy.com/media/ln7z2eWriiQAllfVcn/giphy.gif" },
-                new { Title="Rò rỉ PlayStation 6 concept", Img="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" },
-                new { Title="AMD Ryzen 9000 điểm Geekbench", Img="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" },
-                new { Title="Lenovo màn hình 3D không kính", Img="https://media.giphy.com/media/yYSSBtDgbbRzq/giphy.gif" },
-                new { Title="TikTok thử nghiệm AI nhạc", Img="https://media.giphy.com/media/l3vQX2j6PZBYYJjsA/giphy.gif" }
-            };
-            for (int i = 0; i < 2; i++)
-            {
-                foreach (var t in ticker)
-                {
-                    <div class="ticker-item d-flex align-items-center px-3">
-                        <img src="@t.Img" alt="" class="me-2 gif-thumb" loading="lazy" />
-                        <span>@t.Title</span>
-                    </div>
-                }
-            }
-        }
-    </div>
-</section>
-
-<!-- KHÁM PHÁ THÊM (DUMMY) -->
-<section class="extra-news py-5 bg-white">
-    <div class="container">
-        <h2 class="mb-4 fw-bold text-center">Khám Phá Thêm</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1613758947301-f70d2d548235?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="Meta Quest 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Meta Quest 3 ra mắt</h5>
-                        <p class="card-text">Thiết bị VR hỗ trợ Mixed Reality · Snapdragon XR2 Gen 2</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1606813903124-76b8a77cbe53?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="Game Elden Ring DLC">
-                    <div class="card-body">
-                        <h5 class="card-title">Elden Ring: Shadow of the Erdtree</h5>
-                        <p class="card-text">Bản mở rộng siêu khó gây sốt trên Steam</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1606811841650-820ce60cba45?auto=format&crop=entropy&w=600&q=80" class="card-img-top news-img" alt="AI trong game">
-                    <div class="card-body">
-                        <h5 class="card-title">NPC AI xuất hiện trong game nhập vai</h5>
-                        <p class="card-text">Cho phép người chơi trò chuyện tự nhiên với nhân vật</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- TOP GAME MỚI (Carousel) -->
-<section class="top-games py-5 bg-dark text-white">
-    <div class="container">
-        <h2 class="text-center mb-4 fw-bold">🎮 Top Game Mới</h2>
-        <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active text-center">
-                    <img src="https://images.unsplash.com/photo-1606813925806-9a0b9d73d4cf?auto=format&fit=crop&w=900&q=80" class="d-block mx-auto game-slide" alt="Cyberpunk">
-                    <div class="mt-3">Cyberpunk 2077: Phantom Liberty</div>
-                </div>
-                <div class="carousel-item text-center">
-                    <img src="https://images.unsplash.com/photo-1611605698335-bbfad57bfa2e?auto=format&fit=crop&w=900&q=80" class="d-block mx-auto game-slide" alt="Hogwarts Legacy">
-                    <div class="mt-3">Hogwarts Legacy</div>
-                </div>
-                <div class="carousel-item text-center">
-                    <img src="https://images.unsplash.com/photo-1611605685099-0288f12bfa3f?auto=format&fit=crop&w=900&q=80" class="d-block mx-auto game-slide" alt="Spider-Man 2">
-                    <div class="mt-3">Spider-Man 2</div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- STYLES -->
+<!-- STYLE -->
 <style>
-.news-hero {
-    background: linear-gradient(120deg, #000428, #004e92);
-    color: #fff;
-}
-.news-img {
-    height: 200px;
-    object-fit: cover;
-}
-.card-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 3em;
-    font-size: 1rem;
-    font-weight: 600;
-}
-.card-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 2.6em;
-    font-size: 0.9rem;
-    color: #555;
-}
-.card {
-    transition: transform 0.2s;
-}
-.card:hover {
-    transform: translateY(-5px);
-}
-.news-ticker {
-    overflow: hidden;
-    position: relative;
-}
-.ticker-track {
-    display: flex;
-    white-space: nowrap;
-    animation: scroll 40s linear infinite;
-}
-keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-.ticker-item {
-    flex: none;
-    min-width: 300px;
-}
-.gif-thumb {
-    width: 48px;
-    height: 48px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-media (max-width: 576px) {
-    .ticker-item {
-        min-width: 250px;
+    .news-hero {
+        background: linear-gradient(120deg, #000428, #004e92);
+        color: #fff;
     }
-}
-.top-games img.game-slide {
-    height: 300px;
-    width: auto;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-.top-games .carousel-inner {
-    text-align: center;
-}
-</style>
 
-<!-- BOOTSTRAP SCRIPT (nếu chưa có) -->
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-}
+    .news-img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 3em;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.6em;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .card {
+        transition: transform 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .news-grid a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+        .news-grid a:hover {
+            text-decoration: none;
+        }
+</style>
