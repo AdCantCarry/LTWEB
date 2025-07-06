@@ -5,96 +5,103 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mb-4 text-center fw-bold">Sửa danh mục</h2>
+<h2 class="mb-4 text-center fw-bold text-primary">🧾 Sửa danh mục</h2>
 
-<div class="edit-category-wrapper">
-    <form asp-action="Edit" method="post">
-        <input type="hidden" asp-for="CategoryId" />
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="edit-category-wrapper">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="CategoryId" />
 
-        <div class="form-box">
-            <label asp-for="Name" class="form-label">Tên danh mục</label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+            <div class="form-box">
+                <label asp-for="Name" class="form-label">🏷️ Tên danh mục</label>
+                <input asp-for="Name" class="form-control" placeholder="Nhập tên danh mục" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-        <div class="form-box">
-            <label asp-for="MainImageUrl" class="form-label">Ảnh đại diện (URL)</label>
-            <input asp-for="MainImageUrl" class="form-control" />
-            <span asp-validation-for="MainImageUrl" class="text-danger"></span>
+            <div class="form-box">
+                <label asp-for="MainImageUrl" class="form-label">🖼️ Ảnh đại diện (URL)</label>
+                <input asp-for="MainImageUrl" class="form-control" placeholder="Dán link ảnh đại diện" />
+                <span asp-validation-for="MainImageUrl" class="text-danger"></span>
 
-            @if (!string.IsNullOrEmpty(Model.MainImageUrl))
-            {
-                <div class="preview-box mt-2">
-                    <img src="@Model.MainImageUrl" alt="Ảnh danh mục" class="preview-image" />
-                </div>
-            }
-        </div>
-        <div class="form-box">
-            <label asp-for="Description" class="form-label">Mô tả danh mục</label>
-            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                @if (!string.IsNullOrEmpty(Model.MainImageUrl))
+                {
+                    <div class="preview-box mt-2 text-center">
+                        <img src="@Model.MainImageUrl" alt="Ảnh danh mục" class="preview-image" />
+                    </div>
+                }
+            </div>
 
-        <div class="form-box">
-            <label asp-for="SvgUrl" class="form-label">SVG/Icon (mã HTML)</label>
-            <input asp-for="SvgUrl" class="form-control" />
-            <span asp-validation-for="SvgUrl" class="text-danger"></span>
+            <div class="form-box">
+                <label asp-for="Description" class="form-label">📝 Mô tả danh mục</label>
+                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Mô tả ngắn gọn về danh mục"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
 
-            @if (!string.IsNullOrEmpty(Model.SvgUrl))
-            {
-                <div class="preview-box mt-2">
-                    <span>@Html.Raw(Model.SvgUrl)</span>
-                </div>
-            }
-        </div>
+            <div class="form-box">
+                <label asp-for="SvgUrl" class="form-label">🔤 SVG/Icon (mã HTML)</label>
+                <input asp-for="SvgUrl" class="form-control" placeholder="Nhập mã HTML SVG (nếu có)" />
+                <span asp-validation-for="SvgUrl" class="text-danger"></span>
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">💾 Lưu</button>
-            <a href="/AdminCategories" class="btn btn-secondary ms-2">⬅️ Quay lại</a>
-        </div>
-    </form>
+                @if (!string.IsNullOrEmpty(Model.SvgUrl))
+                {
+                    <div class="preview-box mt-2 text-center">
+                        <span>@Html.Raw(Model.SvgUrl)</span>
+                    </div>
+                }
+            </div>
+
+            <div class="text-center mt-4 d-flex justify-content-end gap-2">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-save"></i> Lưu
+                </button>
+                <a href="/AdminCategories" class="btn btn-outline-secondary">⬅️ Quay lại</a>
+            </div>
+        </form>
+    </div>
 </div>
 
 @section Styles {
     <style>
         .edit-category-wrapper {
-            max-width: 650px;
-            margin: auto;
+            width: 100%;
+            max-width: 700px;
             background: #fff;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .form-box {
             margin-bottom: 20px;
             padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             background-color: #f9f9f9;
+            transition: 0.3s ease;
         }
 
             .form-box:hover {
-                border-color: #007bff;
-                background-color: #f0f8ff;
+                border-color: #0d6efd;
+                background-color: #eef7ff;
             }
 
         .form-label {
             font-weight: 600;
             margin-bottom: 6px;
             display: block;
+            color: #333;
         }
 
         .preview-box {
-            margin-top: 10px;
             padding: 10px;
             border: 1px dashed #ccc;
             border-radius: 6px;
             background: #fff;
+            display: inline-block;
         }
 
         .preview-image {
-            max-height: 80px;
+            max-height: 100px;
             border-radius: 8px;
         }
 
@@ -103,7 +110,12 @@
         }
 
         .btn {
-            padding: 8px 16px;
+            transition: all 0.2s ease-in-out;
         }
+
+            .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            }
     </style>
 }
