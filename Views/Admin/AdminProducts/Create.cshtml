@@ -9,7 +9,7 @@
 <h2 class="mb-4 text-center fw-bold">Thêm sản phẩm</h2>
 
 <div class="edit-form-wrapper">
-    <form asp-action="Create" method="post">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div class="row">
             <!-- CỘT TRÁI -->
             <div class="col-md-6">
@@ -37,90 +37,58 @@
                     <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
                         <option value="">-- Chưa chọn thương hiệu --</option>
                     </select>
-                    <span asp-validation-for="BrandId" class="text-danger"></span>
                 </div>
 
                 <div class="row-inside-3">
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="Price"></label>
-                            <input asp-for="Price" class="form-control" />
-                            <span asp-validation-for="Price" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="Price"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="DiscountPercent">% Giảm giá</label>
-                            <input asp-for="DiscountPercent" class="form-control" />
-                            <span asp-validation-for="DiscountPercent" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="DiscountPercent">% Giảm</label>
+                        <input asp-for="DiscountPercent" class="form-control" />
+                        <span asp-validation-for="DiscountPercent" class="text-danger"></span>
                     </div>
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="StockQuantity">Tồn kho</label>
-                            <input asp-for="StockQuantity" class="form-control" min="0" />
-                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="StockQuantity">Tồn kho</label>
+                        <input asp-for="StockQuantity" class="form-control" />
+                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-box">
-                    <label>Dung lượng</label>
+                    <label>Dung lượng (phân cách bởi dấu phẩy)</label>
                     <input asp-for="Storage" class="form-control" />
-                    <span asp-validation-for="Storage" class="text-danger"></span>
                 </div>
 
-                <div class="form-check">
-                    <input asp-for="HasColor" class="form-check-input" />
-                    <label asp-for="HasColor" class="form-check-label">Sản phẩm có nhiều màu</label>
-                </div>
-
-                <div class="form-check">
-                    <input asp-for="HasStorage" class="form-check-input" />
-                    <label asp-for="HasStorage" class="form-check-label">Sản phẩm có tùy chọn dung lượng</label>
+                <div class="form-box">
+                    <label>Màu sắc (phân cách bởi dấu phẩy)</label>
+                    <input asp-for="Color" class="form-control" />
                 </div>
             </div>
 
             <!-- CỘT PHẢI -->
             <div class="col-md-6">
                 <div class="form-box">
-                    <label asp-for="MainImageUrl">Đường dẫn ảnh chính</label>
-                    <input asp-for="MainImageUrl" class="form-control" oninput="previewImage(this, 'main-preview')" />
-                    <span asp-validation-for="MainImageUrl" class="text-danger"></span>
+                    <label>Ảnh chính</label>
+                    <input type="file" name="MainImageFile" class="form-control" accept="image/*" onchange="previewImage(this, 'main-preview')" />
                     <img id="main-preview" class="img-preview mt-2" style="display:none;" />
-                </div>
-
-
-                <div class="form-box">
-                    <label>Chọn màu sắc</label>
-                    <div class="d-flex align-items-center mb-2">
-                        <select class="form-control" id="ColorDropdown" onchange="updateSelectedColor(this)">
-                            <option value="">-- Chọn màu --</option>
-                            <option value="#FF0000">Đỏ</option>
-                            <option value="#00FF00">Xanh lá</option>
-                            <option value="#0000FF">Xanh dương</option>
-                            <option value="#FFFF00">Vàng</option>
-                            <option value="#FF00FF">Hồng</option>
-                            <option value="#000000">Đen</option>
-                            <option value="#FFFFFF">Trắng</option>
-                            <option value="#FFA500">Cam</option>
-                            <option value="#808080">Xám</option>
-                        </select>
-                        <div id="ColorPreview" style="width: 40px; height: 40px; margin-left: 10px; border: 1px solid #ccc;"></div>
-                    </div>
-                    <input asp-for="Color" class="form-control" id="SelectedColor" readonly />
-                    <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
 
                 @for (int i = 1; i <= 3; i++)
                 {
                     <div class="form-box">
                         <label>Ảnh phụ @i</label>
-                        <input name="SubImage@iUrl" class="form-control" oninput="previewImage(this, 'sub-preview-@i')" />
+                        <input type="file" name="SubImageFiles" class="form-control" accept="image/*" onchange="previewImage(this, 'sub-preview-@i')" />
                         <img id="sub-preview-@i" class="img-preview mt-2" style="display:none;" />
                     </div>
                 }
 
+                <div class="form-box">
+                    <label>Video (YouTube hoặc MP4)</label>
+                    <input asp-for="VideoUrl" class="form-control" placeholder="https://..." />
+                </div>
             </div>
         </div>
 
@@ -133,25 +101,18 @@
 
 @section Scripts {
     <script>
-        function updateSelectedColor(selectElement) {
-            const color = selectElement.value;
-            document.getElementById("SelectedColor").value = color;
-            document.getElementById("ColorPreview").style.backgroundColor = color;
-        }
-
         function previewImage(input, previewId) {
-            const url = input.value;
-            const img = document.getElementById(previewId);
-            if (url && url.startsWith("http")) {
-                img.src = url;
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.getElementById(previewId);
+                img.src = e.target.result;
                 img.style.display = "block";
-            } else {
-                img.style.display = "none";
-            }
+            };
+            if (file) reader.readAsDataURL(file);
         }
     </script>
 }
-
 
 @section Styles {
     <style>
@@ -169,7 +130,6 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             max-width: 1100px;
             margin: auto;
-            font-family: 'Segoe UI', sans-serif;
         }
 
             .edit-form-wrapper .row {
@@ -178,11 +138,11 @@
                 gap: 32px;
             }
 
-            .edit-form-wrapper .row-inside-3 {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 16px;
-            }
+        .row-inside-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
 
         .form-box {
             background: #f9f9fc;
@@ -196,45 +156,12 @@
                 font-weight: 600;
                 margin-bottom: 6px;
                 display: block;
-                color: #333;
             }
 
         .form-control {
             border-radius: 6px;
-            border: 1px solid #ccc;
             padding: 8px 12px;
             font-size: 0.95rem;
-        }
-
-        .form-check {
-            background: #f1f3f6;
-            padding: 10px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-            .form-check label {
-                margin: 0;
-                font-weight: 500;
-            }
-
-        #ColorPreview {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .edit-form-wrapper button.btn,
-        .edit-form-wrapper a.btn {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 6px;
-            margin: 0 5px;
         }
     </style>
 }

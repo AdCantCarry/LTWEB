@@ -16,45 +16,48 @@ namespace TechNova.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var saleProducts = await _context.Products
-                .Where(p => p.DiscountPercent > 0)
-                .OrderByDescending(p => p.DiscountPercent)
-                .Take(15)
+            var saleProducts = _context.Products
+                .Where(p => p.DiscountPercent > 0 && p.IsActive)
+                .OrderByDescending(p => p.UpdatedAt)
                 .Include(p => p.Brand)
-                .ToListAsync();
+                .ToList();
 
-            var appleProducts = await _context.Products
-                .Where(p => p.Brand.Name.Contains("Apple") && p.IsActive)
+            var appleProducts = _context.Products
+               .Include(p => p.Brand)
+                .Where(p => p.Brand != null && p.Brand.Name.ToLower().Contains("apple") && p.IsActive)
+
+                .OrderByDescending(p => p.UpdatedAt)
+                .ToList();
+
+            var samsungProducts = _context.Products
                 .Include(p => p.Brand)
-                .Take(5)
-                .ToListAsync();
+                .Where(p => p.Brand != null && p.Brand.Name.Contains("Samsung") && p.IsActive)
+                .OrderByDescending(p => p.UpdatedAt)
+                .ToList();
+            var acerProducts = _context.Products
+               .Include(p => p.Brand)
+               .Where(p => p.Brand != null && p.Brand.Name.Contains("Acer") && p.IsActive)
+               .OrderByDescending(p => p.UpdatedAt)
+               .ToList();
+            var latestNews = _context.News
+            .Where(n => n.IsPublished)
+            .OrderByDescending(n => n.CreatedAt)
+            .Take(3)
+            .ToList();
 
-            var samsungProducts = await _context.Products
-                .Where(p => p.Brand.Name.Contains("Samsung") && p.IsActive)
-                .Include(p => p.Brand)
-                .Take(5)
-                .ToListAsync();
-
+            ViewBag.LatestNews = latestNews;
             ViewBag.SaleProducts = saleProducts;
             ViewBag.AppleProducts = appleProducts;
             ViewBag.SamsungProducts = samsungProducts;
-
+            ViewBag.AcerProducts = acerProducts;
             return View();
         }
 
-
-
-        public IActionResult Store()
+        public IActionResult Contact()
         {
-            var products = _context.Products.
-                Include(p => p.Category)
-                .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
-                .ToList();
-
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(products);
+            return View(); // không cần truyền model nữa
         }
 
         public IActionResult Products(string search, int? categoryId, string sort, int? minPrice, int? maxPrice, List<int> brands, int page = 1)
@@ -204,6 +207,20 @@ namespace TechNova.Controllers
 
             return View(news); // Views/Home/NewsDetails.cshtml
         }
+        public IActionResult LoadMoreSaleProducts(int page = 1)
+        {
+            int pageSize = 4;
+            var products = _context.Products
+                .Where(p => p.DiscountPercent > 0)
+                .OrderBy(p => p.ProductId)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return PartialView("_ProductCardPartial", products);
+        }
+
+
 
     }
 }

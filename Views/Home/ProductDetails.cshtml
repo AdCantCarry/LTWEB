@@ -62,7 +62,7 @@
         </div>
 
         <!-- Storage Options -->
-        @if (Model.HasStorage && storageList.Any())
+        @if (storageList.Any())
         {
             <div class="option-section">
                 <h5>Dung lượng</h5>
@@ -76,7 +76,7 @@
         }
 
         <!-- Color Options -->
-        @if (Model.HasColor && colorList.Any())
+        @if (colorList.Any())
         {
             <div class="option-section">
                 <h5>Màu sắc</h5>
@@ -202,8 +202,7 @@
     <script>
         // Validate khi submit form
         function validateSelection() {
-            const requireColor = @Model.HasColor.ToString().ToLower();
-            const requireStorage = @Model.HasStorage.ToString().ToLower();
+
             const color = document.getElementById("SelectedColor").value;
             const storage = document.getElementById("SelectedStorage").value;
 

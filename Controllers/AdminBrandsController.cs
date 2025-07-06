@@ -33,11 +33,14 @@ namespace TechNova.Controllers
             {
                 _context.Brands.Add(brand);
                 _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Đã thêm hãng mới thành công!";
                 return RedirectToAction("Index");
             }
 
             return View("~/Views/Admin/AdminBrands/Create.cshtml", brand);
         }
+
 
         public IActionResult Edit(int id)
         {
@@ -57,7 +60,8 @@ namespace TechNova.Controllers
 
                 existing.Name = brand.Name;
                 _context.SaveChanges();
-
+                TempData["SuccessMessage"] = "Cập nhật tên hãng thành công!";
+                TempData["ErrorMessage"] = "Đã xảy ra lỗi khi lưu tên hãng!";
                 return RedirectToAction("Index");
             }
 

@@ -1,4 +1,5 @@
 ﻿@model X.PagedList.IPagedList<Product>
+@await Html.PartialAsync("_AlertMessage")
 @using TechNova.Models
 @using TechNova.Models.Core
 @using X.PagedList.Mvc.Core
@@ -161,4 +162,60 @@
             }, 500);
         });
     </script>
+}
+
+@section styles {
+    <style>
+        .toggle-status-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+            .toggle-status-btn i {
+                transition: color 0.3s ease;
+            }
+
+            .toggle-status-btn:hover i {
+                color: #007bff;
+            }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-item {
+            list-style: none;
+        }
+
+        .page-link {
+            color: #007bff;
+            padding: 8px 14px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.2s;
+            background-color: #fff;
+        }
+
+            .page-link:hover {
+                background-color: #f0f0f0;
+            }
+
+        .page-item.active .page-link {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .page-item.disabled .page-link {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+    </style>
 }

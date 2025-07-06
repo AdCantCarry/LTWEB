@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TechNova.Models;
+using TechNova.Models.Core;
 using TechNova.Models.Data;
 
 public class AdminNewsController : Controller
@@ -32,6 +33,8 @@ public class AdminNewsController : Controller
             news.CreatedAt = DateTime.Now;
             _context.News.Add(news);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Cập nhật tin tức thành công!";
+            TempData["ErrorMessage"] = "Đã xảy ra lỗi khi lưu tin tức!";
             return RedirectToAction("Index");
         }
         return View("~/Views/Admin/AdminNews/Create.cshtml", news);
@@ -52,6 +55,8 @@ public class AdminNewsController : Controller
         {
             _context.News.Update(news);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Cập nhật tin tức thành công!";
+            TempData["ErrorMessage"] = "Đã xảy ra lỗi khi lưu tin tức!";
             return RedirectToAction("Index");
         }
         return View("~/Views/Admin/AdminNews/Edit.cshtml", news);

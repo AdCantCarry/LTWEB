@@ -1,1 +1,2 @@
 15/06/2025:Update giao diện admin các models + sửa lại thêm ảnh
+6/7/2025: thêm chức năng thêm ảnh từ thư viện + xóa trong admin và sửa lại models products(cần kiểm tra lại Brand tại sao set apple samsung v.v ở index lại không được))

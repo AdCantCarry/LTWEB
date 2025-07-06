@@ -19,12 +19,12 @@ namespace TechNova.Models.Data
                 if (!context.Categories.Any())
                 {
                     context.Categories.AddRange(
-                        new Category { Name = "Laptop", MainImageUrl = "/images/Laptop.jpg" },
-                        new Category { Name = "Điện thoại", MainImageUrl = "/images/DienThoai.jpg" },
-                        new Category { Name = "Phụ kiện", MainImageUrl = "/images/PhuKien.jpg" },
-                        new Category { Name = "Máy tính bảng", MainImageUrl = "/images/Tablet.jpg" },
-                        new Category { Name = "Màn hình", MainImageUrl = "/images/ManHinh.jpg" },
-                        new Category { Name = "Thiết bị mạng", MainImageUrl = "/images/ThietBiMang.jpg" }
+                        new Category { Name = "Laptop", MainImageUrl = "/images/ảnh thư mục/Laptop.png" },
+                        new Category { Name = "Điện thoại", MainImageUrl = "/images/ảnh thư mục/ss.png" },
+                        new Category { Name = "Tai nghe", MainImageUrl = "/images/ảnh thư mục/ThietBiMang.jpg" },
+                        new Category { Name = "Đồng hồ", MainImageUrl = "/images/ảnh thư mục/dongho.png" },
+                        new Category { Name = "Bàn phím", MainImageUrl = "/images/ảnh thư mục/banphim.png" },
+                        new Category { Name = "Chuột", MainImageUrl = "/images/ảnh thư mục/Chuot.png" }
                     );
                     context.SaveChanges();
                 }

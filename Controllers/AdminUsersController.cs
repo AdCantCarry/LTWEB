@@ -38,6 +38,7 @@ public class AdminUsersController : Controller
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        TempData["SuccessMessage"] = "Cập nhật sản phẩm thành công!";
         return View("~/Views/Admin/AdminUsers/Create.cshtml", user);
     }
 
@@ -68,6 +69,7 @@ public class AdminUsersController : Controller
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        TempData["SuccessMessage"] = "Cập nhật người dùng thành công!";
         return View("~/Views/Admin/AdminUsers/Edit.cshtml", user);
     }
 

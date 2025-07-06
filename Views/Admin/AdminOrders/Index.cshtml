@@ -1,5 +1,6 @@
 ﻿@using TechNova.Models.Core
 @model IEnumerable<Order>
+@await Html.PartialAsync("_AlertMessage")
 
 @{
     ViewData["Title"] = "Quản lý đơn hàng";

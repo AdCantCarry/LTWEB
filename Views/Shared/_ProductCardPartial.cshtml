@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TechNova.Models.Core.Product>
+
+@foreach (var item in Model)
+{
+    var discountedPrice = item.Price * (100 - item.DiscountPercent) / 100;
+    <div class="col">
+        <div class="card h-100 text-center shadow-sm">
+            <img src="@item.MainImageUrl" class="card-img-top product-img" alt="@item.Name" loading="lazy" />
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="text-muted"><del>@item.Price.ToString("N0") đ</del></p>
+                <p class="text-danger fw-bold">Còn: @($"{discountedPrice:N0} đ (-{item.DiscountPercent}%)")</p>
+                <a href="/Home/ProductDetails/@item.ProductId" class="btn btn-primary mt-2">Xem chi tiết</a>
+            </div>
+        </div>
+    </div>
+}

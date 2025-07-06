@@ -1,6 +1,7 @@
 ﻿@using TechNova.Models.Auth
 @using TechNova.Models.Core
 @model List<User>
+@await Html.PartialAsync("_AlertMessage")
 @{
     ViewData["Title"] = "Quản lý người dùng";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";

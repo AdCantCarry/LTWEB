@@ -2,156 +2,108 @@
 @model Product
 @{
     Layout = "~/Views/Shared/_adminLayout.cshtml";
-    ViewData["Title"] = "Sửa sản phẩm";
+    var subImageUrls = new[] { Model.SubImage1Url, Model.SubImage2Url, Model.SubImage3Url };
 }
-
-<h2 class="mb-4 text-center fw-bold">Sửa sản phẩm</h2>
+<h2 class="text-center mb-4 fw-bold">Sửa sản phẩm</h2>
 
 <div class="edit-form-wrapper">
-    <form asp-action="Edit" method="post">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="ProductId" />
 
         <div class="row">
-            <!-- CỘT TRÁI -->
             <div class="col-md-6">
-                <!-- Nhóm: Tên + Mô tả -->
+                <!-- Thông tin cơ bản -->
                 <div class="form-box">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-
                 <div class="form-box">
                     <label asp-for="Description"></label>
                     <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-
-                <!-- Nhóm: Danh mục + Thương hiệu -->
                 <div class="form-box">
-                    <label for="CategoryId">Danh mục</label>
-                    <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control">
-                        <option value="">-- Chọn danh mục --</option>
-                    </select>
+                    <label>Danh mục</label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control"></select>
                 </div>
-
                 <div class="form-box">
-                    <label>Thương hiệu (có thể để trống)</label>
-                    <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
-                        <option value="">-- Chưa chọn thương hiệu --</option>
-                    </select>
-                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                    <label>Thương hiệu</label>
+                    <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control"></select>
                 </div>
-
-                <!-- Nhóm: Giá + Giảm + Tồn kho -->
                 <div class="row-inside-3">
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="Price"></label>
-                            <input asp-for="Price" class="form-control" />
-                            <span asp-validation-for="Price" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="Price"></label>
+                        <input asp-for="Price" class="form-control" />
                     </div>
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="DiscountPercent">% Giảm giá</label>
-                            <input asp-for="DiscountPercent" class="form-control" />
-                            <span asp-validation-for="DiscountPercent" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="DiscountPercent"></label>
+                        <input asp-for="DiscountPercent" class="form-control" />
                     </div>
-                    <div>
-                        <div class="form-box">
-                            <label asp-for="StockQuantity">Tồn kho</label>
-                            <input asp-for="StockQuantity" class="form-control" min="0" />
-                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
-                        </div>
+                    <div class="form-box">
+                        <label asp-for="StockQuantity"></label>
+                        <input asp-for="StockQuantity" class="form-control" />
                     </div>
                 </div>
-
-
-                <!-- Nhóm: Dung lượng + Checkbox -->
                 <div class="form-box">
                     <label>Dung lượng</label>
                     <input asp-for="Storage" class="form-control" />
-                    <span asp-validation-for="Storage" class="text-danger"></span>
                 </div>
-
-                <div class="form-check">
-                    <input asp-for="HasColor" class="form-check-input" />
-                    <label asp-for="HasColor" class="form-check-label">Sản phẩm có nhiều màu</label>
-                </div>
-
-                <div class="form-check">
-                    <input asp-for="HasStorage" class="form-check-input" />
-                    <label asp-for="HasStorage" class="form-check-label">Sản phẩm có tùy chọn dung lượng</label>
+                <div class="form-box">
+                    <label>Video</label>
+                    <input asp-for="VideoUrl" class="form-control" />
                 </div>
             </div>
 
-            <!-- CỘT PHẢI -->
+            <!-- Ảnh -->
             <div class="col-md-6">
-                <!-- Nhóm: Ảnh chính -->
+                <!-- Ảnh chính -->
                 <div class="form-box">
-                    <label asp-for="MainImageUrl">Đường dẫn ảnh chính</label>
-                    <input asp-for="MainImageUrl" class="form-control" />
-                    <span asp-validation-for="MainImageUrl" class="text-danger"></span>
-
-                    @if (!string.IsNullOrEmpty(Model.MainImageUrl))
-                    {
-                        <div class="mt-2">
-                            <img src="@Model.MainImageUrl" alt="Ảnh chính" style="height:100px;" />
-                        </div>
-                    }
-                </div>
-
-                <!-- Nhóm: Màu -->
-                <div class="form-box">
-                    <label>Chọn màu sắc</label>
-                    <div class="d-flex align-items-center mb-2">
-                        <select class="form-control" id="ColorDropdown" onchange="updateSelectedColor(this)">
-                            <option value="">-- Chọn màu --</option>
-                            <option value="#FF0000">Đỏ</option>
-                            <option value="#00FF00">Xanh lá</option>
-                            <option value="#0000FF">Xanh dương</option>
-                            <option value="#FFFF00">Vàng</option>
-                            <option value="#FF00FF">Hồng</option>
-                            <option value="#000000">Đen</option>
-                            <option value="#FFFFFF">Trắng</option>
-                            <option value="#FFA500">Cam</option>
-                            <option value="#808080">Xám</option>
-                        </select>
-                        <div id="ColorPreview" style="width: 40px; height: 40px; margin-left: 10px; border: 1px solid #ccc;"></div>
+                    <label>Ảnh chính</label>
+                    <div class="input-group">
+                        <input asp-for="MainImageUrl" id="MainImageUrl" class="form-control"
+                               value="@(Model.MainImageUrl?.StartsWith("data:image") == true ? "" : Model.MainImageUrl)" />
+                        <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('MainFile').click()">Chọn ảnh</button>
+                        <button type="button" class="btn btn-danger" onclick="clearImage('MainImageUrl', 'main-preview')">❌</button>
                     </div>
-                    <input asp-for="Color" class="form-control" id="SelectedColor" readonly />
-                    <span asp-validation-for="Color" class="text-danger"></span>
+                    <input type="file" id="MainFile" accept="image/*" style="display:none" onchange="previewImage(this, 'MainImageUrl', 'main-preview')" />
+                    <img id="main-preview" class="img-preview mt-2" src="@Model.MainImageUrl" style="@(string.IsNullOrEmpty(Model.MainImageUrl) ? "display:none;" : "")" />
                 </div>
 
-                <!-- Nhóm: Ảnh phụ -->
+                <!-- Ảnh phụ -->
                 @for (int i = 1; i <= 3; i++)
                 {
-                    var subUrl = (string)Model.GetType().GetProperty($"SubImage{i}Url")?.GetValue(Model);
+                    var subUrl = subImageUrls[i - 1];
+                    string inputId = $"SubImage{i}Url";
+                    string fileId = $"SubFile{i}";
+                    string previewId = $"sub-preview-{i}";
                     <div class="form-box">
                         <label>Ảnh phụ @i</label>
-                        <input name="SubImage@iUrl" class="form-control" value="@subUrl" />
-                        @if (!string.IsNullOrEmpty(subUrl))
-                        {
-                            <img src="@subUrl" alt="Ảnh phụ @i" style="height:100px; margin-top:5px;" />
-                        }
+                        <div class="input-group">
+                            <input name="@inputId" id="@inputId" class="form-control"
+                                   value="@(subUrl?.StartsWith("data:image") == true ? "" : subUrl)" />
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('@fileId').click()">Chọn ảnh</button>
+                            <button type="button" class="btn btn-danger" onclick="clearImage('@inputId', '@previewId')">❌</button>
+                        </div>
+                        <input type="file" id="@fileId" accept="image/*" style="display:none"
+                               onchange="previewImage(this, '@inputId', '@previewId')" />
+                        <img id="@previewId" class="img-preview mt-2" src="@subUrl" style="@(string.IsNullOrEmpty(subUrl) ? "display:none;" : "")" />
                     </div>
                 }
 
-                <!-- Nhóm: Ngày tạo / cập nhật -->
+                <!-- Màu và ngày -->
                 <div class="form-box">
-                    <label>Ngày tạo:</label>
+                    <label>Màu sắc</label>
+                    <input asp-for="Color" class="form-control" />
+                </div>
+                <div class="form-box">
+                    <label>Ngày tạo</label>
                     <input class="form-control" value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")" disabled />
                 </div>
-
                 <div class="form-box">
-                    <label>Ngày cập nhật:</label>
-                    <input class="form-control" value="@(Model.UpdatedAt.HasValue ? Model.UpdatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")" disabled />
+                    <label>Ngày cập nhật</label>
+                    <input class="form-control" value="@(Model.UpdatedAt?.ToString("dd/MM/yyyy HH:mm") ?? "-")" disabled />
                 </div>
             </div>
         </div>
-
 
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">💾 Lưu</button>
@@ -160,63 +112,61 @@
     </form>
 </div>
 
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger mt-3">
-        <ul>
-            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <li>@modelError.ErrorMessage</li>
-            }
-        </ul>
-    </div>
-}
-
 @section Scripts {
     <script>
-        function updateSelectedColor(selectElement) {
-            const color = selectElement.value;
-            document.getElementById("SelectedColor").value = color;
-            document.getElementById("ColorPreview").style.backgroundColor = color;
+        function previewImage(input, inputId, previewId) {
+            const file = input.files[0];
+            if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(previewId).src = e.target.result;
+                    document.getElementById(previewId).style.display = "block";
+                    document.getElementById(inputId).value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
-        window.onload = function () {
-            const currentColor = '@Model.Color';
-            if (currentColor) {
-                document.getElementById("SelectedColor").value = currentColor;
-                document.getElementById("ColorPreview").style.backgroundColor = currentColor;
-            }
-        };
+        function clearImage(inputId, previewId) {
+            document.getElementById(inputId).value = "";
+            const img = document.getElementById(previewId);
+            img.src = "";
+            img.style.display = "none";
+        }
     </script>
 }
 
+
+
 <style>
-    /* Container chính */
+    .img-preview {
+        height: 100px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        max-width: 100%;
+    }
+
     .edit-form-wrapper {
-        background: #ffffff;
+        background: #fff;
         padding: 32px;
         border-radius: 12px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
         max-width: 1100px;
         margin: auto;
-        font-family: 'Segoe UI', sans-serif;
     }
 
-        /* Grid chia 2 cột chính */
         .edit-form-wrapper .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 32px;
         }
 
-        /* Nhóm 3 ô nhỏ: Giá, Giảm giá, Tồn kho */
-        .edit-form-wrapper .row-inside-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
+    .row-inside-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
 
-    /* Mỗi input box */
     .form-box {
         background: #f9f9fc;
         border: 1px solid #e2e6ea;
@@ -227,9 +177,7 @@
 
         .form-box label {
             font-weight: 600;
-            margin-bottom: 6px;
             display: block;
-            color: #333;
         }
 
     .form-control {
@@ -238,50 +186,4 @@
         padding: 8px 12px;
         font-size: 0.95rem;
     }
-
-    .form-check {
-        background: #f1f3f6;
-        padding: 10px 16px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-        .form-check label {
-            margin: 0;
-            font-weight: 500;
-        }
-
-    /* Hình ảnh xem trước */
-    .edit-form-wrapper img {
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        max-width: 100%;
-    }
-
-    /* Preview màu */
-    #ColorPreview {
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-    }
-
-    /* Nút */
-    .edit-form-wrapper button.btn,
-    .edit-form-wrapper a.btn {
-        padding: 10px 20px;
-        font-size: 1rem;
-        border-radius: 6px;
-        margin: 0 5px;
-    }
-    .edit-form-wrapper .row-inside-3 {
-        grid-template-columns: 1fr;
-    }
-
-    }
 </style>
-

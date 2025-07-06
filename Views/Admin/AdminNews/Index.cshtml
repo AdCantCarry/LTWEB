@@ -1,5 +1,6 @@
-﻿@model List<News>
-
+﻿@using TechNova.Models.Core
+@model List<News>
+@await Html.PartialAsync("_AlertMessage")
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Quản lý tin tức";
@@ -52,10 +53,10 @@
         overflow: hidden;
     }
 
-    .admin-news-table th,
-    .admin-news-table td {
-        vertical-align: middle;
-    }
+        .admin-news-table th,
+        .admin-news-table td {
+            vertical-align: middle;
+        }
 
     .badge {
         padding: 0.5em 0.75em;
@@ -71,8 +72,8 @@
         transition: all 0.2s ease-in-out;
     }
 
-    .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
 </style>

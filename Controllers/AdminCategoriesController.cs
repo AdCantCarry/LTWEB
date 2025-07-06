@@ -35,8 +35,11 @@ namespace TechNova.Controllers
             {
                 _context.Categories.Add(category);
                 _context.SaveChanges();
+                TempData["SuccessMessage"] = "Cập nhật danh mục thành công!";
+                TempData["ErrorMessage"] = "Đã xảy ra lỗi khi lưu danh mục!";
                 return RedirectToAction("Index");
             }
+
             return View("~/Views/Admin/AdminCategories/Create.cshtml", category);
         }
 
@@ -53,6 +56,8 @@ namespace TechNova.Controllers
             {
                 _context.Categories.Update(category);
                 _context.SaveChanges();
+                TempData["SuccessMessage"] = "Cập nhật danh mục thành công!";
+                TempData["ErrorMessage"] = "Đã xảy ra lỗi khi lưu danh mục!";
                 return RedirectToAction("Index");
             }
             return View("~/Views/Admin/AdminCategories/Edit.cshtml", category);

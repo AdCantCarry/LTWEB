@@ -1,5 +1,6 @@
 ﻿@using TechNova.Models.Core
 @model IEnumerable<Brand>
+@await Html.PartialAsync("_AlertMessage")
 @{
     ViewData["Title"] = "Quản lý thương hiệu";
     Layout = "~/Views/Shared/_adminLayout.cshtml";

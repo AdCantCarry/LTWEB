@@ -1,5 +1,6 @@
 ﻿@using TechNova.Models.Core
 @model List<Category>
+@await Html.PartialAsync("_AlertMessage")
 @{
     ViewData["Title"] = "Quản lý Danh mục";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";

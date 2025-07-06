@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechNova.Models.Data;
 
@@ -11,9 +12,11 @@ using TechNova.Models.Data;
 namespace TechNova.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250704160042_AddNewsTableFixed")]
+    partial class AddNewsTableFixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,6 +329,7 @@ namespace TechNova.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -337,6 +341,12 @@ namespace TechNova.Migrations
 
                     b.Property<int?>("DiscountPercent")
                         .HasColumnType("int");
+
+                    b.Property<bool>("HasColor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasStorage")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -357,6 +367,7 @@ namespace TechNova.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Storage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubImage1Url")
@@ -370,9 +381,6 @@ namespace TechNova.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 

@@ -1,4 +1,5 @@
-﻿@model TechNova.Models.News
+﻿@using TechNova.Models.Core
+@model News
 
 @{
     ViewData["Title"] = Model.Title;
@@ -23,7 +24,7 @@
         <h4 class="fw-bold mb-4">📰 Tin Liên Quan</h4>
 
         <div class="row row-cols-1 row-cols-md-3 g-4 related-news">
-            @foreach (var item in ViewBag.RelatedNews as List<TechNova.Models.News>)
+            @foreach (var item in ViewBag.RelatedNews as List<News>)
             {
                 <div class="col">
                     <a asp-action="NewsDetails" asp-route-id="@item.NewsId" class="text-decoration-none text-dark d-block h-100">

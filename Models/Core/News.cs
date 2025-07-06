@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TechNova.Models
+namespace TechNova.Models.Core
 {
     public class News
     {

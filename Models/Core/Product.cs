@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TechNova.Models.Core
-
-    {
-
+{
     public class Product
     {
         public int ProductId { get; set; }
@@ -29,25 +28,24 @@ namespace TechNova.Models.Core
         public string? SubImage2Url { get; set; }
         public string? SubImage3Url { get; set; }
 
+        public string? VideoUrl { get; set; } // Video review hoặc giới thiệu sản phẩm
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public string Color { get; set; }
-        public bool HasColor { get; set; } // true nếu sản phẩm có lựa chọn màu
+        public string? Color { get; set; } // Nếu null hoặc rỗng thì coi như không chọn màu
 
-        public string Storage { get; set; }
-        public bool HasStorage { get; set; }
+        public string? Storage { get; set; } // Nếu null hoặc rỗng thì coi như không chọn dung lượng
 
         public int? BrandId { get; set; } // FK
         public Brand? Brand { get; set; } // Navigation
+
         public int StockQuantity { get; set; } = 0; // Số lượng tồn kho
 
         public bool IsActive { get; set; } = true; // Đang bán hay ngừng bán
 
         public DateTime? UpdatedAt { get; set; }
+
         public ICollection<ProductSpecification> Specifications { get; set; } = new List<ProductSpecification>();
         public ICollection<ProductSpecification> ProductSpecifications { get; set; } = new List<ProductSpecification>();
-
-
     }
 }
