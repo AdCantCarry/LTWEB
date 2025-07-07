@@ -1,18 +1,67 @@
 ﻿@using TechNova.Models.Core
 @model Brand
+
 @{
     ViewData["Title"] = "Thêm thương hiệu";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>Thêm thương hiệu</h2>
+<h2 class="mb-4 text-center fw-bold">Thêm thương hiệu</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label>Tên thương hiệu</label>
-        <input asp-for="Name" class="form-control" required />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-success">Lưu</button>
-    <a href="/AdminBrands" class="btn btn-secondary">⬅️ Quay lại</a>
-</form>
+<div class="edit-form-wrapper">
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-box">
+                    <label asp-for="Name">Tên thương hiệu</label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">💾 Lưu</button>
+            <a href="/AdminBrands" class="btn btn-secondary">⬅️ Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Styles {
+    <style>
+        .edit-form-wrapper {
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            max-width: 1100px;
+            margin: auto;
+        }
+
+            .edit-form-wrapper .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+        .form-box {
+            background: #f9f9fc;
+            border: 1px solid #e2e6ea;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+            .form-box label {
+                font-weight: 600;
+                margin-bottom: 6px;
+                display: block;
+            }
+
+        .form-control {
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.95rem;
+        }
+    </style>
+}

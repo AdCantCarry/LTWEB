@@ -1,6 +1,7 @@
 ﻿@using TechNova.Models.Core
 @model List<SpecificationGroup>
 @await Html.PartialAsync("_AlertMessage")
+
 @{
     ViewData["Title"] = "Quản lý Thông số kỹ thuật";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,93 +10,103 @@
     var selectedId = ViewBag.SelectedCategoryId as int?;
 }
 
+<section class="py-4">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary mb-4">🛠️ Quản lý Thông số kỹ thuật</h2>
 
-<h2 class="text-center fw-bold mb-4">🛠️ Quản lý Thông số kỹ thuật</h2>
+        <!-- Form chọn danh mục -->
+        <form method="get" class="d-flex align-items-center gap-3 mb-4">
+            <label class="form-label mb-0 fw-semibold">📂 Danh mục:</label>
+            <select name="categoryId" class="form-select category-select" onchange="this.form.submit()">
+                <option value="">-- Chọn danh mục --</option>
+                @foreach (var cat in categories)
+                {
+                    <option value="@cat.CategoryId" selected="@(cat.CategoryId == selectedId)">
+                        @cat.Name
+                    </option>
+                }
+            </select>
 
-<!-- Form chọn danh mục -->
-<form method="get" class="d-flex align-items-center gap-3 mb-4">
-    <label class="form-label mb-0">Danh mục:</label>
-    <select name="categoryId" class="form-select category-select" onchange="this.form.submit()">
-        <option value="">-- Chọn danh mục --</option>
-        @foreach (var cat in categories)
+            @if (selectedId != null)
+            {
+                <a asp-action="CreateGroup" asp-route-categoryId="@selectedId" class="btn btn-success rounded-pill fw-bold">
+                    ➕ Thêm nhóm mới
+                </a>
+            }
+        </form>
+
+        @if (!Model.Any())
         {
-             <option value="@cat.CategoryId" selected="@(cat.CategoryId == selectedId)">
-                @cat.Name
-            </option>
+            <div class="alert alert-info text-center rounded-3">
+                📌 Vui lòng chọn danh mục để xem hoặc thêm thông số kỹ thuật.
+            </div>
         }
-    </select>
-
-    @if (selectedId != null)
-    {
-        <a asp-action="CreateGroup" asp-route-categoryId="@selectedId" class="btn btn-success btn-add-group">
-            ➕ Thêm nhóm mới
-        </a>
-    }
-</form>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info text-center">Vui lòng chọn danh mục để xem hoặc thêm thông số kỹ thuật.</div>
-}
-else
-{
-    @foreach (var group in Model)
-    {
-        <div class="spec-group-card">
-            <h5 class="group-title">@group.GroupName</h5>
-
-            @if (group.Items != null && group.Items.Any())
+        else
+        {
+            @foreach (var group in Model)
             {
-                <ul class="spec-item-list">
-                    @foreach (var item in group.Items)
+                <div class="group-box shadow-sm">
+                    <h5 class="group-title text-primary">📑 @group.GroupName</h5>
+
+                    @if (group.Items != null && group.Items.Any())
                     {
-                        <li>
-                            <strong>@item.ItemName</strong> - (Thứ tự: @item.DisplayOrder)
-                        </li>
+                        <ul class="spec-item-list">
+                            @foreach (var item in group.Items)
+                            {
+                                <li>
+                                    <strong>@item.ItemName</strong> – (Thứ tự: @item.DisplayOrder)
+                                </li>
+                            }
+                        </ul>
                     }
-                </ul>
-            }
-            else
-            {
-                <p class="text-muted">Chưa có thông số trong nhóm này.</p>
-            }
+                    else
+                    {
+                        <p class="text-muted">Chưa có thông số trong nhóm này.</p>
+                    }
 
-            <a href="/AdminSpecifications/EditGroup/@group.SpecificationGroupId" class="btn btn-sm btn-warning">✏️ Sửa nhóm</a>
-        </div>
-    }
-
-}
+                    <a href="/AdminSpecifications/EditGroup/@group.SpecificationGroupId" class="btn btn-warning btn-sm rounded-pill">
+                        ✏️ Sửa nhóm
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</section>
 
 @section Styles {
     <style>
         .group-box {
-            background-color: #f8f9fa;
+            background-color: #fff;
             border: 1px solid #dee2e6;
-            border-radius: 10px;
+            border-radius: 16px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
         }
 
-            .group-box h5 {
-                font-weight: 600;
-                margin-bottom: 12px;
+            .group-box:hover {
+                background-color: #f7faff;
+                border-color: #cce5ff;
             }
 
-            .group-box ul {
-                padding-left: 20px;
-                margin-bottom: 12px;
-            }
+        .group-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
 
-            .group-box li {
+        .spec-item-list {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+            .spec-item-list li {
                 line-height: 1.6;
+                font-size: 1rem;
             }
 
         .category-select {
             max-width: 250px;
-        }
-
-        .btn-add-group {
-            font-weight: 500;
         }
     </style>
 }
