@@ -3,16 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using TechNova.Models.Core;
 using TechNova.Models.Auth;
 using TechNova.Models.Data;
+using TechNova.Helpers;
+using System.Text;
+using PaymentModel = TechNova.Models.Core.Payment;
 
 namespace TechNova.Controllers
 {
     public class PaymentsController : Controller
     {
         private readonly StoreDbContext _context;
+        private readonly IConfiguration _config;
 
-        public PaymentsController(StoreDbContext context)
+        public PaymentsController(StoreDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         public IActionResult Index()
@@ -24,25 +29,8 @@ namespace TechNova.Controllers
             return View(payments);
         }
 
-        public IActionResult PayWithMomo(int orderId)
-        {
-            var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
-            var payment = _context.Payments.FirstOrDefault(p => p.OrderId == orderId);
-
-            if (order == null || payment == null)
-                return RedirectToAction("Index", "Cart");
-
-            // Redirect giả lập (không tích hợp API thật)
-            TempData["OrderSuccess"] = "Giả lập thanh toán Momo thành công!";
-            order.Status = "Đã thanh toán";
-            payment.Status = "Paid";
-            _context.SaveChanges();
-
-            return RedirectToAction("Profile", "Account");
-        }
-
         [HttpPost]
-        public IActionResult ConfirmOrder(int SelectedAddressId, string PaymentMethod)
+        public IActionResult ConfirmOrder(IFormCollection form, string PaymentMethod)
         {
             var email = HttpContext.Session.GetString("Email");
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
@@ -51,13 +39,39 @@ namespace TechNova.Controllers
             if (user == null || cart == null || !cart.Any())
                 return RedirectToAction("Index", "Cart");
 
+            Address shippingAddress;
+            if (int.TryParse(form["SelectedAddressId"], out int selectedId))
+            {
+                shippingAddress = _context.Addresses.FirstOrDefault(a => a.AddressId == selectedId);
+            }
+            else
+            {
+                shippingAddress = new Address
+                {
+                    UserId = user.UserId,
+                    FullName = form["FullName"],
+                    Phone = form["Phone"],
+                    Street = form["Street"],
+                    Ward = form["Ward"],
+                    District = form["District"],
+                    City = form["City"],
+                    IsDefault = true
+                };
+
+                var existing = _context.Addresses.Where(a => a.UserId == user.UserId);
+                foreach (var addr in existing) addr.IsDefault = false;
+                _context.Addresses.Add(shippingAddress);
+                _context.SaveChanges();
+            }
+
+            var total = cart.Sum(i => i.TotalPrice);
             var order = new Order
             {
                 UserId = user.UserId,
-                AddressId = SelectedAddressId,
+                AddressId = shippingAddress.AddressId,
                 CreatedAt = DateTime.Now,
-                TotalAmount = cart.Sum(i => i.TotalPrice),
-                Status = PaymentMethod == "Momo" ? "Chờ thanh toán" : "Pending",
+                TotalAmount = total,
+                Status = (PaymentMethod == "VNPay" || PaymentMethod == "Momo") ? "Chờ thanh toán" : "Pending",
                 OrderItems = cart.Select(i => new OrderItem
                 {
                     ProductId = i.ProductId,
@@ -69,21 +83,26 @@ namespace TechNova.Controllers
             _context.Orders.Add(order);
             _context.SaveChanges();
 
-            var payment = new Payment
+            var payment = new PaymentModel
             {
                 OrderId = order.OrderId,
                 Method = PaymentMethod,
-                Amount = order.TotalAmount,
-                Status = PaymentMethod == "Momo" ? "Pending" : "Paid"
+                Amount = total,
+                Status = (PaymentMethod == "VNPay" || PaymentMethod == "Momo") ? "Pending" : "Paid",
+                CreatedAt = DateTime.Now
             };
 
             _context.Payments.Add(payment);
             _context.SaveChanges();
 
+            if (PaymentMethod == "VNPay")
+            {
+                return Redirect(GenerateVNPayUrl(order));
+            }
+
             if (PaymentMethod == "Momo")
             {
-                // Chuyển qua hành động gọi Momo
-                return RedirectToAction("PayWithMomo", "Payment", new { orderId = order.OrderId });
+                return RedirectToAction("PayWithMomo", new { orderId = order.OrderId });
             }
 
             HttpContext.Session.Remove("Cart");
@@ -91,6 +110,75 @@ namespace TechNova.Controllers
             return RedirectToAction("Profile", "Account");
         }
 
-    }
+        public IActionResult PayWithMomo(int orderId)
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+            var payment = _context.Payments.FirstOrDefault(p => p.OrderId == orderId);
 
+            if (order == null || payment == null)
+                return RedirectToAction("Index", "Cart");
+
+            // Mô phỏng thanh toán thành công
+            order.Status = "Đã thanh toán";
+            payment.Status = "Paid";
+            _context.SaveChanges();
+
+            HttpContext.Session.Remove("Cart");
+            TempData["OrderSuccess"] = "Thanh toán Momo thành công!";
+            return RedirectToAction("Profile", "Account");
+        }
+
+        [HttpGet]
+        public IActionResult VNPayCallback()
+        {
+            var query = HttpContext.Request.Query;
+            string responseCode = query["vnp_ResponseCode"];
+            string txnRef = query["vnp_TxnRef"];
+
+            if (responseCode == "00")
+            {
+                var order = _context.Orders.FirstOrDefault(o => o.CreatedAt.Ticks.ToString() == txnRef);
+                if (order != null)
+                {
+                    order.Status = "Đã thanh toán";
+                    var payment = _context.Payments.FirstOrDefault(p => p.OrderId == order.OrderId);
+                    if (payment != null) payment.Status = "Paid";
+                    _context.SaveChanges();
+
+                    HttpContext.Session.Remove("Cart");
+                    TempData["OrderSuccess"] = "Thanh toán VNPay thành công!";
+                    return RedirectToAction("Profile", "Account");
+                }
+            }
+
+            TempData["OrderError"] = "Thanh toán VNPay thất bại hoặc bị hủy.";
+            return RedirectToAction("Profile", "Account");
+        }
+
+        private string GenerateVNPayUrl(Order order)
+        {
+            var vnp = new VNPayLibrary();
+            string tmnCode = _config["VNPay:TmnCode"];
+            string hashSecret = _config["VNPay:HashSecret"];
+            string returnUrl = _config["VNPay:ReturnUrl"];
+            string vnpUrl = _config["VNPay:VnpUrl"];
+
+            string txnRef = order.CreatedAt.Ticks.ToString();
+
+            vnp.AddRequestData("vnp_Version", "2.1.0");
+            vnp.AddRequestData("vnp_Command", "pay");
+            vnp.AddRequestData("vnp_TmnCode", tmnCode);
+            vnp.AddRequestData("vnp_Amount", ((long)(order.TotalAmount * 100)).ToString());
+            vnp.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
+            vnp.AddRequestData("vnp_CurrCode", "VND");
+            vnp.AddRequestData("vnp_IpAddr", HttpContext.Connection.RemoteIpAddress?.ToString());
+            vnp.AddRequestData("vnp_Locale", "vn");
+            vnp.AddRequestData("vnp_OrderInfo", $"Thanh toán đơn hàng #{order.OrderId}");
+            vnp.AddRequestData("vnp_OrderType", "other");
+            vnp.AddRequestData("vnp_ReturnUrl", returnUrl);
+            vnp.AddRequestData("vnp_TxnRef", txnRef);
+
+            return vnp.CreateRequestUrl(vnpUrl, hashSecret);
+        }
+    }
 }

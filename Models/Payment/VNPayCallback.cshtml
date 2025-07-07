@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Kết quả thanh toán VNPay";
+}
+
+<div class="container py-5">
+    <div class="text-center">
+        <h2 class="mb-4">@ViewBag.Title</h2>
+
+        @if (TempData["OrderSuccess"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="bi bi-check-circle-fill"></i> @TempData["OrderSuccess"]
+            </div>
+            <a href="/account/profile" class="btn btn-success mt-3">Xem đơn hàng</a>
+        }
+        else if (TempData["OrderError"] != null)
+        {
+            <div class="alert alert-danger">
+                <i class="bi bi-x-circle-fill"></i> @TempData["OrderError"]
+            </div>
+            <a href="/cart/checkout" class="btn btn-warning mt-3">Thử lại</a>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Đang xử lý kết quả thanh toán...
+            </div>
+        }
+    </div>
+</div>

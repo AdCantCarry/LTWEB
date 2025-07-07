@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Payment\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="wwwroot\uploads\news\" />
   </ItemGroup>

@@ -12,7 +12,8 @@
     }
     else
     {
-        <form asp-action="ConfirmOrder" method="post">
+        <form asp-controller="Payments" asp-action="ConfirmOrder" method="post">
+            <!-- Sản phẩm -->
             <h4>📦 Sản phẩm</h4>
             <table class="table">
                 <thead>
@@ -40,23 +41,23 @@
                 </tbody>
             </table>
 
+            <!-- Địa chỉ giao hàng -->
             <h4>🚚 Địa chỉ giao hàng</h4>
-
             @if (Model.Addresses != null && Model.Addresses.Any())
-{
-            <div class="mb-3">
-                <label for="SelectedAddressId" class="form-label fw-bold">Chọn địa chỉ giao hàng:</label>
-                <select name="SelectedAddressId" class="form-select" required>
-                    @foreach (var addr in Model.Addresses)
-                    {
-                                    <option value="@addr.AddressId" selected="@(addr.IsDefault ? "selected" : null)">
-                                        @addr.FullName - @addr.Phone | @addr.Street, @addr.Ward, @addr.District, @addr.City
-                                        @(addr.IsDefault ? "(Mặc định)" : "")
-                                    </option>
-                    }
-                </select>
-            </div>
-        }
+            {
+                <div class="mb-3">
+                    <label for="SelectedAddressId" class="form-label fw-bold">Chọn địa chỉ giao hàng:</label>
+                    <select name="SelectedAddressId" class="form-select" required>
+                        @foreach (var addr in Model.Addresses)
+                        {
+                            <option value="@addr.AddressId" selected="@(addr.IsDefault ? "selected" : null)">
+                                @addr.FullName - @addr.Phone | @addr.Street, @addr.Ward, @addr.District, @addr.City
+                                @(addr.IsDefault ? "(Mặc định)" : "")
+                            </option>
+                        }
+                    </select>
+                </div>
+            }
 
             <div id="add-address-toggle" class="text-end mb-3">
                 <button type="button" class="btn btn-outline-primary" id="showAddAddressBtn">➕ Thêm địa chỉ mới</button>
@@ -97,7 +98,7 @@
                 </div>
             </div>
 
-
+            <!-- Phương thức thanh toán -->
             <h4>💳 Phương thức thanh toán</h4>
             <div class="mb-3">
                 <div class="form-check">
@@ -108,8 +109,13 @@
                     <input class="form-check-input" type="radio" name="PaymentMethod" value="Momo" />
                     <label class="form-check-label">Thanh toán qua Momo</label>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="VNPay" />
+                    <label class="form-check-label">Thanh toán qua VNPay</label>
+                </div>
             </div>
 
+            <!-- Tổng tiền -->
             <h4>💰 Tổng cộng</h4>
             <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
             <p>Tổng thanh toán: <strong class="text-danger">@Model.Total.ToString("N0")₫</strong></p>
@@ -118,6 +124,7 @@
         </form>
     }
 </div>
+
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -184,6 +191,13 @@
                         });
                         wardSelect.disabled = false;
                     });
+            });
+
+            // FIX: remove 'disabled' before submit
+            document.querySelector("form")?.addEventListener("submit", function () {
+                citySelect.disabled = false;
+                districtSelect.disabled = false;
+                wardSelect.disabled = false;
             });
         });
     </script>
