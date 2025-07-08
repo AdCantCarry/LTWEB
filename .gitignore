@@ -31,3 +31,4 @@ artifacts/
 _ReSharper*/
 .vscode/
 wwwroot/images/avatars/*.tmp
+/appsettings.json
