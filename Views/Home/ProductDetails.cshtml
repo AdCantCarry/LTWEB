@@ -1,15 +1,17 @@
 ﻿@using TechNova.Models.Core
-@model Product
+@model TechNova.Models.ViewModels.ProductDetailsViewModel
 
 @{
     ViewData["Title"] = "Chi tiết sản phẩm";
 
-    var colorList = (Model.Color ?? "")
+    var colorList = (Model.Product.Color ?? "")
         .Split(',', StringSplitOptions.RemoveEmptyEntries)
         .Select(c => c.Trim())
         .ToArray();
 
-    var storageList = Model.Storage?.Split(',') ?? new string[] { };
+    var storageList = Model.Product.Storage?.Split(',') ?? new string[] { };
+    bool requireColor = colorList.Any();
+    bool requireStorage = storageList.Any();
 }
 
 <link rel="stylesheet" href="~/css/product-detail.css" />
@@ -17,20 +19,20 @@
 <div class="product-detail-container">
     <!-- Left: Images -->
     <div class="product-images">
-        <img src="@Model.MainImageUrl" class="main-image" alt="Main Product Image" />
+        <img src="@Model.Product.MainImageUrl" class="main-image" alt="Main Product Image" />
 
         <div class="thumbnail-images">
-            @if (!string.IsNullOrWhiteSpace(Model.SubImage1Url))
+            @if (!string.IsNullOrWhiteSpace(Model.Product.SubImage1Url))
             {
-                <img src="@Model.SubImage1Url" class="thumbnail-img" />
+                <img src="@Model.Product.SubImage1Url" class="thumbnail-img" />
             }
-            @if (!string.IsNullOrWhiteSpace(Model.SubImage2Url))
+            @if (!string.IsNullOrWhiteSpace(Model.Product.SubImage2Url))
             {
-                <img src="@Model.SubImage2Url" class="thumbnail-img" />
+                <img src="@Model.Product.SubImage2Url" class="thumbnail-img" />
             }
-            @if (!string.IsNullOrWhiteSpace(Model.SubImage3Url))
+            @if (!string.IsNullOrWhiteSpace(Model.Product.SubImage3Url))
             {
-                <img src="@Model.SubImage3Url" class="thumbnail-img" />
+                <img src="@Model.Product.SubImage3Url" class="thumbnail-img" />
             }
         </div>
     </div>
@@ -39,25 +41,25 @@
     <!-- Right: Product Info -->
     <div class="product-info">
         <!-- Thương hiệu và tồn kho -->
-        @if (Model.Brand != null)
+        @if (Model.Product.Brand != null)
         {
             <div class="product-meta">
-                <span class="brand-name"><strong>@Model.Brand.Name</strong></span>
+                <span class="brand-name"><strong>@Model.Product.Brand.Name</strong></span>
             </div>
         }
-        <h2 class="product-name">@Model.Name</h2>
+        <h2 class="product-name">@Model.Product.Name</h2>
 
 
         <div class="product-price">
-            @if (Model.DiscountPercent > 0)
+            @if (Model.Product.DiscountPercent > 0)
             {
-                <span class="price-discounted">@Model.DiscountedPrice.ToString("N0")₫</span>
-                <span class="price-original">@Model.Price.ToString("N0")₫</span>
-                <span class="price-save">Tiết kiệm @((Model.Price - Model.DiscountedPrice).ToString("N0"))₫</span>
+                <span class="price-discounted">@Model.Product.DiscountedPrice.ToString("N0")₫</span>
+                <span class="price-original">@Model.Product.Price.ToString("N0")₫</span>
+                <span class="price-save">Tiết kiệm @((Model.Product.Price - Model.Product.DiscountedPrice).ToString("N0"))₫</span>
             }
             else
             {
-                <span class="price-discounted">@Model.Price.ToString("N0")₫</span>
+                <span class="price-discounted">@Model.Product.Price.ToString("N0")₫</span>
             }
         </div>
 
@@ -99,18 +101,18 @@
             </div>
         </div>
         <div class="product-meta">
-            <span class="stock-qty">Kho còn: <strong>@Model.StockQuantity</strong> sản phẩm</span>
+            <span class="stock-qty">Kho còn: <strong>@Model.Product.StockQuantity</strong> sản phẩm</span>
         </div>
         <!-- Action Buttons -->
         <form method="post" asp-controller="Cart" asp-action="AddToCart" onsubmit="return validateSelection();">
-            <input type="hidden" name="productId" value="@Model.ProductId" />
+            <input type="hidden" name="productId" value="@Model.Product.ProductId" />
             <input type="hidden" name="color" id="SelectedColor" />
             <input type="hidden" name="storage" id="SelectedStorage" />
             <input type="hidden" name="quantity" id="FormQuantity" value="1" />
 
             <div class="button-group">
                 <button type="submit" class="btn-add-to-cart">
-                    🛒 Thêm vào giỏ - @Model.DiscountedPrice.ToString("N0")₫
+                    🛒 Thêm vào giỏ - @Model.Product.DiscountedPrice.ToString("N0")₫
                 </button>
                 <button type="button" class="btn-buy-now">Mua ngay</button>
             </div>
@@ -122,30 +124,20 @@
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="description">Mô tả</button>
             <button class="tab-btn" data-tab="specs">Thông số kỹ thuật</button>
-            <button class="tab-btn" data-tab="reviews">Đánh giá (1234)</button>
+            <button class="tab-btn" data-tab="reviews">Đánh giá (@Model.Reviews.Count)</button>
             <button class="tab-btn" data-tab="shipping">Giao hàng & Đổi trả</button>
         </div>
 
         <div class="tab-content">
             <div class="tab-panel active" id="description">
-                <p>@Model.Description</p>
-                <h5>Đặc điểm nổi bật</h5>
-                <ul class="feature-list">
-                    <li>Titanium thiết kế với mặt kính mờ chống trượt</li>
-                    <li>Chip A17 Pro mạnh mẽ chơi game console</li>
-                    <li>Camera zoom 5x Telephoto</li>
-                    <li>Nút hành động tùy chỉnh</li>
-                    <li>Cổng USB-C chuẩn USB 3</li>
-                    <li>Màn hình Always-On, 120Hz ProMotion</li>
-                    <li>Hỗ trợ SOS & phát hiện tai nạn</li>
-                    <li>Sạc MagSafe và Qi không dây</li>
-                </ul>
+                @Html.Raw(Model.Product.Description)
             </div>
 
+
             <div class="tab-panel" id="specs">
-                @if (Model.ProductSpecifications?.Any() == true)
+                @if (Model.Product.ProductSpecifications?.Any() == true)
                 {
-                    var groupedSpecs = Model.ProductSpecifications
+                    var groupedSpecs = Model.Product.ProductSpecifications
                     .GroupBy(ps => ps.SpecificationItem.Group)
                     .OrderBy(g => g.Key.DisplayOrder);
 
@@ -173,14 +165,67 @@
 
 
             <div class="tab-panel" id="reviews">
-                <p>Phần đánh giá từ người dùng...</p>
+                @if (Model.Reviews?.Any() == true)
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review-item">
+                            <strong>@review.Rating★</strong> bởi <strong>@review.User.Username</strong>
+                            <p>@review.Comment</p>
+                            <div class="text-muted">@review.CreatedAt.ToString("dd/MM/yyyy")</div>
+                        </div>
+                    }
+
+                }
+                else
+                {
+                    <p class="text-muted">Chưa có đánh giá nào.</p>
+                }
+
+                @if (Model.CanReview)
+                {
+                    <form method="post" asp-action="SubmitReview">
+                        <input type="hidden" name="ProductId" value="@Model.Product.ProductId" />
+                        <div class="form-group mt-3">
+                            <label>Đánh giá (1-5 sao)</label>
+                            <input type="number" name="Rating" class="form-control" min="1" max="5" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Bình luận</label>
+                            <textarea name="Comment" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Gửi đánh giá</button>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-info mt-3">Chỉ người đã mua sản phẩm này mới được đánh giá.</div>
+                }
             </div>
 
-            <div class="tab-panel" id="shipping">
-                <p>Chính sách giao hàng và đổi trả...</p>
+
+            <div class="tab-panel policy-tab" id="shipping">
+                <h4><i class="bi bi-truck"></i> Giao hàng</h4>
+                <ul>
+                    <li>🚚 Miễn phí giao hàng toàn quốc với đơn từ <strong>500.000₫</strong></li>
+                    <li>⏱ Thời gian giao hàng: từ <strong>1–3 ngày làm việc</strong></li>
+                    <li>🔎 Có thể kiểm tra tình trạng đơn hàng qua trang “Đơn hàng của tôi”</li>
+                </ul>
+
+                <h4><i class="bi bi-arrow-repeat"></i> Đổi/trả hàng</h4>
+                <ul>
+                    <li>📦 Đổi hàng trong vòng <strong>7 ngày</strong> kể từ ngày nhận hàng</li>
+                    <li>🛠 Sản phẩm lỗi kỹ thuật được đổi/trả miễn phí</li>
+                    <li>❗ Không áp dụng đổi/trả với sản phẩm đã qua sử dụng</li>
+                </ul>
+
+                <p>👉 Mọi thắc mắc, xin liên hệ <strong>hotline</strong>: <a href="tel:19001234">1900 1234</a> hoặc <a href="@Url.Action("Contact", "Home")">Liên hệ chúng tôi</a>
+
             </div>
+
         </div>
     </div>
+
 </div>
 
 @section Scripts {
@@ -201,7 +246,9 @@
 
     <script>
         // Validate khi submit form
-        function validateSelection() {
+                function validateSelection() {
+            const requireColor = @requireColor.ToString().ToLower();   // true/false
+            const requireStorage = @requireStorage.ToString().ToLower();
 
             const color = document.getElementById("SelectedColor").value;
             const storage = document.getElementById("SelectedStorage").value;
@@ -218,6 +265,7 @@
 
             return true;
         }
+
 
         // Xử lý chọn màu
         document.querySelectorAll('.color-circle').forEach(el => {

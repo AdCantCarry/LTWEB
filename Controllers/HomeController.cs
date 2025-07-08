@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using System.Linq;
+using TechNova.Models.Core;
 using TechNova.Models.Data;
+using TechNova.Models.ViewModels;
 
 namespace TechNova.Controllers
 {
     public class HomeController : Controller
     {
         private readonly StoreDbContext _context;
-        private const int PageSize = 10; // Mỗi trang hiển thị 10 sản phẩm
+        private const int PageSize = 10;
 
         public HomeController(StoreDbContext context)
         {
@@ -19,51 +19,50 @@ namespace TechNova.Controllers
         public IActionResult Index()
         {
             var saleProducts = _context.Products
-                .Where(p => p.DiscountPercent > 0 && p.IsActive)
-                .OrderByDescending(p => p.UpdatedAt)
+                .Where(p => p.IsActive && p.DiscountPercent > 0)
                 .Include(p => p.Brand)
+                .OrderByDescending(p => p.UpdatedAt)
                 .ToList();
 
             var appleProducts = _context.Products
-               .Include(p => p.Brand)
-                .Where(p => p.Brand != null && p.Brand.Name.ToLower().Contains("apple") && p.IsActive)
-
+                .Where(p => p.IsActive && p.Brand != null && p.Brand.Name.ToLower().Contains("apple"))
+                .Include(p => p.Brand)
                 .OrderByDescending(p => p.UpdatedAt)
                 .ToList();
 
             var samsungProducts = _context.Products
+                .Where(p => p.IsActive && p.Brand != null && p.Brand.Name.Contains("Samsung"))
                 .Include(p => p.Brand)
-                .Where(p => p.Brand != null && p.Brand.Name.Contains("Samsung") && p.IsActive)
                 .OrderByDescending(p => p.UpdatedAt)
                 .ToList();
+
             var acerProducts = _context.Products
-               .Include(p => p.Brand)
-               .Where(p => p.Brand != null && p.Brand.Name.Contains("Acer") && p.IsActive)
-               .OrderByDescending(p => p.UpdatedAt)
-               .ToList();
+                .Where(p => p.IsActive && p.Brand != null && p.Brand.Name.Contains("Acer"))
+                .Include(p => p.Brand)
+                .OrderByDescending(p => p.UpdatedAt)
+                .ToList();
+
             var latestNews = _context.News
-            .Where(n => n.IsPublished)
-            .OrderByDescending(n => n.CreatedAt)
-            .Take(3)
-            .ToList();
+                .Where(n => n.IsPublished)
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(3)
+                .ToList();
 
             ViewBag.LatestNews = latestNews;
             ViewBag.SaleProducts = saleProducts;
             ViewBag.AppleProducts = appleProducts;
             ViewBag.SamsungProducts = samsungProducts;
             ViewBag.AcerProducts = acerProducts;
+
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            return View(); // không cần truyền model nữa
-        }
+        public IActionResult Contact() => View();
 
         public IActionResult Products(string search, int? categoryId, string sort, int? minPrice, int? maxPrice, List<int> brands, int page = 1)
         {
             var query = _context.Products
-                 .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
+                .Where(p => p.IsActive)
                 .Include(p => p.Category)
                 .Include(p => p.Brand)
                 .AsQueryable();
@@ -74,24 +73,20 @@ namespace TechNova.Controllers
             if (categoryId.HasValue)
                 query = query.Where(p => p.CategoryId == categoryId.Value);
 
-            if (brands != null && brands.Any())
+            if (brands?.Any() == true)
                 query = query.Where(p => p.BrandId.HasValue && brands.Contains(p.BrandId.Value));
 
             if (minPrice.HasValue)
-            {
                 query = query.Where(p =>
                     (p.DiscountPercent.HasValue
                         ? p.Price * (1 - p.DiscountPercent.Value / 100m)
                         : p.Price) >= minPrice.Value);
-            }
 
             if (maxPrice.HasValue)
-            {
                 query = query.Where(p =>
                     (p.DiscountPercent.HasValue
                         ? p.Price * (1 - p.DiscountPercent.Value / 100m)
                         : p.Price) <= maxPrice.Value);
-            }
 
             query = sort switch
             {
@@ -108,13 +103,10 @@ namespace TechNova.Controllers
                 _ => query.OrderBy(p => p.ProductId)
             };
 
-            int totalItems = query.Count();
-            int totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+            var totalItems = query.Count();
+            var totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
 
-            var products = query
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToList();
+            var products = query.Skip((page - 1) * PageSize).Take(PageSize).ToList();
 
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
@@ -133,41 +125,99 @@ namespace TechNova.Controllers
         public IActionResult ProductDetails(int id)
         {
             var product = _context.Products
-            .Include(p => p.Brand)
-            .Include(p => p.ProductSpecifications)
-                .ThenInclude(ps => ps.SpecificationItem)
-                    .ThenInclude(i => i.Group)
-            .FirstOrDefault(p => p.ProductId == id);
-
+                .Include(p => p.Brand)
+                .Include(p => p.ProductSpecifications)
+                    .ThenInclude(ps => ps.SpecificationItem)
+                        .ThenInclude(i => i.Group)
+                .FirstOrDefault(p => p.ProductId == id);
 
             if (product == null) return NotFound();
 
-            return View(product);
+            var reviews = _context.ProductReviews
+                .Where(r => r.ProductId == id)
+                .Include(r => r.User)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToList();
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            bool canReview = false;
+
+            if (userId.HasValue)
+            {
+                var hasPurchased = _context.Orders
+                    .Any(o => o.UserId == userId.Value &&
+                              o.Status.Trim().Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase) &&
+                              o.OrderItems.Any(od => od.ProductId == id));
+
+
+
+                var alreadyReviewed = _context.ProductReviews
+                    .Any(r => r.UserId == userId.Value && r.ProductId == id);
+
+                canReview = hasPurchased && !alreadyReviewed;
+            }
+
+
+            var vm = new ProductDetailsViewModel
+            {
+                Product = product,
+                Reviews = reviews,
+                CanReview = canReview,
+                NewReview = new ProductReview { ProductId = id }
+            };
+
+            return View(vm);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitReview(ProductReview review)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue) return Unauthorized();
+
+            var hasPurchased = _context.Orders
+                 .Any(o => o.UserId == userId.Value &&
+                           o.Status.Trim().Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase) &&
+                           o.OrderItems.Any(d => d.ProductId == review.ProductId));
+
+
+            var alreadyReviewed = _context.ProductReviews
+                .Any(r => r.UserId == userId.Value && r.ProductId == review.ProductId);
+
+            if (!hasPurchased || alreadyReviewed) return Forbid();
+
+            review.UserId = userId.Value;
+            review.CreatedAt = DateTime.Now;
+
+            _context.ProductReviews.Add(review);
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductDetails", new { id = review.ProductId });
+        }
+
         public IActionResult Categories(string search)
         {
             var categoryPrices = _context.Products
-            .Where(p => p.IsActive)
-            .GroupBy(p => p.CategoryId)
-            .ToDictionary(
-                g => g.Key,
-                g => (
-                    g.Min(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price),
-                    g.Max(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price)
-                )
-            );
+                .Where(p => p.IsActive)
+                .GroupBy(p => p.CategoryId)
+                .ToDictionary(
+                    g => g.Key,
+                    g => (
+                        g.Min(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price),
+                        g.Max(p => p.DiscountPercent.HasValue ? p.Price * (1 - p.DiscountPercent.Value / 100m) : p.Price)
+                    )
+                );
 
-                    ViewBag.CategoryPrices = categoryPrices;
+            ViewBag.CategoryPrices = categoryPrices;
 
             var categories = _context.Categories
-                .Where(p => p.IsActive) // 👈 Thêm dòng này nếu chưa có
-                .AsQueryable()
-                ;
+                .Where(c => c.IsActive)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(search))
-            {
                 categories = categories.Where(c => c.Name.Contains(search));
-            }
 
             var categoryStats = _context.Products
                 .Where(p => p.IsActive)
@@ -182,6 +232,7 @@ namespace TechNova.Controllers
 
             return View(categories.ToList());
         }
+
         public IActionResult News()
         {
             var newsList = _context.News
@@ -189,14 +240,14 @@ namespace TechNova.Controllers
                 .OrderByDescending(n => n.CreatedAt)
                 .ToList();
 
-            return View(newsList); // Trả về View: Views/Home/News.cshtml
+            return View(newsList);
         }
+
         public IActionResult NewsDetails(int id)
         {
             var news = _context.News.FirstOrDefault(n => n.NewsId == id && n.IsPublished);
             if (news == null) return NotFound();
 
-            // Lấy các tin khác (trừ tin hiện tại), tối đa 3 tin mới nhất
             var relatedNews = _context.News
                 .Where(n => n.IsPublished && n.NewsId != id)
                 .OrderByDescending(n => n.CreatedAt)
@@ -204,12 +255,12 @@ namespace TechNova.Controllers
                 .ToList();
 
             ViewBag.RelatedNews = relatedNews;
-
-            return View(news); // Views/Home/NewsDetails.cshtml
+            return View(news);
         }
+
         public IActionResult LoadMoreSaleProducts(int page = 1)
         {
-            int pageSize = 4;
+            var pageSize = 4;
             var products = _context.Products
                 .Where(p => p.DiscountPercent > 0)
                 .OrderBy(p => p.ProductId)
@@ -219,8 +270,5 @@ namespace TechNova.Controllers
 
             return PartialView("_ProductCardPartial", products);
         }
-
-
-
     }
 }

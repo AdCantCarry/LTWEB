@@ -12,8 +12,8 @@ using TechNova.Models.Data;
 namespace TechNova.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250702062800_init")]
-    partial class init
+    [Migration("20250708063746_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,6 +184,37 @@ namespace TechNova.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("TechNova.Models.Core.News", b =>
+                {
+                    b.Property<int>("NewsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewsId");
+
+                    b.ToTable("News");
+                });
+
             modelBuilder.Entity("TechNova.Models.Core.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -225,6 +256,9 @@ namespace TechNova.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -236,6 +270,9 @@ namespace TechNova.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("Storage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderItemId");
 
@@ -298,7 +335,6 @@ namespace TechNova.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -310,12 +346,6 @@ namespace TechNova.Migrations
 
                     b.Property<int?>("DiscountPercent")
                         .HasColumnType("int");
-
-                    b.Property<bool>("HasColor")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasStorage")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -336,7 +366,6 @@ namespace TechNova.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Storage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubImage1Url")
@@ -351,6 +380,9 @@ namespace TechNova.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("VideoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("BrandId");
@@ -360,35 +392,123 @@ namespace TechNova.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("TechNova.Models.News", b =>
+            modelBuilder.Entity("TechNova.Models.Core.ProductReview", b =>
                 {
-                    b.Property<int>("NewsId")
+                    b.Property<int>("ProductReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductReviewId"));
 
-                    b.Property<string>("Content")
+                    b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductReviews");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.ProductSpecification", b =>
+                {
+                    b.Property<int>("ProductSpecificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductSpecificationId"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecificationItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("ProductSpecificationId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductId1");
+
+                    b.HasIndex("SpecificationItemId");
+
+                    b.ToTable("ProductSpecifications");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationGroup", b =>
+                {
+                    b.Property<int>("SpecificationGroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpecificationGroupId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GroupName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("bit");
+                    b.HasKey("SpecificationGroupId");
 
-                    b.Property<string>("Title")
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SpecificationGroups");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationItem", b =>
+                {
+                    b.Property<int>("SpecificationItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpecificationItemId"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ItemName")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("NewsId");
+                    b.HasKey("SpecificationItemId");
 
-                    b.ToTable("News");
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("SpecificationItems");
                 });
 
             modelBuilder.Entity("TechNova.Models.Auth.User", b =>
@@ -475,6 +595,70 @@ namespace TechNova.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TechNova.Models.Core.ProductReview", b =>
+                {
+                    b.HasOne("TechNova.Models.Core.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechNova.Models.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.ProductSpecification", b =>
+                {
+                    b.HasOne("TechNova.Models.Core.Product", "Product")
+                        .WithMany("Specifications")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TechNova.Models.Core.Product", null)
+                        .WithMany("ProductSpecifications")
+                        .HasForeignKey("ProductId1");
+
+                    b.HasOne("TechNova.Models.Core.SpecificationItem", "SpecificationItem")
+                        .WithMany("ProductSpecifications")
+                        .HasForeignKey("SpecificationItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("SpecificationItem");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationGroup", b =>
+                {
+                    b.HasOne("TechNova.Models.Core.Category", "Category")
+                        .WithMany("SpecificationGroups")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationItem", b =>
+                {
+                    b.HasOne("TechNova.Models.Core.SpecificationGroup", "Group")
+                        .WithMany("Items")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
             modelBuilder.Entity("TechNova.Models.Auth.User", b =>
                 {
                     b.Navigation("Addresses");
@@ -488,6 +672,8 @@ namespace TechNova.Migrations
             modelBuilder.Entity("TechNova.Models.Core.Category", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("SpecificationGroups");
                 });
 
             modelBuilder.Entity("TechNova.Models.Core.Order", b =>
@@ -496,6 +682,23 @@ namespace TechNova.Migrations
 
                     b.Navigation("Payment")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.Product", b =>
+                {
+                    b.Navigation("ProductSpecifications");
+
+                    b.Navigation("Specifications");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationGroup", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.SpecificationItem", b =>
+                {
+                    b.Navigation("ProductSpecifications");
                 });
 #pragma warning restore 612, 618
         }

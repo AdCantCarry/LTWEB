@@ -13,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<EmailService>();
 
 builder.Services.AddSession();
+builder.Services.AddHttpClient<GeminiService>();
 
 var app = builder.Build();
 

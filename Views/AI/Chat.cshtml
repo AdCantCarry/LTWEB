@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Trợ lý AI";
+}
+
+<h2>🧠 Trợ lý AI Gemini</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label>Câu hỏi của bạn:</label>
+        <textarea name="userMessage" class="form-control" rows="3">@ViewBag.UserMessage</textarea>
+    </div>
+    <button class="btn btn-primary mt-2">Gửi</button>
+</form>
+
+@if (ViewBag.Response != null)
+{
+    <div class="mt-4">
+        <h5>🤖 Trợ lý trả lời:</h5>
+        <div class="alert alert-light border">
+            @Html.Raw(ViewBag.Response.Replace("\n", "<br>"))
+        </div>
+    </div>
+}
+@section Scripts{
+    <script>
+                const res = await fetch('/AI/Ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `message=${encodeURIComponent(msg)}`
+        });
+
+    </script>
+}

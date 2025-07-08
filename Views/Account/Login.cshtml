@@ -23,8 +23,9 @@
             <span asp-validation-for="Password" class="error-message"></span>
 
             <div class="form-check">
-                <input asp-for="RememberMe" type="checkbox" />
-                <label asp-for="RememberMe">Ghi nhớ đăng nhập</label>
+                <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Ghi nhớ đăng nhập</label>
+
             </div>
 
             @if (ViewBag.Error != null)

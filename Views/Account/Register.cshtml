@@ -16,8 +16,8 @@
     <form asp-action="Register" asp-controller="Account" method="post" class="auth-form">
 
         <div class="form-group-row">
-            <input asp-for="FirstName" class="form-input" placeholder="First Name" />
-            <input asp-for="LastName" class="form-input" placeholder="Last Name" />
+            <input asp-for="FirstName" class="form-input" placeholder="Họ" />
+            <input asp-for="LastName" class="form-input" placeholder="Tên" />
         </div>
         <span asp-validation-for="FirstName" class="error-message"></span>
         <span asp-validation-for="LastName" class="error-message"></span>
@@ -25,10 +25,10 @@
         <input asp-for="Email" class="form-input" placeholder="Email" />
         <span asp-validation-for="Email" class="error-message"></span>
 
-        <input asp-for="Password" class="form-input" placeholder="Password" type="password" />
+        <input asp-for="Password" class="form-input" placeholder="Mật khẩu" type="password" />
         <span asp-validation-for="Password" class="error-message"></span>
 
-        <input asp-for="ConfirmPassword" class="form-input" placeholder="Confirm Password" type="password" />
+        <input asp-for="ConfirmPassword" class="form-input" placeholder="Xác nhận mật khẩu" type="password" />
         <span asp-validation-for="ConfirmPassword" class="error-message"></span>
 
         <div class="form-check">

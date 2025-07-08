@@ -2,6 +2,13 @@
 @model Order
 @{
     ViewData["Title"] = "Thanh toán thành công";
+    var method = Model.Payment?.Method ?? "COD";
+    string methodText = method switch
+    {
+        "Momo" => "Thanh toán qua ví Momo",
+        "VNPay" => "Thanh toán qua VNPay",
+        _ => "Thanh toán khi nhận hàng (COD)"
+    };
 }
 
 <div class="order-success-wrapper">
@@ -9,88 +16,69 @@
         <h2 class="text-success">🎉 Thanh toán thành công!</h2>
         <p>Cảm ơn bạn đã đặt hàng tại <strong>TechNova</strong>.</p>
         <p>Mã đơn hàng của bạn là: <strong>@Model.OrderId</strong></p>
-        <p>Phương thức thanh toán: <strong>Thanh toán khi nhận hàng (COD)</strong></p>
+        <p>Phương thức thanh toán: <strong>@methodText</strong></p>
         <p>Tổng tiền: <strong class="text-danger">@Model.TotalAmount.ToString("N0")₫</strong></p>
 
-        <div class="mt-4">
-            <a href="/Account/Profile" class="btn btn-primary me-2">Xem đơn hàng</a>
+        <div class="mt-4 d-flex justify-content-center flex-wrap gap-2">
+            <a href="/Account/Profile" class="btn btn-primary">Xem đơn hàng</a>
             <a href="/Home/Index" class="btn btn-outline-secondary">Tiếp tục mua sắm</a>
         </div>
     </div>
 </div>
 
 <style>
-.order-success-wrapper {
-    max-width: 700px;
-    margin: 60px auto;
-    background: #ffffff;
-    padding: 40px 32px;
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-    font-family: "Segoe UI", sans-serif;
-}
-
-.order-success-box h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #4caf50;
-    margin-bottom: 20px;
-}
-
-.order-success-box p {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.text-danger {
-    color: #e53935;
-    font-weight: 600;
-}
-
-.btn {
-    padding: 10px 24px;
-    font-size: 16px;
-    border-radius: 8px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-    border: none;
-}
-.btn-primary:hover {
-    background-color: #0069d9;
-}
-
-.btn-outline-secondary {
-    border: 1px solid #ced4da;
-    color: #495057;
-}
-.btn-outline-secondary:hover {
-    background-color: #f8f9fa;
-}
-
-.mt-4 {
-    margin-top: 24px;
-}
-
-media (max-width: 576px) {
     .order-success-wrapper {
-        padding: 24px 16px;
+        max-width: 700px;
+        margin: 60px auto;
+        background: #fff;
+        padding: 40px 32px;
+        border-radius: 16px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .order-success-box h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #4caf50;
+        margin-bottom: 20px;
     }
 
     .order-success-box p {
-        font-size: 16px;
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .text-danger {
+        color: #e53935;
+        font-weight: 600;
     }
 
     .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
+        padding: 10px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        text-decoration: none;
     }
 
-    .me-2 {
-        margin-right: 0 !important;
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
     }
-}
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+        }
+
+    .btn-outline-secondary {
+        border: 1px solid #ced4da;
+        color: #495057;
+        background: transparent;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #f8f9fa;
+        }
+
 </style>

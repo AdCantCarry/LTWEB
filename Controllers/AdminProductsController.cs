@@ -248,11 +248,19 @@ public class AdminProductsController : Controller
 
     private void DeleteImageFile(string imageUrl)
     {
-        if (string.IsNullOrWhiteSpace(imageUrl)) return;
-        var fullPath = Path.Combine("wwwroot", imageUrl.TrimStart('/'));
-        if (System.IO.File.Exists(fullPath))
+        if (string.IsNullOrEmpty(imageUrl) || imageUrl.Contains("default")) return;
+
+        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imageUrl.TrimStart('/'));
+        if (System.IO.File.Exists(path))
         {
-            System.IO.File.Delete(fullPath);
+            try
+            {
+                System.IO.File.Delete(path);
+            }
+            catch
+            {
+                // ignore if file is in use
+            }
         }
     }
     private void DeleteOldImage(string imagePath)
@@ -266,7 +274,52 @@ public class AdminProductsController : Controller
             System.IO.File.Delete(fullPath);
         }
     }
+    [HttpPost]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+        if (product == null) return NotFound();
 
+        // 🔥 XÓA ảnh trong mô tả (ckeditor)
+        DeleteCkeditorImages(product.Description);
+
+        // 🔥 XÓA ảnh chính & phụ nếu có
+        DeleteImageFile(product.MainImageUrl);
+        DeleteImageFile(product.SubImage1Url);
+        DeleteImageFile(product.SubImage2Url);
+        DeleteImageFile(product.SubImage3Url);
+
+        _context.Products.Remove(product);
+        _context.SaveChanges();
+
+        TempData["Success"] = "Đã xóa sản phẩm.";
+        return RedirectToAction("Index");
+    }
+    private void DeleteCkeditorImages(string htmlContent)
+    {
+        if (string.IsNullOrEmpty(htmlContent)) return;
+
+        var regex = new System.Text.RegularExpressions.Regex("/uploads/ckeditor/[^\"']+");
+        var matches = regex.Matches(htmlContent);
+
+        foreach (System.Text.RegularExpressions.Match match in matches)
+        {
+            string relativePath = match.Value.TrimStart('/');
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath);
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                try
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+                catch
+                {
+                    // ignore if file is in use or can't be deleted
+                }
+            }
+        }
+    }
     private string GetImageExtensionFromBase64(string base64)
     {
         if (base64.Contains("image/png")) return ".png";

@@ -25,7 +25,7 @@ namespace TechNova.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(int productId, string color, string storage, int quantity = 1)
+        public IActionResult AddToCart(int productId, string? color, string? storage, int quantity = 1)
         {
             var user = HttpContext.Session.GetString("Username");
             if (string.IsNullOrEmpty(user))
@@ -39,7 +39,11 @@ namespace TechNova.Controllers
 
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
 
-            var existingItem = cart.FirstOrDefault(x => x.ProductId == productId && x.Color == color && x.Storage == storage);
+            var existingItem = cart.FirstOrDefault(x =>
+                x.ProductId == productId &&
+                string.Equals(x.Color ?? "", color ?? "", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(x.Storage ?? "", storage ?? "", StringComparison.OrdinalIgnoreCase));
+
             if (existingItem != null)
             {
                 existingItem.Quantity += quantity;
@@ -51,8 +55,8 @@ namespace TechNova.Controllers
                     ProductId = product.ProductId,
                     Name = product.Name,
                     ImageUrl = product.MainImageUrl,
-                    Color = color,
-                    Storage = storage,
+                    Color = string.IsNullOrWhiteSpace(color) ? null : color,
+                    Storage = string.IsNullOrWhiteSpace(storage) ? null : storage,
                     Quantity = quantity,
                     Price = product.DiscountedPrice > 0 ? product.DiscountedPrice : product.Price,
                     ShippingMethod = shippingMethod,
@@ -63,6 +67,7 @@ namespace TechNova.Controllers
             HttpContext.Session.SetObjectAsJson("Cart", cart);
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult AddToCartAjax(int productId, string color = "", string storage = "", int quantity = 1)
         {

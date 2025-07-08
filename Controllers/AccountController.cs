@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using TechNova.Models.ViewModels;
-using TechNova.Models.Core;
 using TechNova.Models.Auth;
+using TechNova.Models.Core;
 using TechNova.Models.Data;
+using TechNova.Models.ViewModels;
 
 namespace TechNova.Controllers
 {
@@ -56,7 +57,19 @@ namespace TechNova.Controllers
         }
 
         // ĐĂNG NHẬP
-        public IActionResult Login() => View();
+        public IActionResult Login()
+        {
+            var model = new LoginViewModel();
+
+            if (Request.Cookies.TryGetValue("RememberMe_Email", out var savedEmail))
+            {
+                model.Email = savedEmail;
+                model.RememberMe = true;
+            }
+
+            return View(model);
+        }
+
 
         [HttpPost]
         public IActionResult Login(string email, string password, bool rememberMe)
@@ -79,6 +92,11 @@ namespace TechNova.Controllers
                     };
                     Response.Cookies.Append("RememberMe_Email", email, options);
                 }
+                else
+                {
+                    Response.Cookies.Delete("RememberMe_Email");
+                }
+
 
                 return user.Role == "Admin"
                     ? RedirectToAction("Index", "AdminProducts", new { area = "Admin" })
@@ -362,6 +380,38 @@ namespace TechNova.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+        // Controllers/AccountController.cs
+
+        public IActionResult Orders()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            if (string.IsNullOrEmpty(username)) return RedirectToAction("Login");
+
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null) return NotFound();
+
+            var orders = _context.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(od => od.Product)
+                .Include(o => o.Address) // ✅ THÊM DÒNG NÀY
+                .Include(o => o.Payment) // ✅ nếu View có dùng đến order.Payment.Method
+                .Where(o => o.UserId == user.UserId)
+                .OrderByDescending(o => o.CreatedAt)
+                .ToList();
+
+            return View(orders);
+        }
+
+        [HttpPost]
+        public IActionResult CancelOrder(int id)
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
+            if (order == null || order.Status != "Chờ xác nhận") return NotFound();
+
+            order.Status = "Đã hủy";
+            _context.SaveChanges();
+            return RedirectToAction("Orders");
         }
 
         private User GetLoggedInUser()

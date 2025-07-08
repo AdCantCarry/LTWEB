@@ -21,11 +21,13 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\avatars\" />
+    <Folder Include="wwwroot\uploads\ckeditor\" />
     <Folder Include="wwwroot\uploads\news\" />
   </ItemGroup>
 

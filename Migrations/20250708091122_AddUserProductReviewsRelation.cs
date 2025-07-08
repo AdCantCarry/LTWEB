@@ -5,7 +5,7 @@
 namespace TechNova.Migrations
 {
     /// <inheritdoc />
-    public partial class AddModelsVideoUrl : Migration
+    public partial class AddUserProductReviewsRelation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -32,6 +32,7 @@ namespace TechNova.Models.Auth
         public bool IsActive { get; set; } = true;
         public string? ResetCode { get; set; } // Cho phép null
         public DateTime? ResetCodeExpiry { get; set; }
+        public ICollection<ProductReview> ProductReviews { get; set; }
 
 
     }

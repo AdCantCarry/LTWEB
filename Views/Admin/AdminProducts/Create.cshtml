@@ -21,7 +21,7 @@
 
                 <div class="form-box">
                     <label asp-for="Description"></label>
-                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <textarea asp-for="Description" id="Description" class="form-control" rows="6"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
@@ -112,6 +112,31 @@
             if (file) reader.readAsDataURL(file);
         }
     </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#Description'), {
+            ckfinder: {
+                uploadUrl: '/CkEditor/UploadImage'
+            },
+            toolbar: [
+                'heading', '|',
+                'bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', '|',
+                'insertTable', 'imageUpload', 'blockQuote', '|',
+                'undo', 'redo'
+            ],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Đoạn văn', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h2', title: 'Tiêu đề lớn', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h3', title: 'Tiêu đề nhỏ', class: 'ck-heading_heading2' }
+                ]
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    </script>
+
+
 }
 
 @section Styles {

@@ -12,8 +12,8 @@ using TechNova.Models.Data;
 namespace TechNova.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250705153258_AddModelsVideoUrl")]
-    partial class AddModelsVideoUrl
+    [Migration("20250708091122_AddUserProductReviewsRelation")]
+    partial class AddUserProductReviewsRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -256,6 +256,9 @@ namespace TechNova.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -267,6 +270,9 @@ namespace TechNova.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("Storage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderItemId");
 
@@ -384,6 +390,39 @@ namespace TechNova.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("TechNova.Models.Core.ProductReview", b =>
+                {
+                    b.Property<int>("ProductReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductReviewId"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("TechNova.Models.Core.ProductSpecification", b =>
@@ -556,6 +595,25 @@ namespace TechNova.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TechNova.Models.Core.ProductReview", b =>
+                {
+                    b.HasOne("TechNova.Models.Core.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechNova.Models.Auth.User", "User")
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TechNova.Models.Core.ProductSpecification", b =>
                 {
                     b.HasOne("TechNova.Models.Core.Product", "Product")
@@ -604,6 +662,8 @@ namespace TechNova.Migrations
             modelBuilder.Entity("TechNova.Models.Auth.User", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("ProductReviews");
                 });
 
             modelBuilder.Entity("TechNova.Models.Core.Brand", b =>

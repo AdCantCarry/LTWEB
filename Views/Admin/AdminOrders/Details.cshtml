@@ -9,14 +9,30 @@
 
 <h2>📝 Chi tiết đơn hàng #@Model.OrderId</h2>
 
-<p><strong>Khách hàng:</strong> @Model.User?.Username (@Model.User?.Email)</p>
-<p><strong>Ngày đặt:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
-<p><strong>Trạng thái đơn hàng:</strong> @Model.Status</p>
-<p><strong>Phương thức thanh toán:</strong> @Model.Payment?.Method</p>
-<p><strong>Trạng thái thanh toán:</strong> @Model.Payment?.Status</p>
+<p><strong>👤 Khách hàng:</strong> @Model.User?.Username (@Model.User?.Email)</p>
+<p><strong>📅 Ngày đặt:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+<p>
+    <strong>📦 Trạng thái đơn hàng:</strong>
+    <span class="badge bg-info">@Model.Status</span>
+</p>
+<p><strong>💳 Phương thức thanh toán:</strong> @Model.Payment?.Method</p>
+<p>
+    <strong>💰 Trạng thái thanh toán:</strong>
+    @if (Model.Payment != null)
+    {
+        <span class="badge @(Model.Payment.IsPaid ? "bg-success" : "bg-warning")">
+            @Model.Payment.Status
+        </span>
+    }
+    else
+    {
+        <span class="text-danger">Chưa có thông tin thanh toán</span>
+    }
+</p>
+
 <hr />
 
-<h4>📦 Thông tin giao hàng</h4>
+<h4>🏠 Thông tin giao hàng</h4>
 @if (Model.Address != null)
 {
     <p><strong>Người nhận:</strong> @Model.Address.FullName</p>
@@ -28,25 +44,26 @@ else
     <p class="text-danger">Không tìm thấy địa chỉ giao hàng.</p>
 }
 
-
 <hr />
 
-<h4 class="mt-4">🛍️ Sản phẩm</h4>
-<table class="table table-striped">
-    <thead>
+<h4 class="mt-4">🛍️ Danh sách sản phẩm</h4>
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
         <tr>
             <th>Ảnh</th>
-            <th>Sản phẩm</th>
+            <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
-            <th>Tổng</th>
+            <th>Thành tiền</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.OrderItems)
         {
             <tr>
-                <td><img src="@item.Product?.MainImageUrl" alt="@item.Product?.Name" width="60" /></td>
+                <td>
+                    <img src="@item.Product?.MainImageUrl" alt="@item.Product?.Name" width="60" class="img-thumbnail" />
+                </td>
                 <td>@item.Product?.Name</td>
                 <td>@item.Quantity</td>
                 <td>@item.Price.ToString("N0")₫</td>
@@ -59,11 +76,12 @@ else
 <h4 class="text-end text-danger">Tổng cộng: @Model.TotalAmount.ToString("N0")₫</h4>
 
 @{
+    // Xác định trạng thái tiếp theo
     var nextStatus = currentStatus switch
     {
         "Chờ xác nhận" => "Đang xử lý",
         "Đang xử lý" => "Đang giao hàng",
-        "Đang giao hàng" => "Hoàn tất",
+        "Đang giao hàng" => "Đã thanh toán",
         _ => null
     };
 }
@@ -73,8 +91,9 @@ else
     <form asp-action="UpdateStatus" method="post" class="mt-4">
         <input type="hidden" name="orderId" value="@Model.OrderId" />
         <input type="hidden" name="status" value="@nextStatus" />
+
         <div class="form-group">
-            <label>Trạng thái hiện tại: <strong>@currentStatus</strong></label><br />
+            <label><strong>➡️ Trạng thái hiện tại:</strong> <span class="badge bg-secondary">@currentStatus</span></label><br />
             <button type="submit" class="btn btn-warning mt-2">
                 Cập nhật sang: <strong>@nextStatus</strong>
             </button>
@@ -83,8 +102,9 @@ else
 }
 else
 {
-    <p><span class="badge bg-success">✅ Đơn hàng đã hoàn tất hoặc không thể cập nhật thêm.</span></p>
+    <div class="alert alert-success mt-4">
+        ✅ Đơn hàng đã Đã thanh toán hoặc không thể cập nhật thêm.
+    </div>
 }
 
-
-<a asp-action="Index" class="btn btn-secondary mt-3">← Quay lại</a>
+<a asp-action="Index" class="btn btn-secondary mt-3">← Quay lại danh sách</a>

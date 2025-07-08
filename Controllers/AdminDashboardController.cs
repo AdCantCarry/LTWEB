@@ -16,7 +16,7 @@ namespace TechNova.Controllers
         [HttpGet]
         public IActionResult RevenueData()
         {
-            var completedStatus = "Hoàn tất";
+            var completedStatus = "Đã thanh toán";
 
             var revenueData = _context.Orders
                 .Where(o => o.Status.Trim().ToLower() == completedStatus.ToLower())
@@ -37,7 +37,7 @@ namespace TechNova.Controllers
         [HttpGet]
         public IActionResult OrderCountData()
         {
-            var completedStatus = "Hoàn tất";
+            var completedStatus = "Đã thanh toán";
 
             var orderCounts = _context.Orders
                 .Where(o => o.Status.Trim().ToLower() == completedStatus.ToLower())
