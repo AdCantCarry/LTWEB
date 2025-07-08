@@ -1,19 +1,21 @@
-﻿# Stage 1: Build app
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
-# Copy project file and restore
-COPY *.csproj .
+# Copy csproj and restore
+COPY TechNova.csproj ./
 RUN dotnet restore
 
-# Copy all source and publish
-COPY . .
+# Copy everything else and build
+COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Stage 2: Run app
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+# Runtime Stage
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=build /app/out ./
 
-# Run the app
+# Expose port (default ASP.NET Core port)
+EXPOSE 80
+
 ENTRYPOINT ["dotnet", "TechNova.dll"]
