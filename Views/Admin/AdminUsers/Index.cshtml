@@ -7,8 +7,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mb-4 fw-bold text-center">Quản lý Người dùng</h2>
-
 <table class="table table-bordered table-hover align-middle">
     <thead class="table-light">
         <tr>
@@ -58,13 +56,22 @@
 
                 <!-- Hành động -->
                 <td>
-                    <button class="btn btn-sm btn-outline-danger view-user-detail" data-id="@user.UserId">
-                        <i class="bi bi-exclamation-circle-fill fs-5"></i>
-                    </button>
+                    <div class="action-icons">
+                        <button class="icon-btn tooltip view-user-detail" data-id="@user.UserId" data-tooltip="Xem chi tiết">
+                            <i class="bi bi-info-circle-fill text-primary"></i>
+                        </button>
 
-                    <a href="/AdminUsers/Edit/@user.UserId" class="btn btn-sm btn-warning">✏️</a>
-                    <a href="/AdminUsers/Delete/@user.UserId" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?');">🗑️</a>
+                        <a href="/AdminUsers/Edit/@user.UserId" class="icon-btn tooltip" data-tooltip="Sửa">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+
+                        <a href="/AdminUsers/Delete/@user.UserId" class="icon-btn tooltip" data-tooltip="Xoá"
+                           onclick="return confirm('Bạn có chắc muốn xoá người dùng này không?');">
+                            <i class="bi bi-trash-fill text-danger"></i>
+                        </a>
+                    </div>
                 </td>
+
             </tr>
         }
     </tbody>
@@ -111,6 +118,51 @@
 
 @section Styles {
     <style>
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #f1f3f5;
+            border: none;
+            border-radius: 50%;
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .icon-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+            .icon-btn i {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .tooltip {
+            position: relative;
+        }
+
+            .tooltip:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 110%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+                white-space: nowrap;
+                z-index: 1000;
+            }
         .user-detail-overlay {
             position: fixed;
             top: 0;

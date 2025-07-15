@@ -5,73 +5,81 @@
     ViewData["Title"] = "Đơn hàng của tôi";
 }
 
-<h2 class="mb-4">Đơn hàng của tôi</h2>
+<div class="order-container">
+    <h2 class="mb-4 text-center fw-bold">Đơn hàng của tôi</h2>
 
-@if (Model == null || !Model.Any()) 
-{
-    <div class="alert alert-info">
-        Bạn chưa có đơn hàng nào.
-    </div>
-}
-else
-{
-    foreach (var order in Model)
+    @if (Model == null || !Model.Any())
     {
-        <div class="card mb-4 order-card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <div>
-                    <strong>Mã đơn:</strong> #@order.OrderId<br />
-                    <strong>Ngày đặt:</strong> @order.CreatedAt.ToString("dd/MM/yyyy HH:mm")
-                </div>
-                <span class="badge
-                    @(order.Status == "Chờ xác nhận" ? "bg-warning text-dark" :
-                                    order.Status == "Đang xử lý" ? "bg-info text-dark" :
-                                    order.Status == "Đang giao hàng" ? "bg-primary" :
-                                    order.Status == "Đã giao hàng" ? "bg-success" :
-                                    order.Status == "Đã thanh toán" ? "bg-success" :
-                                    order.Status == "Đã hủy" ? "bg-danger" : "bg-secondary")">
-            @order.Status
-        </span>
-    </div>
-
-            <div class="card-body">
-                <p><strong>Người nhận:</strong> @order.Address?.FullName</p>
-                <p><strong>Địa chỉ:</strong> @($"{order.Address.Street}, {order.Address.Ward}, {order.Address.District}, {order.Address.City}")</p>
-                <p><strong>Phương thức thanh toán:</strong> @order.Payment?.Method</p>
-                <p><strong>Tổng tiền:</strong> @order.TotalAmount.ToString("N0") VNĐ</p>
-
-                <h6>Sản phẩm:</h6>
-                <ul class="list-group mb-3">
-            @foreach (var item in order.OrderItems)
-                    {
-                        <li class="list-group-item d-flex align-items-center">
-                            <img src="@item.Product.MainImageUrl" class="product-image" />
-                            <div>
-                                <strong>@item.Product.Name</strong><br />
-                                SL: @item.Quantity x @item.Price.ToString("N0") VNĐ
-                            </div>
-                            <div class="ms-auto">
-                                <span class="text-muted">
-                                    @((item.Price * item.Quantity).ToString("N0")) VNĐ
-                                </span>
-                            </div>
-                        </li>
-                    }
-                </ul>
-
-                @if (order.Status == "Chờ xác nhận")
-                {
-                    <form asp-action="CancelOrder" asp-controller="Account" asp-route-id="@order.OrderId" method="post" onsubmit="return confirm('Bạn chắc chắn muốn hủy đơn hàng này?');">
-                        <button type="submit" class="cancel-btn">Hủy đơn hàng</button>
-                    </form>
-                }
-            </div>
+        <div class="alert alert-info">
+            Bạn chưa có đơn hàng nào.
         </div>
     }
-}
+    else
+    {
+        foreach (var order in Model)
+        {
+            <div class="card mb-4 order-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Mã đơn:</strong> #@order.OrderId<br />
+                        <strong>Ngày đặt:</strong> @order.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                    <span class="badge
+                                @(order.Status == "Chờ xác nhận" ? "bg-warning text-dark" :
+                                                                  order.Status == "Đang xử lý" ? "bg-info text-dark" :
+                                                                  order.Status == "Đang giao hàng" ? "bg-primary" :
+                                                                  order.Status == "Đã giao hàng" ? "bg-success" :
+                                                                  order.Status == "Đã thanh toán" ? "bg-success" :
+                                                                  order.Status == "Đã hủy" ? "bg-danger" : "bg-secondary")">
+                @order.Status
+            </span>
+        </div>
+
+                <div class="card-body">
+                    <p><strong>Người nhận:</strong> @order.Address?.FullName</p>
+                    <p><strong>Địa chỉ:</strong> @($"{order.Address.Street}, {order.Address.Ward}, {order.Address.District}, {order.Address.City}")</p>
+                    <p><strong>Phương thức thanh toán:</strong> @order.Payment?.Method</p>
+                    <p><strong>Tổng tiền:</strong> @order.TotalAmount.ToString("N0") VNĐ</p>
+
+                    <h6>Sản phẩm:</h6>
+                    <ul class="list-group mb-3">
+                @foreach (var item in order.OrderItems)
+                        {
+                            <li class="list-group-item d-flex align-items-center">
+                                <img src="@item.Product.MainImageUrl" class="product-image" />
+                                <div>
+                                    <strong>@item.Product.Name</strong><br />
+                                    SL: @item.Quantity x @item.Price.ToString("N0") VNĐ
+                                </div>
+                                <div class="ms-auto">
+                                    <span class="text-muted">
+                                        @((item.Price * item.Quantity).ToString("N0")) VNĐ
+                                    </span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                    @if (order.Status == "Chờ xác nhận")
+                    {
+                        <form asp-action="CancelOrder" asp-controller="Account" asp-route-id="@order.OrderId" method="post" onsubmit="return confirm('Bạn chắc chắn muốn hủy đơn hàng này?');">
+                            <button type="submit" class="cancel-btn">Hủy đơn hàng</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
 
 @section styles {
     <style>
+        .order-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
         .order-card {
             border: none;
             border-radius: 12px;
@@ -134,6 +142,5 @@ else
             .cancel-btn:hover {
                 background-color: #c82333;
             }
-
     </style>
 }

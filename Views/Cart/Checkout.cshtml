@@ -117,11 +117,31 @@
                     <label class="form-check-label">Thanh toán qua VNPay</label>
                 </div>
             </div>
+            <!-- Mã giảm giá -->
+            <h4>🎁 Mã giảm giá</h4>
+            <div class="input-group mb-3" style="max-width: 400px;">
+                <input type="text" class="form-control" id="voucherInput" placeholder="Nhập mã giảm giá..." value="@ViewBag.VoucherCode" />
+                <button type="button" class="btn btn-outline-primary" id="applyVoucherBtn">Áp dụng</button>
+            </div>
+            <div id="voucherMessage" class="text-success fw-bold mb-3">
+                @if (ViewBag.VoucherDiscount > 0)
+                {
+                    <text>Đã giảm: @(((decimal)ViewBag.VoucherDiscount).ToString("N0"))₫</text>
+                }
+            </div>
+
 
             <!-- Tổng tiền -->
             <h4>💰 Tổng cộng</h4>
             <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
+            @if (ViewBag.VoucherDiscount > 0)
+            {
+                <p>Giảm giá: <strong>-@(((decimal)ViewBag.VoucherDiscount).ToString("N0"))₫</strong></p>
+            }
+            <p>Phí vận chuyển: <strong>@Model.ShippingFee.ToString("N0")₫</strong></p>
             <p>Tổng thanh toán: <strong class="text-danger">@Model.Total.ToString("N0")₫</strong></p>
+
+
 
             <button type="submit" class="btn btn-success mt-3">Xác nhận đặt hàng</button>
         </form>
@@ -130,6 +150,29 @@
 
 @section Scripts {
     <script>
+                document.getElementById("applyVoucherBtn")?.addEventListener("click", function () {
+            const code = document.getElementById("voucherInput").value.trim();
+
+            fetch("/Cart/ApplyVoucher", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `voucherCode=${encodeURIComponent(code)}`
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const msgEl = document.getElementById("voucherMessage");
+                    if (data.success) {
+                        msgEl.innerText = `Đã giảm: ${data.discountAmount}`;
+                        msgEl.classList.remove("text-danger");
+                        msgEl.classList.add("text-success");
+                        location.reload(); // Reload để cập nhật tổng tiền
+                    } else {
+                        msgEl.innerText = data.message;
+                        msgEl.classList.remove("text-success");
+                        msgEl.classList.add("text-danger");
+                    }
+                });
+        });
                 document.addEventListener("DOMContentLoaded", function () {
             const btn = document.getElementById("showAddAddressBtn");
             const form = document.getElementById("add-address-form");

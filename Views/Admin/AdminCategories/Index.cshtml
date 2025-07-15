@@ -6,10 +6,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mb-4 fw-bold text-center">Quản lý Danh mục</h2>
 
 <div class="d-flex justify-content-end mb-3">
-    <a href="/AdminCategories/Create" class="btn btn-success">➕ Thêm danh mục</a>
+    <a href="/AdminCategories/Create" class="btn btn-primary btn-add">
+        <i class="bi bi-plus-circle me-1">Thêm danh mục</i>
+    </a>
+
 </div>
 
 <table class="table table-bordered table-hover align-middle">
@@ -78,21 +80,33 @@
                 <td>@cat.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
 
                 <!-- Hành động -->
-                <td class="text-nowrap">
-                    <button class="btn btn-sm toggle-status-btn" data-id="@cat.CategoryId" data-status="@cat.IsActive" title="Chuyển trạng thái">
-                        @if (cat.IsActive)
-                        {
-                            <i class="bi bi-eye-fill text-success fs-5"></i>
-                        }
-                        else
-                        {
-                            <i class="bi bi-eye-slash-fill text-secondary fs-5"></i>
-                        }
-                    </button>
-                    <a href="/AdminCategories/Edit/@cat.CategoryId" class="btn btn-sm btn-warning" title="Sửa">✏️</a>
-                    <a href="/AdminCategories/Delete/@cat.CategoryId" class="btn btn-sm btn-danger" title="Xóa"
-                       onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');">🗑️</a>
+                <td>
+                    <div class="action-icons">
+                        <button class="icon-btn tooltip toggle-status-btn"
+                                data-id="@cat.CategoryId" data-status="@cat.IsActive"
+                                data-tooltip="Chuyển trạng thái">
+                            @if (cat.IsActive)
+                            {
+                                <i class="bi bi-eye-fill text-success"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-eye-slash-fill text-secondary"></i>
+                            }
+                        </button>
+
+                        <a href="/AdminCategories/Edit/@cat.CategoryId" class="icon-btn tooltip" data-tooltip="Sửa">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+
+                        <a href="/AdminCategories/Delete/@cat.CategoryId"
+                           class="icon-btn tooltip" data-tooltip="Xoá"
+                           onclick="return confirm('Bạn có chắc muốn xoá danh mục này không?');">
+                            <i class="bi bi-trash-fill text-danger"></i>
+                        </a>
+                    </div>
                 </td>
+
             </tr>
         }
     </tbody>
@@ -127,4 +141,74 @@
             });
         });
     </script>
+}
+@section Styles {
+    <style>
+        .btn-add {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 14px;
+            background-color: #1c3faa;
+            border: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .btn-add:hover {
+                background-color: #0f2e88;
+                color: #fff;
+            }
+
+            .btn-add i {
+                font-size: 16px;
+            }
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #f1f3f5;
+            border: none;
+            border-radius: 50%;
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .icon-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+            .icon-btn i {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .tooltip {
+            position: relative;
+        }
+
+            .tooltip:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 110%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+                white-space: nowrap;
+                opacity: 1;
+                z-index: 1000;
+            }
+    </style>
 }

@@ -6,25 +6,132 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>Danh sách thương hiệu</h2>
-<a class="btn btn-success mb-3" href="/AdminBrands/Create">➕ Thêm thương hiệu</a>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên thương hiệu</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var brand in Model)
-        {
-            <tr>
-                <td>@brand.Name</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="/AdminBrands/Edit/@brand.BrandId">✏️ Sửa</a>
-                </td>
-            </tr>
+@section Styles {
+    <style>
+        .btn-add {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 14px;
+            background-color: #1c3faa;
+            border: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-    </tbody>
-</table>
+
+            .btn-add:hover {
+                background-color: #0f2e88;
+                color: #fff;
+            }
+
+            .btn-add i {
+                font-size: 16px;
+            }
+        .page-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1c3faa;
+            border-left: 5px solid #1c3faa;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+
+        .table thead {
+            background-color: #f4f6f9;
+            font-weight: 600;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #f1f3f5;
+            border: none;
+            border-radius: 50%;
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .icon-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+            .icon-btn i {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .tooltip {
+            position: relative;
+        }
+
+            .tooltip:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 110%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+                white-space: nowrap;
+                opacity: 1;
+                z-index: 1000;
+            }
+    </style>
+}
+
+<div class="page-title">Quản lý thương hiệu</div>
+
+<div class="table-card">
+        <a href="/AdminBrands/Create" class="btn btn-primary btn-add">
+            <i class="bi bi-plus-circle me-1">Thêm thương hiệu</i> 
+        </a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên thương hiệu</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var brand in Model)
+            {
+                <tr>
+                    <td>@brand.Name</td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="/AdminBrands/Edit/@brand.BrandId" class="icon-btn tooltip" data-tooltip="Sửa">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

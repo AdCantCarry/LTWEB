@@ -6,8 +6,10 @@
     var samsungProducts = (ViewBag.SamsungProducts as List<Product>)?.Take(4).ToList();
     var acerProducts = (ViewBag.AcerProducts as List<Product>)?.Take(4).ToList();
     var latestNews = ViewBag.LatestNews as List<News>;
-
+   
 }
+
+
 @* @{
     var breadcrumb = new List<(string, string)>
     {
@@ -16,17 +18,16 @@
 }
 <partial name="_Breadcrumbs" model="breadcrumb" />
  *@
-<!-- HERO -->
-<section class="highlight-section">
-    <div class="highlight-content">
-        <h1>MacBook Air M2</h1>
-        <p>Hiệu năng mạnh mẽ. Mỏng nhẹ đáng kinh ngạc. Được trang bị chip Apple M2.</p>
-        <div class="buttons">
-            <a href="/Home/News" class="btn btn-primary">Tìm hiểu thêm</a>
-            <a href="/Home/Products" class="btn btn-secondary">Mua ngay</a>
+<section class="hero-section">
+    <div class="hero-overlay">
+        <div class="hero-content text-center text-white">
+            <h1 class="hero-title">Chào mừng đến với TechNova</h1>
+            <p class="hero-subtitle">Khám phá thế giới công nghệ đỉnh cao, nơi mọi thiết bị bạn cần đều có tại đây!</p>
+            <a href="/Home/Products" class="btn btn-primary mt-3">Khám phá ngay</a>
         </div>
     </div>
 </section>
+
 
 <!-- SALE PRODUCTS -->
 <section class="product-section sale-section">
@@ -307,4 +308,10 @@
             }
         });
     </script>
+    <script>
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+    </script>
+
 }

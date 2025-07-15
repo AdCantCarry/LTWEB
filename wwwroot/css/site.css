@@ -10,7 +10,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom right, #dbeafe, #e0e7ff); /* Xanh tím pastel */
+   /* background: linear-gradient(to bottom right, #dbeafe, #e0e7ff); /* Xanh tím pastel */
     color: #1e293b; /* Text đậm hơn nhẹ */
 }
 
@@ -24,11 +24,7 @@ body {
     background-color: #f4f4f4; /* mặc định */
 }
 
-    body.home-page {
-        background: linear-gradient(to bottom right, #dbeafe, #bfdbfe, #93c5fd); /* tone xanh lam thiên tím nhạt */
-        transition: background 0.5s ease;
-    }
-
+  
 
 main {
     flex: 1;
@@ -205,75 +201,61 @@ body.blur-active footer {
     filter: blur(4px);
     pointer-events: none;
 }
+.coverflow-gallery {
+    overflow-x: auto;
+    padding: 60px 0;
+    background: #0b0b1a;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
 
-/* ===== HERO SECTION ===== */
-.highlight-section {
-    background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center / cover;
-    padding: 140px 20px 120px; /* 140 thay vì 120 để tránh bị che */
+.coverflow-track {
+    display: flex;
+    gap: 40px;
+    padding: 0 60px;
+    scroll-snap-align: center;
+}
+
+.coverflow-item {
+    flex: 0 0 220px;
+    scroll-snap-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
     text-align: center;
     color: white;
-    position: relative;
+    perspective: 1000px;
 }
 
-    .highlight-section::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.35);
-        z-index: 1;
+    .coverflow-item img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        transition: transform 0.4s ease;
     }
 
-.highlight-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: auto;
-}
-
-    .highlight-content h1 {
-        font-size: 52px;
-        font-weight: 700;
-        margin-bottom: 20px;
+    /* Hiệu ứng nghiêng */
+    .coverflow-item:nth-child(1),
+    .coverflow-item:nth-child(2) {
+        transform: rotateY(15deg) scale(0.85);
     }
 
-    .highlight-content p {
-        font-size: 20px;
-        margin-bottom: 30px;
+    .coverflow-item:nth-last-child(1),
+    .coverflow-item:nth-last-child(2) {
+        transform: rotateY(-15deg) scale(0.85);
     }
 
-    .highlight-content .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
+    /* Khi hover */
+    .coverflow-item:hover {
+        transform: scale(1) rotateY(0deg);
+        z-index: 2;
     }
 
-.btn-primary, .btn-secondary {
-    padding: 12px 28px;
-    font-size: 16px;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
-
-.btn-primary {
-    background: #fff;
-    color: #000;
-    border: none;
-}
-
-    .btn-primary:hover {
-        background: #f0f0f0;
-    }
-
-.btn-secondary {
-    background: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-}
-
-    .btn-secondary:hover {
-        background: rgba(255,255,255,0.2);
+    .coverflow-item p {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #cfd4e0;
     }
 
 /* ===== PRODUCT SECTIONS ===== */
@@ -551,6 +533,44 @@ body.blur-active footer {
         padding: 10px 15px;
         cursor: pointer;
     }
+
+/* ===== ANIMATIONS ===== */
+.hero-section {
+    position: relative;
+    height: 80vh;
+    background: url('/images/Sleep cat.jpg') no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    opacity: 0.9;
+}
+
+
 @keyframes pulse-sale {
     0%, 100% {
         box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);

@@ -1,8 +1,7 @@
 ﻿@model X.PagedList.IPagedList<Product>
-@await Html.PartialAsync("_AlertMessage")
-@using TechNova.Models
 @using TechNova.Models.Core
 @using X.PagedList.Mvc.Core
+@await Html.PartialAsync("_AlertMessage")
 
 @{
     ViewData["Title"] = "Quản lý Sản phẩm";
@@ -12,11 +11,10 @@
     string search = ViewBag.Search as string;
     int? selectedCategoryId = ViewBag.CategoryId as int?;
     string status = ViewBag.Status as string;
-
 }
 
-<form id="filterForm" method="get" class="d-flex gap-2 mb-3">
-    <select name="categoryId" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 160px;">
+<form id="filterForm" method="get" class="admin-filter-bar">
+    <select name="categoryId" onchange="this.form.submit()" class="form-select">
         <option value="">-- Tất cả danh mục --</option>
         @foreach (var cat in categories ?? new List<Category>())
         {
@@ -26,17 +24,18 @@
         }
     </select>
 
-    <select name="status" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 140px;">
+    <select name="status" onchange="this.form.submit()" class="form-select">
         <option value="">-- Tất cả trạng thái --</option>
         <option value="true" selected="@(status == "true")">Đang bán</option>
         <option value="false" selected="@(status == "false")">Ngừng bán</option>
     </select>
 
     <input type="text" name="search" placeholder="🔍 Tìm sản phẩm..." value="@search"
-           class="form-control form-control-sm" style="max-width: 200px;"
-           oninput="clearTimeout(window.searchTimer); window.searchTimer = setTimeout(() => this.form.submit(), 500);" />
+           class="form-control" oninput="clearTimeout(window.searchTimer); window.searchTimer = setTimeout(() => this.form.submit(), 500);" />
 
-    <a class="btn btn-success btn-sm ms-auto" href="/AdminProducts/Create">➕ Thêm mới</a>
+    <a class="btn btn-success btn-add ms-auto" href="/AdminProducts/Create">
+        <i class="bi bi-plus-circle me-1"></i> Thêm sản phẩm
+    </a>
 </form>
 
 <table class="table table-bordered table-hover align-middle">
@@ -48,7 +47,7 @@
             <th>Giá</th>
             <th>Tồn kho</th>
             <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -79,8 +78,6 @@
                         <span>@item.Price.ToString("N0") ₫</span>
                     }
                 </td>
-
-
                 <td>@item.StockQuantity</td>
                 <td>
                     <button class="btn btn-sm toggle-status-btn" data-id="@item.ProductId" data-status="@item.IsActive">
@@ -95,12 +92,17 @@
                     </button>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-warning btn-sm">✏️</a>
-                    <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm"
-                       onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">🗑️</a>
+                    <div class="action-icons">
+                        <a asp-action="Edit" asp-route-id="@item.ProductId" class="icon-btn tooltip" data-tooltip="Sửa">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductId" class="icon-btn tooltip" data-tooltip="Xoá"
+                           onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">
+                            <i class="bi bi-trash text-danger"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
-
         }
     </tbody>
 </table>
@@ -126,11 +128,8 @@
         document.querySelectorAll('.toggle-status-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 const productId = this.dataset.id;
-
-                fetch(`/AdminProducts/ToggleStatus/${productId}`, {
-                    method: 'POST'
-                })
-                    .then(response => response.json())
+                fetch(`/AdminProducts/ToggleStatus/${productId}`, { method: 'POST' })
+                    .then(res => res.json())
                     .then(data => {
                         if (data.success) {
                             const icon = this.querySelector('i');
@@ -149,23 +148,82 @@
             });
         });
     </script>
-
-    <script>
-        let typingTimer;
-        const form = document.getElementById("filterForm");
-        const searchInput = form.querySelector('input[name="search"]');
-
-        searchInput.addEventListener("input", function () {
-            clearTimeout(typingTimer);
-            typingTimer = setTimeout(() => {
-                form.submit();
-            }, 500);
-        });
-    </script>
 }
 
-@section styles {
+@section Styles {
     <style>
+        .btn-add {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 14px;
+            background-color: #1c3faa;
+            border: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .btn-add:hover {
+                background-color: #0f2e88;
+            }
+
+        .form-select, .form-control {
+            height: 40px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            padding: 0 0.75rem;
+            border: 1px solid #ced4da;
+            min-width: 180px;
+        }
+
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #f1f3f5;
+            border: none;
+            border-radius: 50%;
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .icon-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+            .icon-btn i {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .tooltip {
+            position: relative;
+        }
+
+            .tooltip:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 110%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+                white-space: nowrap;
+                opacity: 1;
+                z-index: 1000;
+            }
+
         .toggle-status-btn {
             background: none;
             border: none;
@@ -198,8 +256,8 @@
             border: 1px solid #dee2e6;
             border-radius: 6px;
             text-decoration: none;
-            transition: 0.2s;
             background-color: #fff;
+            transition: 0.2s;
         }
 
             .page-link:hover {
@@ -216,6 +274,5 @@
             opacity: 0.6;
             pointer-events: none;
         }
-
     </style>
 }

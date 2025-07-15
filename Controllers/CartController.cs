@@ -153,6 +153,33 @@ namespace TechNova.Controllers
             else if (distance <= 10) return 30000;
             return 50000;
         }
+        [HttpPost]
+        public IActionResult ApplyVoucher(string voucherCode)
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new();
+            var voucher = _context.Vouchers.FirstOrDefault(v =>
+                v.Code == voucherCode &&
+                v.IsActive &&
+                v.StartDate <= DateTime.Now &&
+                v.EndDate >= DateTime.Now &&
+                v.Quantity > 0);
+
+            if (voucher == null)
+                return Json(new { success = false, message = "Mã giảm giá không hợp lệ" });
+
+            var total = cart.Sum(x => x.TotalPrice);
+            if (total < voucher.MinimumOrderAmount)
+                return Json(new { success = false, message = $"Đơn hàng phải trên {voucher.MinimumOrderAmount:N0}₫ để áp dụng mã này" });
+
+            decimal discountAmount = voucher.DiscountAmount;
+            if (voucher.DiscountPercent.HasValue)
+                discountAmount += total * ((decimal)voucher.DiscountPercent.Value / 100);
+
+            HttpContext.Session.SetObjectAsJson("VoucherDiscount", discountAmount);
+            HttpContext.Session.SetString("VoucherCode", voucher.Code);
+
+            return Json(new { success = true, discountAmount = discountAmount.ToString("N0") + "₫" });
+        }
         public IActionResult Checkout(int? productId)
         {
             var email = HttpContext.Session.GetString("Email");
@@ -161,7 +188,6 @@ namespace TechNova.Controllers
 
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new();
 
-            // 👇 Nếu có productId truyền vào từ nút Mua ngay
             if (productId.HasValue)
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId.Value);
@@ -173,7 +199,6 @@ namespace TechNova.Controllers
                     else
                     {
                         var (method, fee) = CalculateShipping(product, 6); // giả lập khoảng cách
-
                         cart.Add(new CartItem
                         {
                             ProductId = product.ProductId,
@@ -196,16 +221,27 @@ namespace TechNova.Controllers
             var defaultAddr = addresses.FirstOrDefault(a => a.IsDefault) ?? addresses.FirstOrDefault();
 
             var shippingFee = CalculateShippingFee(cart, defaultAddr);
+            decimal subtotal = cart.Sum(i => i.TotalPrice) + shippingFee;
+
+            // Áp dụng voucher chính xác
+            var voucherCode = HttpContext.Session.GetString("VoucherCode");
+            decimal discount = 0;
+            if (!string.IsNullOrEmpty(voucherCode))
+            {
+                (discount, _) = VoucherHelper.Validate(_context, voucherCode, subtotal);
+            }
 
             var viewModel = new Checkout
             {
                 CartItems = cart,
                 Addresses = addresses,
                 ShippingFee = shippingFee,
-                Total = cart.Sum(i => i.TotalPrice) + shippingFee
+                Total = subtotal - discount
             };
 
             ViewBag.DefaultAddress = defaultAddr;
+            ViewBag.VoucherCode = voucherCode;
+            ViewBag.VoucherDiscount = discount;
 
             return View(viewModel);
         }

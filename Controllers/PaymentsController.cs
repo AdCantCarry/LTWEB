@@ -67,8 +67,25 @@ namespace TechNova.Controllers
                 _context.SaveChanges();
             }
 
-            var total = cart.Sum(i => i.TotalPrice);
+            // Tính tổng đơn
+            var cartTotal = cart.Sum(i => i.TotalPrice);
+            var shippingFee = cart.FirstOrDefault()?.ShippingFee ?? 0;
+            decimal totalBeforeDiscount = cartTotal + shippingFee;
 
+            // Áp dụng voucher nếu có
+            var voucherCode = HttpContext.Session.GetString("VoucherCode");
+            decimal discount = 0;
+            Voucher? voucher = null;
+
+            if (!string.IsNullOrEmpty(voucherCode))
+            {
+                (discount, voucher) = VoucherHelper.Validate(_context, voucherCode, totalBeforeDiscount);
+            }
+
+            decimal total = totalBeforeDiscount - discount;
+
+
+            // Tạo đơn hàng
             var order = new Order
             {
                 UserId = user.UserId,
@@ -89,6 +106,7 @@ namespace TechNova.Controllers
             _context.Orders.Add(order);
             _context.SaveChanges();
 
+            // Tạo thanh toán
             var payment = new PaymentModel
             {
                 OrderId = order.OrderId,
@@ -100,7 +118,19 @@ namespace TechNova.Controllers
             };
 
             _context.Payments.Add(payment);
+
+            // Giảm số lượng voucher nếu hợp lệ
+            if (voucher != null)
+            {
+                voucher.Quantity--;
+            }
+
             _context.SaveChanges();
+
+            // Xử lý phương thức thanh toán
+            HttpContext.Session.Remove("Cart");
+            HttpContext.Session.Remove("VoucherDiscount");
+            HttpContext.Session.Remove("VoucherCode");
 
             if (PaymentMethod == "VNPay")
                 return Redirect(GenerateVNPayUrl(order));
@@ -108,10 +138,37 @@ namespace TechNova.Controllers
             if (PaymentMethod == "Momo")
                 return RedirectToAction("PayWithMomo", new { orderId = order.OrderId });
 
-            // COD
-            HttpContext.Session.Remove("Cart");
             return RedirectToAction("Success", new { orderId = order.OrderId });
         }
+        private (decimal discount, Voucher? voucher) ValidateAndApplyVoucher(string code, decimal total)
+        {
+            var voucher = _context.Vouchers.FirstOrDefault(v => v.Code == code);
+            if (voucher == null || !voucher.IsActive || voucher.Quantity <= 0)
+                return (0, null);
+
+            if (DateTime.Now < voucher.StartDate || DateTime.Now > voucher.EndDate)
+                return (0, null);
+
+            if (total < voucher.MinimumOrderAmount)
+                return (0, null);
+
+            decimal discount = 0;
+
+            if (voucher.DiscountPercent.HasValue)
+            {
+                var rawPercentDiscount = total * (decimal)voucher.DiscountPercent.Value / 100;
+                // ✅ Giới hạn tối đa theo DiscountAmount (nếu có)
+                discount = voucher.DiscountAmount > 0 ? Math.Min(rawPercentDiscount, voucher.DiscountAmount) : rawPercentDiscount;
+            }
+            else
+            {
+                discount = voucher.DiscountAmount;
+            }
+
+            return (discount, voucher);
+        }
+
+
 
         [HttpPost]
         public IActionResult PayWithCOD(int addressId)

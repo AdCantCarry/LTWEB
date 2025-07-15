@@ -1,0 +1,195 @@
+﻿@model IEnumerable<TechNova.Models.Core.Voucher>
+@{
+    ViewData["Title"] = "Quản lý Voucher";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .btn-add {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 14px;
+            background-color: #1c3faa;
+            border: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .btn-add:hover {
+                background-color: #0f2e88;
+                color: #fff;
+            }
+
+            .btn-add i {
+                font-size: 16px;
+            }
+        .page-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1c3faa;
+            border-left: 5px solid #1c3faa;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+
+        .table thead {
+            background-color: #f4f6f9;
+            font-weight: 600;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .status-active {
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .status-inactive {
+            color: #dc3545;
+            font-weight: 500;
+        }
+
+        .btn-add {
+            margin-bottom: 16px;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 14px;
+        }
+
+        .voucher-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #f1f3f5;
+            border: none;
+            border-radius: 50%;
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+            .icon-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+            .icon-btn i {
+                font-size: 16px;
+                color: #333;
+            }
+
+        .tooltip {
+            position: relative;
+        }
+
+            .tooltip:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 110%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: #fff;
+                padding: 4px 8px;
+                font-size: 12px;
+                border-radius: 4px;
+                white-space: nowrap;
+                opacity: 1;
+                z-index: 1000;
+            }
+    </style>
+}
+
+
+<div class="table-card">
+        <a href="/AdminVouchers/Create" class="btn btn-primary btn-add">
+            <i class="bi bi-plus-circle me-1"></i> Thêm Voucher
+        </a>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Giảm</th>
+                <th>Bắt đầu</th>
+                <th>Hết hạn</th>
+                <th>Còn lại</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td><strong>@v.Code</strong></td>
+                    <td>
+                        @if (v.DiscountPercent.HasValue)
+                        {
+                            <div>
+                                @v.DiscountPercent.Value%
+                                <span class="voucher-desc">
+                                    (giảm tối đa @v.DiscountAmount.ToString("N0")₫, áp dụng từ @v.MinimumOrderAmount.ToString("N0")₫)
+                                </span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                @v.DiscountAmount.ToString("N0")₫
+                                <span class="voucher-desc">
+                                    (áp dụng từ @v.MinimumOrderAmount.ToString("N0")₫)
+                                </span>
+                            </div>
+                        }
+                    </td>
+                    <td>@v.StartDate.ToString("dd/MM/yyyy")</td>
+                    <td>@v.EndDate.ToString("dd/MM/yyyy")</td>
+                    <td>@v.Quantity</td>
+                    <td>
+                        <span class="@(v.IsActive ? "status-active" : "status-inactive")">
+                            @(v.IsActive ? "Hiệu lực" : "Không hiệu lực")
+                        </span><br />
+                        <small class="text-muted">(Chỉ người dùng đăng nhập)</small>
+                    </td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="/AdminVouchers/Edit/@v.VoucherId" class="icon-btn tooltip" data-tooltip="Sửa">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="post" asp-action="Delete" asp-route-id="@v.VoucherId" onsubmit="return confirm('Xoá voucher này?')" class="d-inline">
+                                <button type="submit" class="icon-btn tooltip" data-tooltip="Xoá">
+                                    <i class="bi bi-trash text-danger"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

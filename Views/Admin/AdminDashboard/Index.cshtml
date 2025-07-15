@@ -4,84 +4,186 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js" />
-}
-<h2>📈 Biểu đồ doanh thu</h2>
-<div class="mb-5">
-    <canvas id="revenueChart" height="100"></canvas>
-</div>
-<h2>📊 Số đơn hàng mỗi tháng</h2>
-<table class="table table-bordered mt-3" id="orderCountTable">
-    <thead class="table-light">
-        <tr>
-            <th>Tháng</th>
-            <th>Số đơn hàng</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Dữ liệu sẽ được JS chèn vào -->
-    </tbody>
-</table>
+    <style>
+        /* Grid 4 ô thống kê */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
+        .stat-card {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .stat-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 0.3rem;
+        }
+
+        canvas {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            max-height: 360px;
+        }
+
+    </style>
+}
+
+<h2>📊 Tổng quan</h2>
+<div class="stat-grid" id="summaryStats">
+    <div class="stat-card">
+        <div class="stat-title">Tổng doanh thu</div>
+        <div class="stat-value" id="totalRevenue">...</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-title">Sản phẩm đã bán</div>
+        <div class="stat-value" id="totalSold">...</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-title">Tồn kho</div>
+        <div class="stat-value" id="totalStock">...</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-title">Tổng sản phẩm</div>
+        <div class="stat-value" id="productCount">...</div>
+    </div>
+</div>
+
+<h2>📈 Doanh thu theo tháng</h2>
+<canvas id="revenueChart"></canvas>
+
+<h2 class="mt-5">🥧 Doanh thu theo thương hiệu</h2>
+<canvas id="brandPieChart"></canvas>
+
+<h2 class="mt-5">📦 Số đơn hàng mỗi tháng</h2>
+<canvas id="orderCountChart"></canvas>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch("/AdminDashboard/RevenueData")
-                .then(res => res.json())
-                .then(data => {
-                    const months = data.map(x => x.month);
-                    const revenues = data.map(x => x.totalRevenue);
+                async function loadSummaryStats() {
+            const res = await fetch("/AdminDashboard/SummaryStats");
+            const data = await res.json();
 
-                    const ctx = document.getElementById('revenueChart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: months,
-                            datasets: [{
-                                label: 'Doanh thu theo tháng (VNĐ)',
-                                data: revenues,
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderWidth: 2,
-                                tension: 0.3,
-                                fill: true,
-                                pointBackgroundColor: 'rgba(75, 192, 192, 1)'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: { display: true },
-                                tooltip: { mode: 'index', intersect: false }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: {
-                                        callback: value => value.toLocaleString('vi-VN') + '₫'
-                                    }
-                                }
+            console.log("SummaryStats:", data); // để kiểm tra
+
+            document.getElementById("totalRevenue").textContent = data.totalRevenue.toLocaleString('vi-VN') + " đ";
+            document.getElementById("totalSold").textContent = data.totalSold;
+            document.getElementById("totalStock").textContent = data.totalStock;
+            document.getElementById("productCount").textContent = data.productCount;
+        }
+
+
+        async function loadRevenueChart() {
+            const res = await fetch("/AdminDashboard/RevenueData");
+            const data = await res.json();
+            const months = data.map(x => x.month);
+            const revenues = data.map(x => x.totalRevenue);
+
+            new Chart(document.getElementById("revenueChart"), {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: "Doanh thu (VNĐ)",
+                        data: revenues,
+                        backgroundColor: "#36a2eb"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => value.toLocaleString('vi-VN') + ' đ'
                             }
                         }
-                    });
-                })
-                .catch(err => console.error("Lỗi khi tải dữ liệu biểu đồ:", err));
-        });
-            fetch("/AdminDashboard/OrderCountData")
-        .then(res => res.json())
-        .then(data => {
-            const tbody = document.querySelector("#orderCountTable tbody");
-            tbody.innerHTML = "";
-
-            data.forEach(row => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `<td>${row.month}</td><td>${row.orderCount}</td>`;
-                tbody.appendChild(tr);
+                    }
+                }
             });
-        })
-        .catch(err => console.error("Lỗi khi tải số đơn hàng:", err));
+        }
 
+        async function loadBrandPieChart() {
+            const res = await fetch("/AdminDashboard/RevenueByBrand");
+            const data = await res.json();
+            const labels = data.map(x => x.brand);
+            const values = data.map(x => x.revenue);
+
+            new Chart(document.getElementById("brandPieChart"), {
+                type: 'pie',
+                data: {
+                    labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56',
+                            '#4BC0C0', '#9966FF', '#FF9F40',
+                            '#C9CBCF', '#00A6B4', '#A4DE02'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        }
+
+        async function loadOrderCountChart() {
+            const res = await fetch("/AdminDashboard/OrderCountData");
+            const data = await res.json();
+            const months = data.map(x => x.month);
+            const counts = data.map(x => x.orderCount);
+
+            new Chart(document.getElementById("orderCountChart"), {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: "Số đơn hàng",
+                        data: counts,
+                        borderColor: "#ff6384",
+                        backgroundColor: "rgba(255, 99, 132, 0.2)",
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadSummaryStats();
+            loadRevenueChart();
+            loadBrandPieChart();
+            loadOrderCountChart();
+        });
     </script>
 }

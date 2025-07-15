@@ -6,10 +6,9 @@
     ViewData["Title"] = "Quản lý tin tức";
 }
 
-<h2 class="mb-4 fw-bold">📰 Quản lý tin tức</h2>
 
-<a class="btn btn-success mb-3 shadow" asp-action="Create">
-    <i class="bi bi-plus-circle"></i> Thêm tin mới
+<a href="/AdminNews/Create" class="btn btn-primary btn-add">
+    <i class="bi bi-plus-circle me-1">Thêm Tin Tức</i> 
 </a>
 
 <table class="table table-hover table-bordered shadow-sm rounded admin-news-table">
@@ -18,7 +17,7 @@
             <th>Tiêu đề</th>
             <th>Ngày tạo</th>
             <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -47,6 +46,27 @@
 
 <!-- CSS tùy chỉnh -->
 <style>
+    .btn-add {
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 14px;
+        background-color: #1c3faa;
+        border: none;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .btn-add:hover {
+            background-color: #0f2e88;
+            color: #fff;
+        }
+
+        .btn-add i {
+            font-size: 16px;
+        }
+
     .admin-news-table {
         background-color: #fff;
         border-radius: 8px;

@@ -53,7 +53,7 @@ namespace TechNova.Controllers
             ViewBag.AppleProducts = appleProducts;
             ViewBag.SamsungProducts = samsungProducts;
             ViewBag.AcerProducts = acerProducts;
-
+            
             return View();
         }
 

@@ -22,6 +22,7 @@ namespace TechNova.Models.Data
         public DbSet<ProductSpecification> ProductSpecifications { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
